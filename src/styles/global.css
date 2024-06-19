@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../../node_modules/@syncfusion/ej2-base/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-buttons/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-calendars/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-inputs/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-navigations/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-popups/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-react-grids/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-notifications/styles/tailwind.css';
+@import '../../node_modules/@syncfusion/ej2-layouts/styles/tailwind.css';
+
+@import url('./themes/light.css');
+@import url('./themes/dark.css');
+
+@import url('./variables/light.css');
+@import url('./variables/dark.css');
+@import url('./variables/default.css');
+
+@import './tailwind.css';
+
+.material-symbols-outlined {
+	font-variation-settings:
+		'FILL' 1,
+		'wght' 300,
+		'GRAD' -25,
+		'opsz' 20;
+}
