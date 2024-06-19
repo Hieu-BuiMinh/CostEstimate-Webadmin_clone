@@ -1,11 +1,8 @@
 import './style.css'
 
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
-import Cookies from 'js-cookie'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
-import { APP_ROUTER } from '@/common/config'
 import { useAdminTemplateContext } from '@/templates/admin-template'
 import SidebarButton from '@/templates/admin-template/components/sidebar-button'
 
@@ -15,18 +12,7 @@ interface IAdminSidebar {
 }
 
 function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
-	const adminDataContext = useAdminTemplateContext()
-	const router = useRouter()
-
-	const handleLogout = () => {
-		const accessToken = Cookies.get('accessToken')
-
-		if (accessToken) {
-			Cookies.remove('accessToken')
-			Cookies.remove('refreshToken')
-			router.push(APP_ROUTER.paths.center.signIn.path)
-		}
-	}
+	const adminTemplateContext = useAdminTemplateContext()
 
 	return (
 		<div className={`admin__sidebar-component ${bodyExpand && 'admin__sidebar-component--open'}`}>
@@ -45,7 +31,7 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 						</span>
 					</ButtonComponent>
 
-					{adminDataContext.templateState.sidebarData.sections.navigator.map((nav) => {
+					{adminTemplateContext.templateState.sidebarData.sections.navigator.map((nav) => {
 						return (
 							<Link className="w-full" href={nav.path} key={nav.key}>
 								<SidebarButton justIcon={bodyExpand} innerItext={nav.innerText} icon={nav.icon} />
@@ -55,7 +41,7 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 				</section>
 
 				<section className="flex w-full flex-col gap-3 p-[10px]">
-					{adminDataContext.templateState.sidebarData.sections.settings.map((nav) => {
+					{adminTemplateContext.templateState.sidebarData.sections.settings.map((nav) => {
 						if (nav?.type === 'logout') {
 							return (
 								<SidebarButton
@@ -63,7 +49,7 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 									key={nav.key}
 									innerItext={nav.innerText}
 									icon={nav.icon}
-									onClick={handleLogout}
+									onClick={() => adminTemplateContext.handleLogout()}
 								/>
 							)
 						}

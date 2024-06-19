@@ -3,9 +3,10 @@
 import './style.css'
 
 import Cookies from 'js-cookie'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import React, { createContext, useContext, useMemo, useState } from 'react'
 
+import { APP_ROUTER } from '@/common/config'
 import AdminNavbar from '@/templates/admin-template/components/admin-navbar'
 import AdminSidebar from '@/templates/admin-template/components/admin-sidebar'
 
@@ -48,7 +49,11 @@ const initData = {
 	},
 }
 
-const AdminTemplateContext = createContext({ templateState: initData, handleToggleSidebar: () => null })
+const AdminTemplateContext = createContext({
+	templateState: initData,
+	handleToggleSidebar: () => null,
+	handleLogout: () => null,
+})
 
 const useAdminTemplateContext = () => {
 	const context = useContext(AdminTemplateContext)
@@ -61,6 +66,8 @@ const useAdminTemplateContext = () => {
 
 function AdminTemplate({ children }: IAdminTemplate) {
 	const accessToken = Cookies.get('accessToken')
+	const router = useRouter()
+
 	const [templateState, setTemplateState] = useState<typeof initData>(initData)
 
 	const handleToggleSidebar = () => {
@@ -70,8 +77,17 @@ function AdminTemplate({ children }: IAdminTemplate) {
 		return null
 	}
 
+	const handleLogout = () => {
+		if (accessToken) {
+			Cookies.remove('accessToken')
+			Cookies.remove('refreshToken')
+			router.push(APP_ROUTER.paths.center.signIn.path)
+		}
+		return null
+	}
+
 	const value = useMemo(() => {
-		return { templateState, handleToggleSidebar }
+		return { templateState, handleToggleSidebar, handleLogout }
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
