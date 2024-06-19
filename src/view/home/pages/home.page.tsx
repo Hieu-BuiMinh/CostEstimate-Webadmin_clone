@@ -1,12 +1,13 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import React from 'react'
+
+import { APP_ROUTER } from '@/common/config'
 
 function HomePageView() {
 	const router = useRouter()
 	const redirectToLogin = () => {
-		router.push('/login')
+		router.push(APP_ROUTER.paths.center.signIn.path)
 	}
 
 	return (
