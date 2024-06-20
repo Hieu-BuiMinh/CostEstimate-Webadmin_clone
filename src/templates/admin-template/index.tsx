@@ -15,23 +15,24 @@ interface IAdminTemplate {
 }
 
 const initData = {
-	bodyExpand: true,
+	bodyExpand: false,
 	sidebarData: {
 		sections: {
 			navigator: [
 				{ innerText: 'Dashboard', icon: 'dashboard', path: '/dashboard', key: 'nav_00' },
-				{ innerText: 'Files', icon: 'draft', path: '/file', key: 'nav_01' },
-				{ innerText: 'Model management', icon: 'more_horiz', path: '/model-management', key: 'nav_02' },
-				{ innerText: 'Coparison model', icon: 'compare_arrows', path: '/comparison-model', key: 'nav_03' },
-				{ innerText: 'Cost estimate', icon: 'function', path: '/cost-estimate', key: 'nav_04' },
-				{ innerText: 'Equipment', icon: 'settings', path: '/equipment', key: 'nav_05' },
+				{ innerText: 'Users', icon: 'group', path: '/users', key: 'nav_01' },
+				{ innerText: 'Files', icon: 'draft', path: '/file', key: 'nav_02' },
+				{ innerText: 'Model management', icon: 'more_horiz', path: '/model-management', key: 'nav_03' },
+				{ innerText: 'Coparison model', icon: 'compare_arrows', path: '/comparison-model', key: 'nav_04' },
+				{ innerText: 'Cost estimate', icon: 'function', path: '/cost-estimate', key: 'nav_05' },
+				{ innerText: 'Equipment', icon: 'settings', path: '/equipment', key: 'nav_06' },
 				{
 					innerText: 'Project Management',
 					icon: 'format_list_bulleted',
 					path: '/project-management',
-					key: 'nav_06',
+					key: 'nav_07',
 				},
-				{ innerText: 'System Log', icon: 'history', path: '/system-log', key: 'nav_07' },
+				{ innerText: 'System Log', icon: 'history', path: '/system-log', key: 'nav_08' },
 			],
 			settings: [
 				{ innerText: 'Setting', icon: 'settings', path: '/settings', key: 'setting_01' },

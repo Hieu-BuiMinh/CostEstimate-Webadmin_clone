@@ -44,8 +44,11 @@ const axiosBuilder = new AxiosBuilder()
 		}
 		return response
 	})
-	.setErrorInterceptor(async (error: AxiosError) => {
-		return error
+	.setErrorInterceptor(async (error: AxiosError<any, any>) => {
+		if (!error?.response?.data) {
+			return error.response
+		}
+		return error.response?.data
 	})
 	.build()
 export const httpClient = axiosBuilder

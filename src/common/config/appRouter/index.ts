@@ -7,6 +7,7 @@ import { modelManagement } from '@/common/config/appRouter/admin/model-managemen
 import { projectManagement } from '@/common/config/appRouter/admin/project-management'
 import { settings } from '@/common/config/appRouter/admin/settings'
 import { systemLog } from '@/common/config/appRouter/admin/system-log'
+import { users } from '@/common/config/appRouter/admin/users'
 
 const DEFAULT_PATHS = {
 	admin: {
@@ -19,6 +20,7 @@ const DEFAULT_PATHS = {
 		equipment,
 		projectManagement,
 		systemLog,
+		users,
 	},
 	center: {
 		signIn: {

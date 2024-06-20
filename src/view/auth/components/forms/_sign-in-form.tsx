@@ -36,6 +36,8 @@ function AuthLoginForm() {
 				{ value: 'female', label: 'Female', id: 'gender_02' },
 			],
 		},
+		{ type: 'date', name: 'birth', placeholder: 'Date of birth' },
+		{ type: 'text-area', name: 'contact', placeholder: 'Contact us' },
 	]
 
 	return (
@@ -71,30 +73,13 @@ function AuthLoginForm() {
 							</div>
 						)
 					})}
+
 					<Link
 						className="justify-start text-sm font-semibold text-[var(--color-text-link)]"
 						href={APP_ROUTER.paths.center.signUp.path}
 					>
 						Don&apos;t have an account?
 					</Link>
-					{/* <div className="flex w-full flex-col gap-2">
-						<RHFDynamicInput name="username" type="text" placeholder="Enter username" />
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<RHFDynamicInput name="password" type="text" placeholder="Enter password" />
-					</div>
-					<div className="flex w-full flex-col gap-2">
-						<RHFDynamicInput name="gender" type="radio" />
-					</div>
-					<div className="flex w-full items-center justify-between">
-						<RHFDynamicInput name="remember" type="checkbox" label="Remmeber me" />
-						<Link
-							className="justify-start text-sm font-semibold text-[var(--color-text-link)]"
-							href={APP_ROUTER.paths.center.signUp.path}
-						>
-							Don&apos;t have an account?
-						</Link>
-					</div> */}
 
 					<ButtonComponent type="submit" className="e-primary w-full">
 						SUBMIT

@@ -1,9 +1,10 @@
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons'
+import { DatePickerComponent, Inject, MaskedDateTime } from '@syncfusion/ej2-react-calendars'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
 import { Controller, useFormContext } from 'react-hook-form'
 
 interface IRHFDynamicInput {
-	type: 'text' | 'radio' | 'checkbox'
+	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area'
 	name: string
 	placeholder?: string
 	label?: string
@@ -70,6 +71,39 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 							)
 						})}
 					</div>
+					{formState.errors[name] && (
+						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+					)}
+				</>
+			)
+		case 'date':
+			return (
+				<>
+					<DatePickerComponent
+						{...register(name)}
+						format="dd-MM-yyy"
+						placeholder={rest?.placeholder}
+						floatLabelType="Always"
+						enableMask
+						maskPlaceholder={{ day: 'DD', month: 'MM', year: 'yyyy' }}
+					>
+						<Inject services={[MaskedDateTime]} />
+					</DatePickerComponent>
+					{formState.errors[name] && (
+						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+					)}
+				</>
+			)
+		case 'text-area':
+			return (
+				<>
+					<TextBoxComponent
+						type={type}
+						placeholder={rest?.placeholder}
+						floatLabelType="Always"
+						multiline
+						{...register(name)}
+					/>
 					{formState.errors[name] && (
 						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
 					)}
