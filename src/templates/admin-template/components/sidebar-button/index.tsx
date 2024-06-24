@@ -12,7 +12,12 @@ interface ISidebarButton {
 
 function SidebarButton({ innerItext, icon, onClick, className, justIcon }: ISidebarButton) {
 	return (
-		<ButtonComponent className={className} onClick={onClick} cssClass="e-flat h-[33px] w-full flex item-center p-0">
+		<ButtonComponent
+			className={className}
+			onClick={onClick}
+			style={{ outline: 'none', boxShadow: 'none' }}
+			cssClass="e-flat h-[33px] w-full flex item-center p-0"
+		>
 			<div
 				className={clsx(
 					{ 'flex w-full items-center text-xs': true },

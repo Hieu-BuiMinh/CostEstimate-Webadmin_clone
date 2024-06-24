@@ -1,4 +1,5 @@
-import '@/styles/global.css'
+import '@/public/assets/scss/global.css'
+import '@/public/assets/scss/base/base.scss'
 
 import { registerLicense } from '@syncfusion/ej2-base'
 import type { Metadata } from 'next'

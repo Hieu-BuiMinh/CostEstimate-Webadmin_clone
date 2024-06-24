@@ -1,6 +1,3 @@
-import './style.css'
-
-import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import Link from 'next/link'
 
 import { useAdminTemplateContext } from '@/templates/admin-template'
@@ -18,7 +15,8 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 		<div className={`admin__sidebar-component ${bodyExpand && 'admin__sidebar-component--open'}`}>
 			<div className="admin__sidebar-body">
 				<section className="flex w-full flex-col items-end justify-between gap-3 p-[10px]">
-					<ButtonComponent
+					<button
+						type="button"
 						onClick={handleToggleSidebar}
 						className="e-flat !flex h-[33px] w-[35px] !border-[var(--color-primary)] !p-0"
 						style={{ border: bodyExpand ? '' : 'none' }}
@@ -29,7 +27,7 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 						>
 							{bodyExpand ? 'keyboard_double_arrow_right' : 'keyboard_double_arrow_left'}
 						</span>
-					</ButtonComponent>
+					</button>
 
 					{adminTemplateContext.templateState.sidebarData.sections.navigator.map((nav) => {
 						return (

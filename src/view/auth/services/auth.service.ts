@@ -6,6 +6,8 @@ import {
 	type ILoginResponseDto,
 	type IRegisterRequestDto,
 	type IRegisterResponseDto,
+	type IResetPasswordRequestDto,
+	type IResetPasswordResponseDto,
 } from '@/view/auth/types'
 
 export const AuthService: any = {
@@ -31,6 +33,13 @@ export const AuthService: any = {
 			phoneNumber: _user.phoneNumber,
 		})
 
+		return response
+	},
+	resetPassword: async (_user: IResetPasswordRequestDto) => {
+		const response: IResetPasswordResponseDto = await httpClient.post(API_ROUTES.auth.resetPassword, {
+			password: _user.password,
+			confirmPassword: _user.confirmPassword,
+		})
 		return response
 	},
 }

@@ -1,18 +1,28 @@
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
-import type { PageSettingsModel, SortSettingsModel } from '@syncfusion/ej2-react-grids'
+import type {
+	GridComponent as GridComponentType,
+	PageSettingsModel,
+	SortSettingsModel,
+} from '@syncfusion/ej2-react-grids'
 import {
 	ColumnDirective,
 	ColumnsDirective,
+	CommandColumn,
+	Edit,
 	Filter,
 	GridComponent,
 	Group,
 	Inject,
 	PagerComponent,
+	Resize,
 	Sort,
 } from '@syncfusion/ej2-react-grids'
-import { memo } from 'react'
+import { memo, useRef } from 'react'
 
 interface IGridView {
+	columns: any[]
+	rowTemplate?: any
+	allowActionColumn?: boolean
 	tableData?: {
 		totalItems: number
 		items: {}[]
@@ -22,16 +32,19 @@ interface IGridView {
 	handleChangeTablePageSize: (_num: number) => void
 }
 
-function GridView({ tableData, handleChangeTableCurrentPage, handleChangeTablePageSize, pageSettings }: IGridView) {
+function GridView({
+	columns,
+	rowTemplate,
+	allowActionColumn,
+	tableData,
+	pageSettings,
+	handleChangeTableCurrentPage,
+	handleChangeTablePageSize,
+}: IGridView) {
+	const grifRef = useRef<GridComponentType | null>(null)
+
 	const sortSettings: SortSettingsModel = {
-		columns: [
-			{ field: 'id', direction: 'Ascending' },
-			{ field: 'fullName', direction: 'Ascending' },
-			{ field: 'phoneNumber', direction: 'Ascending' },
-			{ field: 'userName', direction: 'Ascending' },
-			{ field: 'email', direction: 'Ascending' },
-			{ field: 'createdDate', direction: 'Ascending' },
-		],
+		columns,
 	}
 
 	const handleChangeCurrentPage = (_currentPage: number) => {
@@ -43,22 +56,33 @@ function GridView({ tableData, handleChangeTableCurrentPage, handleChangeTablePa
 
 	return (
 		<>
-			<GridComponent dataSource={tableData?.items} allowSorting sortSettings={sortSettings}>
+			<GridComponent
+				ref={grifRef}
+				dataSource={tableData?.items}
+				rowTemplate={rowTemplate}
+				allowSorting
+				sortSettings={sortSettings}
+				allowResizing
+			>
 				<ColumnsDirective>
-					<ColumnDirective field="id" width="100" />
-					<ColumnDirective field="fullName" width="100" />
-					<ColumnDirective field="phoneNumber" width="100" />
-					<ColumnDirective field="userName" width="100" format="C2" />
-					<ColumnDirective field="email" width="100" />
-					<ColumnDirective field="createdDate" width="100" />
+					{columns.map((column) => (
+						<ColumnDirective
+							allowSorting={column.allowSorting}
+							key={column.id}
+							field={column.field}
+							minWidth="100"
+						/>
+					))}
+					{allowActionColumn && <ColumnDirective headerText="Actions" minWidth="100" />}
 				</ColumnsDirective>
-				<Inject services={[Sort, Filter, Group]} />
+				<Inject services={[Sort, Filter, Group, Edit, CommandColumn, Resize]} />
 			</GridComponent>
 
 			<div className="flex items-center justify-between gap-3">
 				<PagerComponent
-					totalRecordsCount={tableData?.totalItems || 1}
+					totalRecordsCount={tableData?.totalItems}
 					pageSize={pageSettings.pageSize}
+					currentPage={1} // don't change, this is default value of pagination
 					click={(e: any) => {
 						handleChangeCurrentPage(e.currentPage)
 					}}
@@ -69,7 +93,7 @@ function GridView({ tableData, handleChangeTableCurrentPage, handleChangeTablePa
 						handleChangePageSize(e.value as number)
 					}}
 					value={pageSettings.pageSize}
-					width={100}
+					width={80}
 					id="ddlelement"
 					dataSource={[5, 10, 15, 20]}
 				/>

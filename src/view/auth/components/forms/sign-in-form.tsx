@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
+import clsx from 'clsx'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,6 +14,7 @@ import type { z } from 'zod'
 
 import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
+import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAuthLogin } from '@/view/auth/hooks'
 import { type ILoginRequestDto } from '@/view/auth/types'
 import { LoginFormValidation } from '@/view/auth/validations'
@@ -26,13 +28,21 @@ function AuthLoginForm() {
 
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(LoginFormValidation) })
 
+	const device = useResponsiveDevice()
+
 	const onSubmit: SubmitHandler<LoginFormFields> = (formData) => {
 		handleLogin(formData as unknown as ILoginRequestDto)
 	}
 
 	const formFields = [
-		{ type: 'text', name: 'usernameOrEmail', placeholder: 'Enter username or email' },
-		{ type: 'text', name: 'password', placeholder: 'Enter password' },
+		{
+			type: 'text',
+			name: 'usernameOrEmail',
+			label: 'Username or Email',
+			required: true,
+			placeholder: 'Enter username or email',
+		},
+		{ type: 'text', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
 		{ type: 'checkbox', name: 'remember', label: 'Remeber me' },
 	]
 
@@ -49,7 +59,12 @@ function AuthLoginForm() {
 		<FormProvider {...methods}>
 			<form
 				onSubmit={methods.handleSubmit(onSubmit)}
-				className="my-form flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3"
+				className={clsx(
+					{
+						'flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
+					},
+					{ 'w-screen h-screen max-w-none': device === 'mobile' }
+				)}
 			>
 				<section className="login-section h-[93px] !py-0">
 					<Image
@@ -67,12 +82,13 @@ function AuthLoginForm() {
 				<section className="login-section gap-4">
 					{formFields.map((field) => {
 						return (
-							<div key={field.name} className="flex w-full flex-col gap-2">
+							<div key={field.name} className="flex w-full flex-col gap-1">
 								<RHFDynamicInput
 									name={field.name}
 									type={field.type as 'text' | 'checkbox' | 'radio'}
-									placeholder={field?.placeholder}
 									label={field?.label}
+									placeholder={field?.placeholder}
+									required={field?.required}
 								/>
 							</div>
 						)

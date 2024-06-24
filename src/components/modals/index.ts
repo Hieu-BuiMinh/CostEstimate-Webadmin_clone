@@ -1,1 +1,1 @@
-export * from './default-modal'
+export * from './app-modal'

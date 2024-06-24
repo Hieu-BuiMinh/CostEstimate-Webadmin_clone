@@ -1,7 +1,0 @@
-.login-section {
-	@apply p-3 flex flex-col items-center justify-between;
-}
-
-.sign-in-error {
-	@apply text-xs text-red-400;
-}

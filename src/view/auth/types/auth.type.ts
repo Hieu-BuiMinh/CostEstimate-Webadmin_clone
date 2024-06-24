@@ -33,10 +33,21 @@ export interface IRegisterRequestDto {
 }
 
 export interface IRegisterResponseDto {
-	data: {
-		succeeded: true
-		errors: any[]
-	}
-	message: string
-	statusCode: number
+	succeeded: true
+	errors: any[]
+}
+
+// RESET PASSWORD
+export interface IResetPasswordRequestDto {
+	password: string
+	confirmPassword: string
+}
+
+export interface IResetPasswordResponseDto {
+	succeeded: true
+	errors: any[]
+}
+
+export enum AuthEnum {
+	authType = 1,
 }

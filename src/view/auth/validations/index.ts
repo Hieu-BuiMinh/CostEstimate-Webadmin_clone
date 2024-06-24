@@ -4,8 +4,11 @@ const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z
-		.string({ message: 'This field is require' })
-		.min(5, 'Password must be at least 5 characters long'),
+		.string({ message: 'This field is required' })
+		.min(5, 'Username or Email must be at least 5 characters long')
+		.refine((value) => /\S+@\S+\.\S+/.test(value) || /^[a-zA-Z0-9]+$/.test(value), {
+			message: 'Consider using an email format',
+		}),
 	password: z.string({ message: 'This field is required' }).min(8, 'Password must be at least 8 characters long'),
 	remember: z.boolean(),
 })
@@ -17,7 +20,7 @@ export const SignUpFormValidation = z.object({
 	}),
 	password: z.string({ message: 'This field is require' }).min(8, 'Password must be at least 8 characters long'),
 	email: z.string({ message: 'This field is require' }).email('Invalid e-mail format'),
-	phoneNumber: z.string().regex(phoneRegex, 'Invalid phone number!'),
+	phoneNumber: z.string().regex(phoneRegex, 'Invalid phone number!').optional(),
 })
 
 export const TestLoginFormValidation = z.object({
@@ -29,3 +32,14 @@ export const TestLoginFormValidation = z.object({
 	birth: z.date({ message: 'This field is required' }),
 	contact: z.string({ message: 'This field is required' }),
 })
+
+export const ResetPasswordFormValidation = z
+	.object({
+		curPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		password: z.string().min(8, 'Password must be at least 8 characters long'),
+		confirmPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+	})
+	.refine((data) => data.password === data.confirmPassword, {
+		message: "Passwords don't match",
+		path: ['confirmPassword'],
+	})

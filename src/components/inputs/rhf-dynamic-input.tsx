@@ -4,11 +4,12 @@ import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
 import { Controller, useFormContext } from 'react-hook-form'
 
 interface IRHFDynamicInput {
-	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area'
+	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area' | 'number'
 	name: string
 	placeholder?: string
 	label?: string
 	defaultValue?: string | boolean
+	required?: boolean
 	radioOptions?: { value: string; label: string; id: string }[]
 }
 
@@ -19,14 +20,33 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 		case 'text':
 			return (
 				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
 					<TextBoxComponent
-						type={type}
-						placeholder={rest?.placeholder}
-						floatLabelType="Always"
+						type={name === 'email' ? 'email' : type}
+						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
 					/>
 					{formState.errors[name] && (
-						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+					)}
+				</>
+			)
+		case 'number':
+			return (
+				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
+					<TextBoxComponent
+						type={type}
+						placeholder={rest?.placeholder}
+						value={(rest?.defaultValue as string) || ''}
+						{...register(name)}
+					/>
+					{formState.errors[name] && (
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)
@@ -47,13 +67,16 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						)}
 					/>
 					{formState.errors[name] && (
-						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)
 		case 'radio':
 			return (
 				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
 					<div className="flex gap-2">
 						{rest.radioOptions?.map((rad) => {
 							return (
@@ -72,40 +95,45 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						})}
 					</div>
 					{formState.errors[name] && (
-						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)
 		case 'date':
 			return (
 				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
 					<DatePickerComponent
 						{...register(name)}
 						format="dd-MM-yyy"
 						placeholder={rest?.placeholder}
-						floatLabelType="Always"
 						enableMask
 						maskPlaceholder={{ day: 'DD', month: 'MM', year: 'yyyy' }}
 					>
 						<Inject services={[MaskedDateTime]} />
 					</DatePickerComponent>
 					{formState.errors[name] && (
-						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)
 		case 'text-area':
 			return (
 				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
 					<TextBoxComponent
+						value={(rest?.defaultValue as string) || ''}
 						type={type}
 						placeholder={rest?.placeholder}
-						floatLabelType="Always"
 						multiline
 						{...register(name)}
 					/>
 					{formState.errors[name] && (
-						<span className="sign-in-error">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)

@@ -1,9 +1,9 @@
-import '../styles/signup.page.css'
+// import '../styles/signup.page.css'
 
-import SignUpForm from '../components/forms/sign-up-form'
+import SignUpForm from '@/view/auth/components/forms/sign-up-form'
 
-function SignupPage() {
+function SignupPageView() {
 	return <SignUpForm />
 }
 
-export default SignupPage
+export default SignupPageView

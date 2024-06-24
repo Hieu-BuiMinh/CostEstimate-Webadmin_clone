@@ -44,7 +44,7 @@ function AuthLoginForm() {
 		<FormProvider {...methods}>
 			<form
 				onSubmit={methods.handleSubmit(onSubmit)}
-				className="my-form flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3"
+				className="flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3"
 			>
 				<section className="login-section h-[93px] !py-0">
 					<Image

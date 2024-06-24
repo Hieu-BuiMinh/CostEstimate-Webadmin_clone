@@ -1,1 +1,1 @@
-export * from './useGettAllUsersDashBoard'
+export * from './useGetAllUsersDashBoard'

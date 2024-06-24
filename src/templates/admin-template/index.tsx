@@ -1,6 +1,6 @@
 'use client'
 
-import './style.css'
+// import './style.css'
 
 import Cookies from 'js-cookie'
 import { redirect, useRouter } from 'next/navigation'

@@ -1,11 +1,8 @@
-import './style.css'
-
 import { enableRipple } from '@syncfusion/ej2-base'
-import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
-import { DropDownButtonComponent } from '@syncfusion/ej2-react-splitbuttons'
 import Image from 'next/image'
 
 import { DropdownButton } from '@/components/buttons'
+import AccountDropdownTemplate from '@/components/buttons/dropdown-button/DropdownAccount'
 import FallbackImage from '@/components/fallback-image'
 import { useAdminTemplateContext } from '@/templates/admin-template'
 
@@ -17,13 +14,14 @@ function AdminNavbar() {
 	return (
 		<div className="admin__navbar-component">
 			<section className="flex items-center justify-between gap-3">
-				<ButtonComponent
+				<button
+					type="button"
 					onClick={handleToggleSidebar}
-					className="material-symbols-outlined e-flat !flex !p-0"
+					className="material-symbols-outlined"
 					style={{ fontSize: 34 }}
 				>
 					menu
-				</ButtonComponent>
+				</button>
 				<Image
 					src="/assets/layout/imgs/header_logo.svg"
 					alt="header_logo"
@@ -33,18 +31,26 @@ function AdminNavbar() {
 				/>
 			</section>
 			<section className="flex items-center justify-center gap-4">
-				<div id="target">item 123</div>
-				<DropDownButtonComponent cssClass="e-caret-hide e-flat" target="#target">
-					<span className="material-symbols-outlined m-auto !flex">notifications</span>
-				</DropDownButtonComponent>
+				<div id="target">123</div>
 
 				<DropdownButton
 					id="noti"
-					buttonContent={<span className="material-symbols-outlined m-auto !flex">notifications</span>}
-					dropDownBlock={<div>123</div>}
+					className="!border-none !bg-white !p-0 !shadow-none"
+					buttonContent={
+						<span className="e-avatar e-avatar-circle">
+							<FallbackImage
+								src="/assets/layout/imgs/user_avt.jpg"
+								alt="header_logo"
+								width={200}
+								height={200}
+								className="size-full"
+							/>
+						</span>
+					}
+					dropDownBlock={<AccountDropdownTemplate />}
 				/>
 
-				<span className="e-avatar e-avatar-circle">
+				{/* <span className="e-avatar e-avatar-circle">
 					<FallbackImage
 						src="/assets/layout/imgs/user_avt.jpg"
 						alt="header_logo"
@@ -52,7 +58,7 @@ function AdminNavbar() {
 						height={200}
 						className="size-full"
 					/>
-				</span>
+				</span> */}
 			</section>
 		</div>
 	)

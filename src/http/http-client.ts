@@ -1,5 +1,6 @@
 import type { AxiosError, AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
+import toast from 'react-hot-toast'
 
 import { AxiosBuilder } from '@/http/axios-builder'
 import type { IHttpResponseDto } from '@/http/types/http.response'
@@ -45,10 +46,10 @@ const axiosBuilder = new AxiosBuilder()
 		return response
 	})
 	.setErrorInterceptor(async (error: AxiosError<any, any>) => {
-		if (!error?.response?.data) {
-			return error.response
-		}
-		return error.response?.data
+		// eslint-disable-next-line no-console
+		console.log(error)
+		toast.error(error.message)
+		return error
 	})
 	.build()
 export const httpClient = axiosBuilder

@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -12,6 +13,7 @@ import type { z } from 'zod'
 
 import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
+import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAuthRegister } from '@/view/auth/hooks'
 import { type IRegisterRequestDto } from '@/view/auth/types'
 import { SignUpFormValidation } from '@/view/auth/validations'
@@ -23,13 +25,14 @@ function SignUpForm() {
 	const { mutate: handleRegister, isSuccess, isPending, data: registerData } = useAuthRegister()
 
 	const methods = useForm<FormFields>({ resolver: zodResolver(SignUpFormValidation) })
+	const device = useResponsiveDevice()
 
 	const formFields = [
-		{ type: 'text', name: 'fullName', placeholder: 'Enter fullname' },
-		{ type: 'text', name: 'phoneNumber', placeholder: 'Enter phoneNumber' },
-		{ type: 'text', name: 'email', placeholder: 'Enter email' },
-		{ type: 'text', name: 'username', placeholder: 'Enter username' },
-		{ type: 'text', name: 'password', placeholder: 'Enter password' },
+		{ type: 'text', name: 'fullName', label: 'Fullname', required: true, placeholder: 'Enter fullname' },
+		{ type: 'text', name: 'email', label: 'Email', required: true, placeholder: 'Enter email' },
+		{ type: 'text', name: 'username', label: 'Username', required: true, placeholder: 'Enter username' },
+		{ type: 'text', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
+		{ type: 'number', name: 'phoneNumber', label: 'Phone number', placeholder: 'Enter phone number' },
 	]
 
 	const onSubmit: SubmitHandler<FormFields> = (formData) => {
@@ -48,7 +51,12 @@ function SignUpForm() {
 		<FormProvider {...methods}>
 			<form
 				onSubmit={methods.handleSubmit(onSubmit)}
-				className="flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3"
+				className={clsx(
+					{
+						'flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
+					},
+					{ 'w-screen h-screen max-w-none': device === 'mobile' }
+				)}
 			>
 				<section className="sign-up-section h-[93px] !py-0">
 					<Image
@@ -87,11 +95,13 @@ function SignUpForm() {
 
 					{formFields.map((field) => {
 						return (
-							<div key={field.name} className="flex w-full flex-col gap-2">
+							<div key={field.name} className="flex w-full flex-col gap-1">
 								<RHFDynamicInput
 									name={field.name}
 									type={field.type as 'text' | 'checkbox' | 'radio'}
+									label={field?.label}
 									placeholder={field?.placeholder}
+									required={field?.required}
 								/>
 							</div>
 						)
