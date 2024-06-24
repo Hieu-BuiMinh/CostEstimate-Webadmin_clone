@@ -46,22 +46,22 @@ export function UserUpsertPage({ type }: IUserUpsertPage) {
 			placeholder: 'Enter fullName',
 			defaultValue: userData?.fullName || '',
 		},
-		{
-			type: 'text',
-			name: 'email',
-			label: 'Email',
-			required: true,
-			placeholder: 'Enter email',
-			defaultValue: userData?.email || '',
-		},
-		{
-			type: 'text',
-			name: 'phoneNumber',
-			label: 'PhoneNumber',
-			required: true,
-			placeholder: 'Enter phoneNumber',
-			defaultValue: userData?.phoneNumber || '',
-		},
+		// {
+		// 	type: 'text',
+		// 	name: 'email',
+		// 	label: 'Email',
+		// 	required: true,
+		// 	placeholder: 'Enter email',
+		// 	defaultValue: userData?.email || '',
+		// },
+		// {
+		// 	type: 'text',
+		// 	name: 'phoneNumber',
+		// 	label: 'PhoneNumber',
+		// 	required: true,
+		// 	placeholder: 'Enter phoneNumber',
+		// 	defaultValue: userData?.phoneNumber || '',
+		// },
 	]
 
 	const onSubmit: SubmitHandler<UpsertFormFields> = (_formData) => {

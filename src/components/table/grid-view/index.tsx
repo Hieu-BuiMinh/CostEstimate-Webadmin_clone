@@ -1,9 +1,5 @@
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
-import type {
-	GridComponent as GridComponentType,
-	PageSettingsModel,
-	SortSettingsModel,
-} from '@syncfusion/ej2-react-grids'
+import type { GridComponent as GridComponentType, PageSettingsModel } from '@syncfusion/ej2-react-grids'
 import {
 	ColumnDirective,
 	ColumnsDirective,
@@ -43,9 +39,9 @@ function GridView({
 }: IGridView) {
 	const grifRef = useRef<GridComponentType | null>(null)
 
-	const sortSettings: SortSettingsModel = {
-		columns,
-	}
+	// const sortSettings: SortSettingsModel = {
+	// 	columns,
+	// }
 
 	const handleChangeCurrentPage = (_currentPage: number) => {
 		handleChangeTableCurrentPage(_currentPage)
@@ -61,7 +57,7 @@ function GridView({
 				dataSource={tableData?.items}
 				rowTemplate={rowTemplate}
 				allowSorting
-				sortSettings={sortSettings}
+				// sortSettings={sortSettings}
 				allowResizing
 			>
 				<ColumnsDirective>

@@ -4,9 +4,10 @@
 
 import Cookies from 'js-cookie'
 import { redirect, useRouter } from 'next/navigation'
-import React, { createContext, useContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
+import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import AdminNavbar from '@/templates/admin-template/components/admin-navbar'
 import AdminSidebar from '@/templates/admin-template/components/admin-sidebar'
 
@@ -68,6 +69,7 @@ const useAdminTemplateContext = () => {
 function AdminTemplate({ children }: IAdminTemplate) {
 	const accessToken = Cookies.get('accessToken')
 	const router = useRouter()
+	const device = useResponsiveDevice()
 
 	const [templateState, setTemplateState] = useState<typeof initData>(initData)
 
@@ -95,6 +97,20 @@ function AdminTemplate({ children }: IAdminTemplate) {
 	if (!accessToken) {
 		return redirect('/sign-in')
 	}
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	useEffect(() => {
+		if (device === 'desktop') {
+			setTemplateState((prev) => {
+				return { ...prev, bodyExpand: false }
+			})
+		}
+		if (device === 'tablet') {
+			setTemplateState((prev) => {
+				return { ...prev, bodyExpand: true }
+			})
+		}
+	}, [device])
 
 	return (
 		<AdminTemplateContext.Provider value={value}>
