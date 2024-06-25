@@ -82,7 +82,7 @@ function GridView({
 					click={(e: any) => {
 						handleChangeCurrentPage(e.currentPage)
 					}}
-					className="flex-1 !border-none"
+					className="flex-1 !border-none !bg-transparent"
 				/>
 				<DropDownListComponent
 					onChange={(e: any) => {

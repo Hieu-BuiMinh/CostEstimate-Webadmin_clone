@@ -111,7 +111,7 @@ function AccountDropdownTemplate() {
 	return (
 		<div
 			id="dropdownNavbar"
-			className="absolute left-[-200px] z-10 w-60 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow dark:divide-gray-600 dark:bg-gray-700"
+			className="absolute left-[-200px] z-10 w-60 divide-y divide-gray-100 rounded-lg bg-[var(--color-surface-300)] font-normal shadow dark:divide-gray-600 dark:bg-gray-700"
 		>
 			<div className="flex items-center p-4">
 				<div className="e-avatar e-avatar-circle">

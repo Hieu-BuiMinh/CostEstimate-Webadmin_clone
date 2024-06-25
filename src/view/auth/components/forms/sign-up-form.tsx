@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
@@ -15,7 +15,7 @@ import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAuthRegister } from '@/view/auth/hooks'
-import { type IRegisterRequestDto } from '@/view/auth/types'
+import type { IRegisterRequestDto } from '@/view/auth/types'
 import { SignUpFormValidation } from '@/view/auth/validations'
 
 type FormFields = z.infer<typeof SignUpFormValidation>
@@ -28,11 +28,18 @@ function SignUpForm() {
 	const device = useResponsiveDevice()
 
 	const formFields = [
-		{ type: 'text', name: 'fullName', label: 'Fullname', required: true, placeholder: 'Enter fullname' },
+		{
+			type: 'group',
+			name: 'authname',
+			children: [
+				{ type: 'text', name: 'firstname', label: 'Firstname', required: true, placeholder: 'Enter firstname' },
+				{ type: 'text', name: 'lastname', label: 'Lastname', required: true, placeholder: 'Enter lastname' },
+			],
+		},
 		{ type: 'text', name: 'email', label: 'Email', required: true, placeholder: 'Enter email' },
 		{ type: 'text', name: 'username', label: 'Username', required: true, placeholder: 'Enter username' },
-		{ type: 'text', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
-		{ type: 'number', name: 'phoneNumber', label: 'Phone number', placeholder: 'Enter phone number' },
+		{ type: 'password', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
+		{ type: 'number', name: 'phoneNumber', label: 'Phone number' },
 	]
 
 	const onSubmit: SubmitHandler<FormFields> = (formData) => {
@@ -53,9 +60,9 @@ function SignUpForm() {
 				onSubmit={methods.handleSubmit(onSubmit)}
 				className={clsx(
 					{
-						'flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
+						'flex w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
 					},
-					{ 'w-screen h-screen max-w-none': device === 'mobile' }
+					{ 'w-screen min-h-screen max-w-none': device === 'mobile' }
 				)}
 			>
 				<section className="sign-up-section h-[93px] !py-0">
@@ -66,34 +73,34 @@ function SignUpForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
 						Sign up new account
 					</p>
 				</section>
 
-				<section className="sign-up-section gap-4">
-					{/* <div className="flex w-full flex-col gap-2">
-					<TextBoxComponent {...register('fullName')} placeholder="FullName" floatLabelType="Always" />
-					{errors.fullName && <span className="sign-up-error">{errors.fullName.message}</span>}
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<TextBoxComponent {...register('phoneNumber')} placeholder="Phone number" floatLabelType="Always" />
-					{errors.phoneNumber && <span className="sign-up-error">{errors.phoneNumber.message}</span>}
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<TextBoxComponent {...register('email')} placeholder="Email" floatLabelType="Always" />
-					{errors.email && <span className="sign-up-error">{errors.email.message}</span>}
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<TextBoxComponent {...register('username')} placeholder="Username" floatLabelType="Always" />
-					{errors.username && <span className="sign-up-error">{errors.username.message}</span>}
-				</div>
-				<div className="flex w-full flex-col gap-2">
-					<TextBoxComponent {...register('password')} placeholder="Password" floatLabelType="Always" />
-					{errors.password && <span className="sign-up-error">{errors.password.message}</span>}
-				</div> */}
+				<section className="sign-up-section gap-2">
+					{/* eslint-disable-next-line array-callback-return, consistent-return */}
+					{formFields.map((field): any => {
+						if (field.type === 'group') {
+							return (
+								<div key={field.name} className="grid grid-cols-2 gap-3">
+									{field?.children?.map((child) => {
+										return (
+											<div key={child.name} className="flex w-full flex-col gap-1">
+												<RHFDynamicInput
+													name={child.name}
+													type={child.type as 'text' | 'checkbox' | 'radio'}
+													label={child?.label}
+													placeholder={child?.placeholder}
+													required={child?.required}
+												/>
+											</div>
+										)
+									})}
+								</div>
+							)
+						}
 
-					{formFields.map((field) => {
 						return (
 							<div key={field.name} className="flex w-full flex-col gap-1">
 								<RHFDynamicInput
@@ -106,9 +113,13 @@ function SignUpForm() {
 							</div>
 						)
 					})}
-					<ButtonComponent disabled={isPending} type="submit" className="e-primary mt-4 w-full">
-						SUBMIT
-					</ButtonComponent>
+
+					<div className="flex w-full flex-col gap-1">
+						{registerData?.statusCode !== 200 && <p className="text-red-400">{registerData?.message}</p>}
+						<ButtonComponent disabled={isPending} type="submit" className="e-primary mt-4 w-full">
+							SUBMIT
+						</ButtonComponent>
+					</div>
 
 					<div>
 						Already have an account?{' '}

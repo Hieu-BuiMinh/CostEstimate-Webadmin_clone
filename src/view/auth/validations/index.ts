@@ -1,6 +1,12 @@
 import { z } from 'zod'
 
-const phoneRegex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?[\d\s-]{7,15}$/
+// +123 456 7890
+// 123-456-7890
+// (123) 456-7890
+// 123 456 7890
+// 1234567890
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/
 
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z
@@ -9,22 +15,37 @@ export const LoginFormValidation = z.object({
 		.refine((value) => /\S+@\S+\.\S+/.test(value) || /^[a-zA-Z0-9]+$/.test(value), {
 			message: 'Consider using an email format',
 		}),
-	password: z.string({ message: 'This field is required' }).min(8, 'Password must be at least 8 characters long'),
+	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
+		message:
+			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one special character',
+	}),
 	remember: z.boolean(),
 })
 
 export const SignUpFormValidation = z.object({
-	fullName: z.string({ message: 'This field is require' }),
-	username: z.string({ message: 'This field is require' }).refine((value) => /^[a-z0-9]+$/.test(value), {
-		message: 'Username must only contain lowercase letters and numbers',
-	}),
-	password: z.string({ message: 'This field is require' }).min(8, 'Password must be at least 8 characters long'),
+	firstname: z.string({ message: 'This field is require' }).min(1, { message: 'This field is require' }),
+	lastname: z.string({ message: 'This field is require' }).min(1, { message: 'This field is require' }),
 	email: z.string({ message: 'This field is require' }).email('Invalid e-mail format'),
-	phoneNumber: z.string().regex(phoneRegex, 'Invalid phone number!').optional(),
+	username: z
+		.string({ message: 'This field is require' })
+		.min(5, { message: 'Username must be at least 5 characters' }),
+	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
+		message:
+			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one special character',
+	}),
+	phoneNumber: z
+		.string()
+		.optional()
+		.refine(
+			(value) => {
+				if (!value) return true
+				return phoneRegex.test(value)
+			},
+			{ message: 'Invalid phone number' }
+		),
 })
 
 export const TestLoginFormValidation = z.object({
-	// username: z.string({ message: 'This field is required' }).email('Invalid e-mail format'),
 	username: z.string({ message: 'This field is required' }).min(5, 'Password must be at least 5 characters long'),
 	password: z.string({ message: 'This field is required' }).min(8, 'Password must be at least 8 characters long'),
 	remember: z.boolean(),

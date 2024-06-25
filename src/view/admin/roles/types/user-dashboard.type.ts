@@ -1,23 +1,20 @@
-// GET_ALL_USERS
-export interface IGettAllUsersRequestDto {
+// GET_ALL_ROLES
+export interface IGettAllRolesRequestDto {
 	PageNumber: string | number
 	PageSize: string | number
 	FullName?: string
-	Email?: string
-	Username?: string
-	PhoneNumber?: string
 }
 
-export interface IGettAllUsersResponseDto {
+export interface IGettAllRolesResponseDto {
 	data: {
 		totalItems: number
-		items: IUsers[]
+		items: IRoles[]
 	}
 	message: string
 	statusCode: number
 }
 
-interface IUsers {
+interface IRoles {
 	id: string
 	fullName: string
 	phoneNumber: string
@@ -26,13 +23,13 @@ interface IUsers {
 	createdDate: string
 }
 
-// GET_USER_BY_ID
-export interface IGettUserByIdResponseDto {
+// GET_ROLE_BY_ID
+export interface IGettRoleByIdResponseDto {
 	statusCode: number
 	message: string
-	data: User
+	data: Role
 }
-interface User {
+interface Role {
 	id: string
 	fullName: string
 	phoneNumber: string
@@ -41,8 +38,8 @@ interface User {
 	createdDate: string
 }
 
-// UPDATE_USER_INFOR
-export interface IUpdateUserInforRequestDto {
+// UPDATE_ROLE_INFOR
+export interface IUpdateRoleInforRequestDto {
 	id: string
 	fullName: string
 	phoneNumber: string
@@ -50,14 +47,14 @@ export interface IUpdateUserInforRequestDto {
 	email: string
 	createdDate: string
 }
-export interface IUpdateUserInforResponseDto {
+export interface IUpdateRoleInforResponseDto {
 	statusCode: number
 	message: string
 	data: any
 }
 
-// GET_USER_BY_ID
-export interface IDeleteUserByIdResponseDto {
+// GET_ROLE_BY_ID
+export interface IDeleteRoleByIdResponseDto {
 	statusCode: number
 	message: string
 	data: any

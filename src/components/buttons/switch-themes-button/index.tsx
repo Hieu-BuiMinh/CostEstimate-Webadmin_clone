@@ -4,5 +4,5 @@ import { useThemeContextProvider } from '@/components/providers/theme-provider/t
 
 export function SwitchThemesButton() {
 	const { handleToggleTheme } = useThemeContextProvider()
-	return <SwitchComponent cssClass="mt-28 mx-3" checked onChange={handleToggleTheme} />
+	return <SwitchComponent cssClass="e-small" checked onChange={handleToggleTheme} />
 }

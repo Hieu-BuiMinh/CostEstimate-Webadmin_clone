@@ -26,9 +26,10 @@ export const AuthService: any = {
 	},
 	register: async (_user: IRegisterRequestDto) => {
 		const response: IRegisterResponseDto = await httpClient.post(API_ROUTES.auth.register, {
+			firstName: _user.firstname,
+			lastName: _user.lastname,
 			password: _user.password,
 			username: _user.username,
-			fullName: _user.fullName,
 			email: _user.email,
 			phoneNumber: _user.phoneNumber,
 		})

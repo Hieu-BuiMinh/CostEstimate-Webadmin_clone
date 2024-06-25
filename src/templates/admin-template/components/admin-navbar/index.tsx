@@ -31,11 +31,9 @@ function AdminNavbar() {
 				/>
 			</section>
 			<section className="flex items-center justify-center gap-4">
-				<div id="target">123</div>
-
 				<DropdownButton
 					id="noti"
-					className="!border-none !bg-white !p-0 !shadow-none"
+					className="!border-none !bg-transparent !p-0 !shadow-none"
 					buttonContent={
 						<span className="e-avatar e-avatar-circle">
 							<FallbackImage

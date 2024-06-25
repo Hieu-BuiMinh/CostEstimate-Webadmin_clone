@@ -25,7 +25,8 @@ export enum AuthType {
 
 // REGISTER
 export interface IRegisterRequestDto {
-	fullName: string
+	firstname: string
+	lastname: string
 	username: string
 	password: string
 	email: string
@@ -33,8 +34,9 @@ export interface IRegisterRequestDto {
 }
 
 export interface IRegisterResponseDto {
-	succeeded: true
-	errors: any[]
+	data: any
+	message: string
+	statusCode: number
 }
 
 // RESET PASSWORD

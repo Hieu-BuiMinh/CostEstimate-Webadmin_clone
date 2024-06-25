@@ -24,7 +24,7 @@ type LoginFormFields = z.infer<typeof LoginFormValidation>
 function AuthLoginForm() {
 	const router = useRouter()
 
-	const { mutate: handleLogin, isSuccess, isPending } = useAuthLogin()
+	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
 
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(LoginFormValidation) })
 
@@ -42,7 +42,7 @@ function AuthLoginForm() {
 			required: true,
 			placeholder: 'Enter username or email',
 		},
-		{ type: 'text', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
+		{ type: 'password', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
 		{ type: 'checkbox', name: 'remember', label: 'Remeber me' },
 	]
 
@@ -61,7 +61,7 @@ function AuthLoginForm() {
 				onSubmit={methods.handleSubmit(onSubmit)}
 				className={clsx(
 					{
-						'flex max-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
+						'flex w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
 					},
 					{ 'w-screen h-screen max-w-none': device === 'mobile' }
 				)}
@@ -74,7 +74,7 @@ function AuthLoginForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
 						Sign in to your account
 					</p>
 				</section>
@@ -100,9 +100,12 @@ function AuthLoginForm() {
 						Don&apos;t have an account?
 					</Link>
 
-					<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
-						SUBMIT
-					</ButtonComponent>
+					<div className="flex w-full flex-col gap-1">
+						{loginData?.statusCode !== 200 && <p className="text-red-400">{loginData?.message}</p>}
+						<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
+							SUBMIT
+						</ButtonComponent>
+					</div>
 
 					<Link
 						className="w-full text-sm font-semibold text-[var(--color-text-link)]"

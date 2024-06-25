@@ -18,7 +18,7 @@ function AuthTemplate({ children }: IAuthTemplate) {
 	}
 
 	return (
-		<div className="flex min-h-screen w-screen items-center justify-center bg-[var(--color-surface-100)]">
+		<div className="flex min-h-screen w-screen items-center justify-center bg-[var(--color-template-bg)]">
 			{children}
 		</div>
 	)

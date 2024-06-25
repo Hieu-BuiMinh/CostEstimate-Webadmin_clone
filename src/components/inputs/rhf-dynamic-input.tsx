@@ -1,10 +1,11 @@
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons'
 import { DatePickerComponent, Inject, MaskedDateTime } from '@syncfusion/ej2-react-calendars'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
+import { useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
 interface IRHFDynamicInput {
-	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area' | 'number'
+	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area' | 'number' | 'password'
 	name: string
 	placeholder?: string
 	label?: string
@@ -15,6 +16,11 @@ interface IRHFDynamicInput {
 
 export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 	const { register, formState, control } = useFormContext()
+	const [showPassword, setShowPassword] = useState('password')
+
+	const togglePassword = () => {
+		setShowPassword(showPassword === 'password' ? 'text' : 'password')
+	}
 
 	switch (type) {
 		case 'text':
@@ -28,6 +34,31 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
 					/>
+					{formState.errors[name] && (
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+					)}
+				</>
+			)
+		case 'password':
+			return (
+				<>
+					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
+						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
+					</div>
+					<div className="input-password-overwrite flex gap-2">
+						<TextBoxComponent
+							type={showPassword}
+							value={(rest?.defaultValue as string) || ''}
+							{...register(name)}
+						/>
+						<button
+							className="material-symbols-outlined text-[var(--color-surface-999)]"
+							type="button"
+							onClick={togglePassword}
+						>
+							{showPassword === 'text' ? 'visibility' : 'visibility_off'}
+						</button>
+					</div>
 					{formState.errors[name] && (
 						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}

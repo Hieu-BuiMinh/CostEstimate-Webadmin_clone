@@ -4,14 +4,14 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
+import Button from '@/components/buttons/button'
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
-import { useGetAllUsersDashBoard } from '@/view/admin/users/hooks'
-import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
+import { useDeleteRoleById, useGetAllRolesDashBoard } from '@/view/admin/roles/hooks'
 import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
 
-export function AllUsersTable() {
+export function AllRolesTable() {
 	const router = useRouter()
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
@@ -26,9 +26,9 @@ export function AllUsersTable() {
 		pageSize: 5,
 	})
 
-	const { mutate: handleDeleteUser } = useDeleteUserById()
+	const { mutate: handleDeleteUser } = useDeleteRoleById()
 
-	const { data: tableData } = useGetAllUsersDashBoard({
+	const { data: tableData } = useGetAllRolesDashBoard({
 		PageSize: pageSettings.pageSize as number,
 		PageNumber: pageSettings.currentPage as number,
 		...search,
@@ -90,11 +90,8 @@ export function AllUsersTable() {
 
 	const columns: UsersColumn[] = [
 		{ id: 1, field: 'id', direction: 'Ascending', allowSearching: false },
-		{ id: 2, field: 'fullName', direction: 'Ascending', allowSearching: true },
-		{ id: 3, field: 'phoneNumber', direction: 'Ascending', allowSearching: true },
-		{ id: 4, field: 'username', direction: 'Ascending', allowSearching: true },
-		{ id: 5, field: 'email', direction: 'Ascending', allowSearching: true },
-		{ id: 6, field: 'createdDate', direction: 'Ascending', allowSearching: false },
+		{ id: 2, field: 'name', direction: 'Ascending', allowSearching: true },
+		{ id: 3, field: 'createdDate', direction: 'Ascending', allowSearching: true },
 	]
 
 	const rowTemplate = (Rows: any) => {
@@ -142,14 +139,14 @@ export function AllUsersTable() {
 	return (
 		<div className="flex flex-col gap-3">
 			<div className="flex flex-wrap gap-4">
-				{/* <Button
+				<Button
 					icon="add"
-					innerItext="Add user"
+					innerItext="Add role"
 					className="e-outline !w-28"
 					onClick={() => {
-						router.push(APP_ROUTER.paths.admin.users.children.create)
+						router.push(APP_ROUTER.paths.admin.roles.children.create)
 					}}
-				/> */}
+				/>
 				{/* eslint-disable-next-line array-callback-return, consistent-return */}
 				{columns.map((col): any => {
 					if (col.allowSearching) {
