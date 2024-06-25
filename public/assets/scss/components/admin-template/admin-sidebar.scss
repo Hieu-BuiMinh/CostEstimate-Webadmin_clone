@@ -1,7 +1,7 @@
 .admin {
 	&__sidebar {
 		&-component {
-			@apply h-[calc(100vh-var(--header-high))] w-[236px] bg-[var(--color-surface-100)];
+			@apply h-[calc(100vh-var(--header-high))] w-[236px] bg-[var(--color-template-bg)];
 			@apply fixed top-[var(--header-high)] left-0 z-10;
 
 			box-shadow: 5px 3px 6px 0px rgba(0, 0, 0, 0.1);

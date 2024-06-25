@@ -1,7 +1,7 @@
 .admin {
 	&__navbar {
 		&-component {
-			@apply sticky top-0 left-0 h-[var(--header-high)] bg-[var(--color-surface-100)] shadow-md z-[11];
+			@apply sticky top-0 left-0 h-[var(--header-high)] bg-[var(--color-template-bg)] shadow-md z-[11];
 			@apply flex items-center justify-between px-[10px];
 		}
 		&--profile {

@@ -18,4 +18,7 @@ div[data-app-color-scheme="light"] {
 
   /* login form */
   --color-login-form-bg: #ffffff;
+
+	/* admin template */
+	--color-template-bg: #FFFFFF;
 }

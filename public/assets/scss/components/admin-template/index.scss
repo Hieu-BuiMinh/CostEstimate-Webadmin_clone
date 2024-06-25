@@ -4,7 +4,7 @@
 
 .admin {
 	&__template {
-		@apply h-[screen] w-full bg-[var(--color-surface-100)];
+		@apply h-[screen] w-full bg-[var(--color-template-bg)];
 	}
 	&__body {
 		@apply relative ml-[236px] top-0 h-[200vh];

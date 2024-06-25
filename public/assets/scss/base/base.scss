@@ -3,3 +3,7 @@
 @import '../components/account/index.scss';
 @import '../components/users-page/index.scss';
 @import '../components/modals/index.scss';
+
+*{
+    color: var(--color-surface-999)
+}
