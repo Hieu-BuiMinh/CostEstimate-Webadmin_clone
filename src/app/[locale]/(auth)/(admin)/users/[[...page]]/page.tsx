@@ -6,25 +6,7 @@ export async function generateMetadata() {
 	}
 }
 
-interface Props {
-	params: {
-		page?: string[]
-	}
-}
-
-const Users = ({ params }: Props) => {
-	if (Array.isArray(params?.page) && params.page.length > 0) {
-		if (params.page.includes('create')) {
-			return <UsersPageView type="create" />
-		}
-		if (params.page.includes('edit')) {
-			return <UsersPageView type="edit" />
-		}
-		if (params.page.includes('view')) {
-			return <UsersPageView type="view" />
-		}
-	}
-
+const Users = () => {
 	return <UsersPageView />
 }
 

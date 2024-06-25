@@ -1,1 +1,1 @@
-export * from './user-dashboard.type'
+export * from './roles-dashboard.type'

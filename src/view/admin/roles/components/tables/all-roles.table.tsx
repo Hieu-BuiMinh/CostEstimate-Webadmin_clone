@@ -9,16 +9,13 @@ import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
 import { useDeleteRoleById, useGetAllRolesDashBoard } from '@/view/admin/roles/hooks'
-import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
 
 export function AllRolesTable() {
 	const router = useRouter()
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
-		FullName: '',
-		PhoneNumber: '',
-		Username: '',
-		Email: '',
+		Name: '',
+		CreatedDate: '',
 	})
 
 	const [pageSettings, setPageSettings] = useState<PageSettingsModel>({
@@ -26,7 +23,7 @@ export function AllRolesTable() {
 		pageSize: 5,
 	})
 
-	const { mutate: handleDeleteUser } = useDeleteRoleById()
+	const { mutate: handleDeleteRole } = useDeleteRoleById()
 
 	const { data: tableData } = useGetAllRolesDashBoard({
 		PageSize: pageSettings.pageSize as number,
@@ -47,7 +44,7 @@ export function AllRolesTable() {
 	}, [])
 
 	const handleDelete = (_id: string) => {
-		handleDeleteUser(_id || '')
+		handleDeleteRole(_id || '')
 	}
 
 	const handleOpenModal = (_id: string) => {
@@ -55,7 +52,7 @@ export function AllRolesTable() {
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title="Are you sure to delete this user?"
+					title="Are you sure to delete this role?"
 					message="Confirm Delete"
 					onClose={close}
 					onConfirm={() => {
@@ -70,17 +67,11 @@ export function AllRolesTable() {
 
 	const handleChangeSearchingInputs = ({ type, value }: { type: string; value: string }) => {
 		switch (type) {
-			case 'fullName':
-				setSearch((prev) => ({ ...prev, FullName: value }))
+			case 'name':
+				setSearch((prev) => ({ ...prev, Name: value }))
 				break
-			case 'phoneNumber':
-				setSearch((prev) => ({ ...prev, PhoneNumber: value }))
-				break
-			case 'username':
-				setSearch((prev) => ({ ...prev, Username: value }))
-				break
-			case 'email':
-				setSearch((prev) => ({ ...prev, Email: value }))
+			case 'createdDate':
+				setSearch((prev) => ({ ...prev, CreatedDate: value }))
 				break
 
 			default:
@@ -88,7 +79,7 @@ export function AllRolesTable() {
 		}
 	}
 
-	const columns: UsersColumn[] = [
+	const columns = [
 		{ id: 1, field: 'id', direction: 'Ascending', allowSearching: false },
 		{ id: 2, field: 'name', direction: 'Ascending', allowSearching: true },
 		{ id: 3, field: 'createdDate', direction: 'Ascending', allowSearching: true },
@@ -99,7 +90,7 @@ export function AllRolesTable() {
 			<tr
 				className="e-rows cursor-pointer"
 				onClick={() => {
-					router.push(APP_ROUTER.paths.admin.users.children.view(Rows?.id))
+					router.push(APP_ROUTER.paths.admin.roles.children.view(Rows?.id))
 				}}
 			>
 				{columns.map((cell) => {
@@ -114,7 +105,7 @@ export function AllRolesTable() {
 					<button
 						onClick={(event) => {
 							event.stopPropagation()
-							router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
+							router.push(APP_ROUTER.paths.admin.roles.children.edit(Rows?.id))
 						}}
 						type="button"
 						className="material-symbols-outlined text-green-400"

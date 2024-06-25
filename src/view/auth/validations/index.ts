@@ -7,6 +7,7 @@ const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?[\d\s-]{7,15}$/
 // 123 456 7890
 // 1234567890
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
+// const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]).{8,}$/
 
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z

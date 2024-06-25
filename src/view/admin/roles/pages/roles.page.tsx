@@ -1,8 +1,8 @@
 'use client'
 
 import { AllRolesTable } from '@/view/admin/roles/components/tables'
-import UserDetailPage from '@/view/admin/users/pages/user-detail.page'
-import { UserUpsertPage } from '@/view/admin/users/pages/user-upsert.page'
+import RoleDetailPage from '@/view/admin/roles/pages/role-detail.page'
+import { RoleUpsertPage } from '@/view/admin/roles/pages/role-upsert.page'
 
 interface IRolesPageView {
 	type?: 'view' | 'edit' | 'create'
@@ -11,15 +11,15 @@ interface IRolesPageView {
 function RolesPageView({ type }: IRolesPageView) {
 	// edit page
 	if (type === 'edit') {
-		return <UserUpsertPage type={type} />
+		return <RoleUpsertPage type={type} />
 	}
 	// create page
 	if (type === 'create') {
-		return <UserUpsertPage type={type} />
+		return <RoleUpsertPage type={type} />
 	}
 	// view page
 	if (type === 'view') {
-		return <UserDetailPage />
+		return <RoleDetailPage />
 	}
 	// table page
 	return <AllRolesTable />
