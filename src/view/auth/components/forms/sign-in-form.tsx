@@ -43,7 +43,7 @@ function AuthLoginForm() {
 			placeholder: 'Enter username or email',
 		},
 		{ type: 'password', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
-		{ type: 'checkbox', name: 'remember', label: 'Remeber me' },
+		{ type: 'checkbox', name: 'remember', label: 'Remember me' },
 	]
 
 	useEffect(() => {
@@ -61,7 +61,7 @@ function AuthLoginForm() {
 				onSubmit={methods.handleSubmit(onSubmit)}
 				className={clsx(
 					{
-						'flex w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3': true,
+						'flex w-[385px] flex-col gap-6 rounded border bg-[var(--color-template-bg)] p-3': true,
 					},
 					{ 'w-screen h-screen max-w-none': device === 'mobile' }
 				)}
