@@ -6,7 +6,7 @@ const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?[\d\s-]{7,15}$/
 // (123) 456-7890
 // 123 456 7890
 // 1234567890
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
 
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z
@@ -17,7 +17,7 @@ export const LoginFormValidation = z.object({
 		}),
 	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
 		message:
-			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one special character',
+			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character',
 	}),
 	remember: z.boolean(),
 })
@@ -31,7 +31,7 @@ export const SignUpFormValidation = z.object({
 		.min(5, { message: 'Username must be at least 5 characters' }),
 	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
 		message:
-			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one special character',
+			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character',
 	}),
 	phoneNumber: z
 		.string()
