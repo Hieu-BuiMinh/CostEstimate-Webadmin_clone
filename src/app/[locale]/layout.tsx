@@ -42,9 +42,7 @@ export default function RootLayout(props: { children: React.ReactNode; params: {
 
 	// Using internationalization in Client Components
 	const messages = useMessages()
-	registerLicense(
-		'ORg4AjUWIQA/Gnt2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5WdURjXH5Wc3RXRGhZ;MzMwMDA2MEAzMjM1MmUzMDJlMzBEMUFaQVRveGRnZnZEdytIN0h0bDdFNnUxaFViWW45K21icFdDandaK3YwPQ=='
-	)
+	registerLicense('ORg4AjUWIQA/Gnt2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5VdEBhWHxbdHFUTmda')
 
 	return (
 		<html suppressHydrationWarning lang={props.params.locale}>

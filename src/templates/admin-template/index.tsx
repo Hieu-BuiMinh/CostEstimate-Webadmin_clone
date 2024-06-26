@@ -24,7 +24,7 @@ const initData = {
 				{ innerText: 'Users', icon: 'group', path: '/users', key: 'nav_01' },
 				{ innerText: 'Roles', icon: 'admin_panel_settings', path: '/roles', key: 'nav_02' },
 				{ innerText: 'Files', icon: 'draft', path: '/file', key: 'nav_03' },
-				{ innerText: 'Model management', icon: 'more_horiz', path: '/model-management', key: 'nav_04' },
+				{ innerText: 'Model management', icon: 'more_horiz', path: '/modelmanagement', key: 'nav_04' },
 				{ innerText: 'Coparison model', icon: 'compare_arrows', path: '/comparison-model', key: 'nav_05' },
 				{ innerText: 'Cost estimate', icon: 'function', path: '/cost-estimate', key: 'nav_06' },
 				{ innerText: 'Equipment', icon: 'settings', path: '/equipment', key: 'nav_07' },

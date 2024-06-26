@@ -1,8 +1,8 @@
-.sign-up{
-    &-section {
-        @apply p-3 flex flex-col items-center justify-between;
-    }
-    &-error{
-        @apply text-xs text-red-400;
-    }
+.sign-up {
+	&-section {
+		@apply p-3 flex flex-col items-center justify-between;
+	}
+	&-error {
+		@apply text-xs text-red-400;
+	}
 }

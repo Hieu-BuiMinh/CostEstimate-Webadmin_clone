@@ -25,7 +25,7 @@ function AdminSidebar({ bodyExpand, handleToggleSidebar }: IAdminSidebar) {
 							style={{ fontSize: 20 }}
 							className="material-symbols-outlined m-auto text-[var(--color-primary)]"
 						>
-							{bodyExpand ? 'keyboard_double_arrow_right' : 'keyboard_double_arrow_left'}
+							{/* {bodyExpand ? 'keyboard_double_arrow_right' : 'keyboard_double_arrow_left'} */}
 						</span>
 					</button>
 

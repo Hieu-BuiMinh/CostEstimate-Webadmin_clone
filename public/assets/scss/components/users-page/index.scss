@@ -13,7 +13,7 @@
 		outline: none;
 	}
 
-	.e-input-focus{
+	.e-input-focus {
 		outline: none;
 		border: none;
 		box-shadow: unset !important;
@@ -24,6 +24,6 @@
 	}
 }
 
-.input-password-overwrite:focus-within{
+.input-password-overwrite:focus-within {
 	outline: 2px solid var(--color-primary);
 }
