@@ -7,7 +7,8 @@
 		@apply h-[screen] w-full bg-[var(--color-template-bg)];
 	}
 	&__body {
-		@apply relative ml-[236px] top-0 h-[200vh];
+		@apply relative ml-[236px] top-0 h-[calc(100vh-var(--header-high))] overflow-y-auto;
+		scrollbar-width: thin;
 
 		transition: 0.3s;
 		&--open {

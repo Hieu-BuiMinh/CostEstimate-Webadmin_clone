@@ -14,14 +14,14 @@
 @import '../../../node_modules/@syncfusion/ej2-notifications/styles/tailwind.css';
 @import '../../../node_modules/@syncfusion/ej2-layouts/styles/tailwind.css';
 
-@import url("./themes/light.css");
-@import url("./themes/dark.css");
+
+/* @import url("./themes/tailwind-dark.css"); */
+/* @import url("./themes/tailwind.css"); */
 
 @import url("./variables/light.css");
 @import url("./variables/dark.css");
 @import url("./variables/default.css");
 
-/* @import './tailwind.css'; */
 
 .material-symbols-outlined {
     font-variation-settings:

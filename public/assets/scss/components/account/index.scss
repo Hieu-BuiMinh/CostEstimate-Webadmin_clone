@@ -1,6 +1,7 @@
 .account{
+    @apply bg-[var(--color-surface-100)];
     &__section{
-        @apply py-1 p-2 font-medium text-gray-700 dark:text-gray-400;
+        @apply py-1 p-2 font-medium;
         &--button{
             @apply block px-4 py-2 hover:bg-gray-100;
         }

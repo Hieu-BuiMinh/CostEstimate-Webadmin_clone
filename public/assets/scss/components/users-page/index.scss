@@ -1,8 +1,6 @@
 .user-infor-badge {
-	@apply w-full p-1 px-3 rounded text-sm text-[var(--color-surface-700)];
-	box-shadow:
-		rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-		rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+	@apply w-full sm:w-[48%] ml-[6px] mr-[8px] my-4 p-2 px-3 rounded text-sm text-[var(--color-surface-700)];
+	border: solid 0.1px #ccc;
 }
 
 .input-password-overwrite {
