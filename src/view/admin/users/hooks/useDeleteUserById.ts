@@ -17,7 +17,7 @@ export function useDeleteUserById() {
 		},
 		onSuccess: (res: IDeleteUserByIdResponseDto) => {
 			if (res?.statusCode === 200) {
-				queryClient.invalidateQueries({ queryKey: ['useGettAllUsersDashBoard'] })
+				queryClient.invalidateQueries({ queryKey: ['useGetAllUsersDashBoard'] })
 				router.push(APP_ROUTER.paths.admin.users.path)
 				toast.success('Delete successfull')
 			}

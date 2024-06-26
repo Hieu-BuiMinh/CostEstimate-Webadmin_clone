@@ -12,7 +12,6 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z
 		.string({ message: 'This field is required' })
-		.min(5, 'Username or Email must be at least 5 characters long')
 		.refine((value) => /\S+@\S+\.\S+/.test(value) || /^[a-zA-Z0-9]+$/.test(value), {
 			message: 'Consider using an email format',
 		}),
@@ -57,11 +56,22 @@ export const TestLoginFormValidation = z.object({
 
 export const ResetPasswordFormValidation = z
 	.object({
-		curPassword: z.string().min(8, 'Password must be at least 8 characters long'),
-		password: z.string().min(8, 'Password must be at least 8 characters long'),
-		confirmPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		OldPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		NewPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		RepeatPassword: z.string().min(8, 'Password must be at least 8 characters long'),
 	})
-	.refine((data) => data.password === data.confirmPassword, {
+	.refine((data) => data.NewPassword === data.RepeatPassword, {
+		message: "Passwords don't match",
+		path: ['confirmPassword'],
+	})
+
+export const ChangePasswordFormValidation = z
+	.object({
+		OldPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		NewPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		RepeatPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+	})
+	.refine((data) => data.NewPassword === data.RepeatPassword, {
 		message: "Passwords don't match",
 		path: ['confirmPassword'],
 	})

@@ -11,8 +11,7 @@ interface IAuthTemplate {
 }
 
 function AuthTemplate({ children }: IAuthTemplate) {
-	const accessToken = Cookies.get('accessToken')
-
+	const accessToken = Cookies.get('accessToken') || ''
 	if (accessToken) {
 		redirect(APP_ROUTER.paths.admin.dashboard.path)
 	}

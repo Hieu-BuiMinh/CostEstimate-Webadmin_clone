@@ -1,4 +1,4 @@
-import UsersPageView from '@/view/admin/users/pages/users.page'
+import RolesPageView from '@/view/admin/roles/pages/roles.page'
 
 export async function generateMetadata() {
 	return {
@@ -7,7 +7,7 @@ export async function generateMetadata() {
 }
 
 const Users = () => {
-	return <UsersPageView />
+	return <RolesPageView />
 }
 
 export default Users

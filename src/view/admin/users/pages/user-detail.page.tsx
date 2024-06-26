@@ -1,4 +1,8 @@
+'use client'
+
+import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { APP_ROUTER } from '@/common/config'
 import useAppModal from '@/components/modals/app-modal/store'
@@ -8,6 +12,8 @@ import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
 import { useGetUserById } from '@/view/admin/users/hooks/useGetUserById'
 
 function UserDetailPage() {
+	const translate = useTranslations('UserDetail')
+	const button = useTranslations('Button')
 	const router = useRouter()
 	const params = useSearchParams()
 	const { open, close, setModalOptions } = useAppModal()
@@ -32,7 +38,7 @@ function UserDetailPage() {
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title="Are you sure to delete this user?"
+					title={`Are you sure to delete ${userData?.fullName}`}
 					message="Confirm Delete"
 					onClose={close}
 					onConfirm={() => {
@@ -52,9 +58,9 @@ function UserDetailPage() {
 					<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 						arrow_back_ios
 					</button>
-					<span className="text-xl font-semibold">User information</span>
+					<span className="text-xl font-semibold">{translate('meta_title')}</span>
 				</div>
-				Loading data...
+				{translate('load_data')}
 			</div>
 		)
 	}
@@ -66,9 +72,9 @@ function UserDetailPage() {
 					<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 						arrow_back_ios
 					</button>
-					<span className="text-xl font-semibold">User information</span>
+					<span className="text-xl font-semibold">{translate('meta_title')}</span>
 				</div>
-				User not found!
+				{translate('user_not_found')}
 			</div>
 		)
 	}
@@ -79,40 +85,36 @@ function UserDetailPage() {
 				<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 					arrow_back_ios
 				</button>
-				<span className="text-xl font-semibold">User information</span>
+				<span className="text-xl font-semibold">{translate('meta_title')}</span>
 			</div>
 
-			<div className="mt-5">
-				<div className="flex w-full items-center gap-3">
-					<span className="e-avatar e-avatar-circle shrink-0">
-						{userData?.username.substring(0, 2).toUpperCase()}
-					</span>
+			<section className="bordered gap-4">
+				<div className="mt-5 w-[500px]">
+					<div className="flex w-full items-center gap-3">
+						<span className="e-avatar e-avatar-circle shrink-0">
+							{userData?.username.substring(0, 2).toUpperCase()}
+						</span>
 
-					<div className="min-w-0">
-						<p className="text-2xl font-bold">{userData?.fullName}</p>
-						<div className="flex gap-1">
-							<span className="material-symbols-outlined">tag</span>
-							<p className="line-clamp-1 min-w-0 max-w-[500px]">{params.get('id')}</p>
+						<div className="min-w-0">
+							<p className="text-xl font-bold">{userData?.fullName}</p>
+						</div>
+					</div>
+					<div>
+						<UserInforBadge icon="id_card" innerText={userData?.username || ''} />
+						<UserInforBadge icon="send" innerText={userData?.email || ''} />
+						<UserInforBadge icon="call" innerText={userData?.phoneNumber || ''} />
+						<UserInforBadge icon="calendar_month" innerText={userData?.createdDate || ''} />
+						<div className="flex justify-end gap-3">
+							<ButtonComponent type="submit" className="e-primary w-full" onClick={gotoUpdate}>
+								{button('edit')}
+							</ButtonComponent>
+							<ButtonComponent type="button" className="e-danger w-full" onClick={handleOpenModal}>
+								{button('delete')}
+							</ButtonComponent>
 						</div>
 					</div>
 				</div>
-
-				<div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-					<UserInforBadge icon="id_card" innerText={userData?.username || ''} />
-					<UserInforBadge icon="send" innerText={userData?.email || ''} />
-					<UserInforBadge icon="call" innerText={userData?.phoneNumber || ''} />
-					<UserInforBadge icon="calendar_month" innerText={userData?.createdDate || ''} />
-				</div>
-			</div>
-
-			<div className="flex justify-end gap-3">
-				<button type="button" onClick={gotoUpdate}>
-					edit
-				</button>
-				<button type="button" onClick={handleOpenModal}>
-					delete
-				</button>
-			</div>
+			</section>
 		</div>
 	)
 }

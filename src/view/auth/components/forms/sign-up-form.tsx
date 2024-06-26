@@ -6,7 +6,8 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
@@ -21,6 +22,7 @@ import { SignUpFormValidation } from '@/view/auth/validations'
 type FormFields = z.infer<typeof SignUpFormValidation>
 
 function SignUpForm() {
+	const translate = useTranslations('SignUp')
 	const router = useRouter()
 	const { mutate: handleRegister, isSuccess, isPending, data: registerData } = useAuthRegister()
 
@@ -32,14 +34,56 @@ function SignUpForm() {
 			type: 'group',
 			name: 'authname',
 			children: [
-				{ type: 'text', name: 'firstname', label: 'Firstname', required: true, placeholder: 'Enter firstname' },
-				{ type: 'text', name: 'lastname', label: 'Lastname', required: true, placeholder: 'Enter lastname' },
+				{
+					type: 'text',
+					name: 'firstname',
+					label: translate('label_firstname'),
+					required: true,
+					placeholder: translate('placeholder_firstname'),
+				},
+				{
+					type: 'text',
+					name: 'lastname',
+					label: translate('label_lastname'),
+					required: true,
+					placeholder: translate('placeholder_lastname'),
+				},
 			],
 		},
-		{ type: 'text', name: 'email', label: 'Email', required: true, placeholder: 'Enter email' },
-		{ type: 'text', name: 'username', label: 'Username', required: true, placeholder: 'Enter username' },
-		{ type: 'password', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
-		{ type: 'number', name: 'phoneNumber', label: 'Phone number' },
+		// {
+		// 	type: 'text',
+		// 	name: 'fullName',
+		// 	label: translate('label_fullname'),
+		// 	required: true,
+		// 	placeholder: translate('placeholder_fullname'),
+		// },
+		{
+			type: 'text',
+			name: 'email',
+			label: translate('label_email'),
+			required: true,
+			placeholder: translate('placeholder_email'),
+		},
+		{
+			type: 'text',
+			name: 'username',
+			label: translate('label_username'),
+			required: true,
+			placeholder: translate('placeholder_username'),
+		},
+		{
+			type: 'password',
+			name: 'password',
+			label: translate('label_password'),
+			required: true,
+			placeholder: translate('placeholder_username'),
+		},
+		{
+			type: 'number',
+			name: 'phoneNumber',
+			label: translate('label_phone_number'),
+			placeholder: translate('placeholder_phone_number'),
+		},
 	]
 
 	const onSubmit: SubmitHandler<FormFields> = (formData) => {
@@ -74,7 +118,7 @@ function SignUpForm() {
 						className="h-auto"
 					/>
 					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
-						Sign up new account
+						{translate('meta_title')}
 					</p>
 				</section>
 
@@ -113,54 +157,23 @@ function SignUpForm() {
 							</div>
 						)
 					})}
-
 					<div className="flex w-full flex-col gap-1">
 						{registerData?.statusCode !== 200 && <p className="text-red-400">{registerData?.message}</p>}
 						<ButtonComponent disabled={isPending} type="submit" className="e-primary mt-4 w-full">
-							SUBMIT
+							{translate('button_sign_up')}
 						</ButtonComponent>
 					</div>
 
 					<div>
-						Already have an account?{' '}
+						{translate('already_have_account')}?{' '}
 						<Link
 							className="w-full justify-start text-sm font-semibold text-[var(--color-text-link)]"
 							href={APP_ROUTER.paths.center.signIn.path}
 						>
-							Login here{' '}
+							{translate('sign_in_link')}{' '}
 						</Link>
 					</div>
 				</section>
-
-				{/* <section className="sign-up-section gap-2 border-t">
-				<span className="text-center">Or continue with</span>
-				<div className="flex w-full items-center justify-center gap-3">
-					<ButtonComponent className="e-normal h-[33px] w-[145px]">
-						<div className="flex items-center gap-3">
-							<Image
-								src="/assets/auth/imgs/gg_icon.svg"
-								alt="auth_form_header_img"
-								width={20}
-								height={20}
-								className="h-auto"
-							/>
-							<span>Google</span>
-						</div>
-					</ButtonComponent>
-					<ButtonComponent className="e-normal h-[33px] w-[145px]">
-						<div className="flex items-center gap-3">
-							<Image
-								src="/assets/auth/imgs/git_icon.svg"
-								alt="auth_form_header_img"
-								width={20}
-								height={20}
-								className="h-auto"
-							/>
-							<span>Github</span>
-						</div>
-					</ButtonComponent>
-				</div>
-			</section> */}
 			</form>
 		</FormProvider>
 	)

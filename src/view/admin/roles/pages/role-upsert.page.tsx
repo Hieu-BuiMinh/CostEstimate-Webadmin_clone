@@ -1,3 +1,5 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter, useSearchParams } from 'next/navigation'
 import type { SubmitHandler } from 'react-hook-form'
@@ -6,18 +8,18 @@ import type { z } from 'zod'
 
 import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
-import { useGetRoleById, useUpdateRole } from '@/view/admin/roles/hooks'
-import { UpdateRoleFormValidation } from '@/view/admin/roles/validations'
-import type { IUpdateUserInforRequestDto } from '@/view/admin/users/types'
+import { useAddRole, useGetRoleById, useUpdateRole } from '@/view/admin/roles/hooks'
+import type { IAddRoleInforRequestDto, IUpdateRoleInforRequestDto } from '@/view/admin/roles/types'
+import { UpsertRoleFormValidation } from '@/view/admin/roles/validations'
 
 interface IRoleUpsertPage {
 	type: 'edit' | 'create'
 }
 
-type UpsertFormFields = z.infer<typeof UpdateRoleFormValidation>
+type UpsertFormFields = z.infer<typeof UpsertRoleFormValidation>
 
 export function RoleUpsertPage({ type }: IRoleUpsertPage) {
-	const methods = useForm<UpsertFormFields>({ resolver: zodResolver(UpdateRoleFormValidation) })
+	const methods = useForm<UpsertFormFields>({ resolver: zodResolver(UpsertRoleFormValidation) })
 	const router = useRouter()
 	const params = useSearchParams()
 
@@ -27,11 +29,12 @@ export function RoleUpsertPage({ type }: IRoleUpsertPage) {
 
 	const { data: roleData, isLoading: roleDataIsLoading } = useGetRoleById(params.get('id') || '')
 	const { mutate: handleUpdate } = useUpdateRole()
+	const { mutate: handleAdd } = useAddRole()
 
 	const formFields = [
 		{
 			type: 'text',
-			name: 'rolename',
+			name: 'roleName',
 			label: 'Role Name',
 			required: true,
 			placeholder: 'Enter role name',
@@ -42,10 +45,16 @@ export function RoleUpsertPage({ type }: IRoleUpsertPage) {
 	const onSubmit: SubmitHandler<UpsertFormFields> = (_formData) => {
 		if (type === 'edit') {
 			const data = {
-				..._formData,
-				id: params.get('id') || '',
+				roleName: _formData.roleName,
+				roleId: params.get('id') || '',
 			}
-			handleUpdate(data as IUpdateUserInforRequestDto)
+			handleUpdate(data as IUpdateRoleInforRequestDto)
+		}
+		if (type === 'create') {
+			const data = {
+				roleName: _formData.roleName,
+			}
+			handleAdd(data as IAddRoleInforRequestDto)
 		}
 	}
 

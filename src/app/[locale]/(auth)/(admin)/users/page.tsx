@@ -1,19 +1,20 @@
 import { getTranslations } from 'next-intl/server'
 
-import SettingsPageView from '@/view/admin/settings/pages/settings.page'
+import UsersPageView from '@/view/admin/users/pages/users.page'
 
 export async function generateMetadata(props: { params: { locale: string } }) {
 	const t = await getTranslations({
 		locale: props.params.locale,
-		namespace: 'Settings',
+		namespace: 'UserDashboard',
 	})
 
 	return {
 		title: t('meta_title'),
 	}
 }
-const Settings = () => {
-	return <SettingsPageView />
+
+const Users = () => {
+	return <UsersPageView />
 }
 
-export default Settings
+export default Users

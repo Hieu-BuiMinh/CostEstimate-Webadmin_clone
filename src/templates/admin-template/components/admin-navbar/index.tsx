@@ -27,6 +27,7 @@ function AdminNavbar() {
 					alt="header_logo"
 					width={10}
 					height={10}
+					priority
 					className="size-auto"
 				/>
 			</section>
@@ -47,16 +48,6 @@ function AdminNavbar() {
 					}
 					dropDownBlock={<AccountDropdownTemplate />}
 				/>
-
-				{/* <span className="e-avatar e-avatar-circle">
-					<FallbackImage
-						src="/assets/layout/imgs/user_avt.jpg"
-						alt="header_logo"
-						width={200}
-						height={200}
-						className="size-full"
-					/>
-				</span> */}
 			</section>
 		</div>
 	)

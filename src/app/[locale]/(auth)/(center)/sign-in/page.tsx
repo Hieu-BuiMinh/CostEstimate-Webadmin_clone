@@ -1,6 +1,6 @@
 import LoginPageView from '@/view/auth/pages/login.page'
 
-function LoginPage() {
+async function LoginPage() {
 	return <LoginPageView />
 }
 

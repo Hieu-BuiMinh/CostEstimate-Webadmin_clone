@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -23,6 +24,7 @@ type LoginFormFields = z.infer<typeof LoginFormValidation>
 
 function AuthLoginForm() {
 	const router = useRouter()
+	const translate = useTranslations('SignIn')
 
 	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
 
@@ -38,12 +40,18 @@ function AuthLoginForm() {
 		{
 			type: 'text',
 			name: 'usernameOrEmail',
-			label: 'Username or Email',
+			label: translate('label_username_or_email'),
 			required: true,
-			placeholder: 'Enter username or email',
+			placeholder: translate('placeholder_username_or_email'),
 		},
-		{ type: 'password', name: 'password', label: 'Password', required: true, placeholder: 'Enter password' },
-		{ type: 'checkbox', name: 'remember', label: 'Remember me' },
+		{
+			type: 'password',
+			name: 'password',
+			label: translate('label_password'),
+			required: true,
+			placeholder: translate('placeholder_password'),
+		},
+		{ type: 'checkbox', name: 'remember', label: translate('remember_password') },
 	]
 
 	useEffect(() => {
@@ -74,8 +82,9 @@ function AuthLoginForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
-						Sign in to your account
+					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+						{/* Sign in to your account */}
+						{translate('meta_description')}
 					</p>
 				</section>
 
@@ -97,13 +106,13 @@ function AuthLoginForm() {
 						className="justify-start text-sm font-semibold text-[var(--color-text-link)]"
 						href={APP_ROUTER.paths.center.signUp.path}
 					>
-						Don&apos;t have an account?
+						{translate('have_no_account')}
 					</Link>
 
 					<div className="flex w-full flex-col gap-1">
 						{loginData?.statusCode !== 200 && <p className="text-red-400">{loginData?.message}</p>}
 						<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
-							SUBMIT
+							{translate('button_sign_in')}
 						</ButtonComponent>
 					</div>
 
@@ -111,7 +120,7 @@ function AuthLoginForm() {
 						className="w-full text-sm font-semibold text-[var(--color-text-link)]"
 						href={APP_ROUTER.paths.center.forgotPassword.path}
 					>
-						Forgot your password?
+						{translate('forgot_password')}
 					</Link>
 				</section>
 

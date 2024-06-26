@@ -1,3 +1,4 @@
+export * from './useAddRole'
 export * from './useDeleteRoleById'
 export * from './useGetAllRolesDashBoard'
 export * from './useGetRoleById'

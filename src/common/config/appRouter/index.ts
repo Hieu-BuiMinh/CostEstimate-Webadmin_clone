@@ -10,6 +10,8 @@ import { settings } from '@/common/config/appRouter/admin/settings'
 import { systemLog } from '@/common/config/appRouter/admin/system-log'
 import { users } from '@/common/config/appRouter/admin/users'
 
+import { changePassword } from './admin/change-password'
+
 const DEFAULT_PATHS = {
 	admin: {
 		dashboard,
@@ -23,6 +25,7 @@ const DEFAULT_PATHS = {
 		systemLog,
 		users,
 		roles,
+		changePassword,
 	},
 	center: {
 		signIn: {

@@ -47,13 +47,45 @@
 		"content": "Created a set of promotional materials and branding elements for a corporate event. Crafted a visually unified theme, encompassing a logo, posters, banners, and digital assets. Integrated the client's brand identity while infusing it with a contemporary and innovative approach. Garnered favorable responses from event attendees, resulting in a successful event with heightened participant engagement and increased brand visibility.",
 		"log_management_powered_by": "Log management powered by"
 	},
+	"Settings": {
+		"meta_title": "Settings",
+		"hello_message": "Settings"
+	},
 	"SignIn": {
 		"meta_title": "Sign in",
-		"meta_description": "Seamlessly sign in to your account with our user-friendly login process."
+		"meta_description": "Sign in to your account",
+		"label_username_or_email": "Username or Email",
+		"placeholder_username_or_email": "Enter username or email",
+		"label_password": "Password",
+		"placeholder_password": "Enter password",
+		"remember_password": "Remember me",
+		"have_no_account": "Don't have an account?",
+		"button_sign_in": "Sign in",
+		"forgot_password": "Forgot password"
 	},
 	"SignUp": {
 		"meta_title": "Sign up",
-		"meta_description": "Effortlessly create an account through our intuitive sign-up process."
+		"meta_description": "Sign up",
+		"label_fullname": "Full name",
+		"placeholder_fullname": "Enter fullname",
+		"label_firstname": "First name",
+		"placeholder_firstname": "Enter first name",
+		"label_lastname": "Last name",
+		"placeholder_lastname": "Enter lastname",
+		"label_email": "Email",
+		"placeholder_email": "Enter email",
+		"label_username": "Username",
+		"placeholder_username": "Enter username",
+		"label_password": "Password",
+		"label_phone_number": "Phone number",
+		"placeholder_phone_number": "Enter phone number",
+		"button_sign_up": "Sign Up",
+		"already_have_account": "Already have an account",
+		"sign_in_link": "Sign in"
+	},
+	"UserDashboard": {
+		"meta_title": "User page",
+		"meta_description": "User page"
 	},
 	"Dashboard": {
 		"meta_title": "Dashboard",
@@ -62,9 +94,53 @@
 	"UserProfile": {
 		"meta_title": "User Profile"
 	},
+	"ChangePassword": {
+		"meta_title": "Change password",
+		"title_current_password": "Current password",
+		"placeholder_current_password": "Enter current password",
+		"title_new_password": "New password",
+		"placeholder_new_password": "Enter new password",
+		"title_confirm_password": "Confirm password",
+		"placeholder_confirm_password": "Enter confirm password",
+		"button_update": "Update"
+	},
 	"DashboardLayout": {
 		"dashboard_link": "Dashboard",
 		"user_profile_link": "Manage your account",
 		"sign_out": "Sign out"
+	},
+	"UpdateInsertUser": {
+		"meta_title_update": "Update user information",
+		"meta_title_create": "Create user",
+		"meta_description": "Update user information",
+		"button_update": "Update",
+		"button_create": "Create",
+		"label_fullname": "Full name",
+		"placeholder_fullname": "Enter fullname",
+		"label_firstname": "First name",
+		"placeholder_firstname": "Enter first name",
+		"label_lastname": "Last name",
+		"placeholder_lastname": "Enter lastname",
+		"label_username": "Username",
+		"placeholder_username": "Enter username",
+		"load_data": "Loading data..."
+	},
+	"UserDetail": {
+		"meta_title": "User info",
+		"meta_description": "User info",
+		"load_data": "Loading data...",
+		"user_not_found": "User not found",
+		"button_edit": "Edit",
+		"button_delete": "Delete"
+	},
+	"Button": {
+		"delete": "Delete",
+		"update": "Update",
+		"add": "Add",
+		"submit": "Submit",
+		"create": "Create",
+		"edit": "Edit",
+		"cancel": "Cancel",
+		"ok": "Ok"
 	}
 }

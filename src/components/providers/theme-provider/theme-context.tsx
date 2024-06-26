@@ -10,8 +10,8 @@ interface IThemeContext {
 
 const initialTheme = { theme: { mode: 'light' } }
 const themeCdn = {
-	dark: '/themes/tailwind-dark.css',
-	light: '/themes/tailwind.css',
+	dark: '/assets/scss/themes/tailwind-dark.css',
+	light: '/assets/scss/themes/tailwind.css',
 }
 const ThemeContext = createContext({ config: initialTheme, handleToggleTheme: () => null })
 

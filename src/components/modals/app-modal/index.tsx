@@ -5,7 +5,7 @@ import { Modal } from 'react-responsive-modal'
 import useAppModal from '@/components/modals/app-modal/store'
 
 export function AppModalProvider() {
-	const { isOpen, title, content, showCloseIcon, close } = useAppModal((state) => ({
+	const { isOpen, content, showCloseIcon, close } = useAppModal((state) => ({
 		isOpen: state.isOpen,
 		title: state.title,
 		content: state.content,
@@ -18,8 +18,8 @@ export function AppModalProvider() {
 
 	return (
 		<Modal open={isOpen} onClose={close} center showCloseIcon={showCloseIcon}>
-			<h2>{title}</h2>
-			<p>{content}</p>
+			{/* <h2>{title}</h2> */}
+			<div>{content}</div>
 		</Modal>
 	)
 }

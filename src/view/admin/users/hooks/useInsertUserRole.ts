@@ -2,21 +2,20 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
 import { UsersDashboardService } from '@/view/admin/users/services/users-dashboard.service'
-import type { IUpdateUserInforRequestDto, IUpdateUserInforResponseDto } from '@/view/admin/users/types'
+import type { IInsertUserRoleRequestDto, IInsertUserRoleResponseDto } from '@/view/admin/users/types'
 
-export function useUpdateUserInfor() {
+export function useInsertUserRole() {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationKey: ['useUpdateUserInfor'],
-		mutationFn: (_user: IUpdateUserInforRequestDto) => {
-			return UsersDashboardService.updateUserInfor(_user)
+		mutationKey: ['useInsertUserRole'],
+		mutationFn: (_user: IInsertUserRoleRequestDto) => {
+			return UsersDashboardService.insertUserRole(_user)
 		},
-		onSuccess: (res: IUpdateUserInforResponseDto) => {
+		onSuccess: (res: IInsertUserRoleResponseDto) => {
 			if (res?.statusCode === 200) {
-				queryClient.invalidateQueries({ queryKey: ['useGetUserById'] })
 				queryClient.invalidateQueries({ queryKey: ['useGetAllUsersDashBoard'] })
-				toast.success('Update successfull')
+				toast.success('Update role successfull')
 			}
 			if (res?.statusCode !== 200) {
 				toast.error(res.message)

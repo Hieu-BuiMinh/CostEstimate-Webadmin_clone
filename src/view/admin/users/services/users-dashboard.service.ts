@@ -5,6 +5,8 @@ import type {
 	IGettAllUsersRequestDto,
 	IGettAllUsersResponseDto,
 	IGettUserByIdResponseDto,
+	IInsertUserRoleRequestDto,
+	IInsertUserRoleResponseDto,
 	IUpdateUserInforRequestDto,
 	IUpdateUserInforResponseDto,
 } from '@/view/admin/users/types'
@@ -25,10 +27,9 @@ export const UsersDashboardService = {
 	updateUserInfor: async (_user: IUpdateUserInforRequestDto) => {
 		const response: IUpdateUserInforResponseDto = await httpClient.put(API_ROUTES.usersDashboard.updateUserInfor, {
 			id: _user.id,
-			username: _user.username,
-			fullName: _user.fullName,
-			email: _user.email,
-			phoneNumber: _user.phoneNumber,
+			firstName: _user.firstName,
+			lastName: _user.lastName,
+			isReverse: _user.isReverse,
 		})
 
 		return response
@@ -37,6 +38,14 @@ export const UsersDashboardService = {
 		const response: IDeleteUserByIdResponseDto = await httpClient.delete(
 			API_ROUTES.usersDashboard.deleteUserById(_id)
 		)
+
+		return response
+	},
+	insertUserRole: async (_user: IInsertUserRoleRequestDto) => {
+		const response: IInsertUserRoleResponseDto = await httpClient.post(API_ROUTES.usersDashboard.insertUserRole, {
+			userId: _user.userId,
+			roleIds: _user.roleIds,
+		})
 
 		return response
 	},

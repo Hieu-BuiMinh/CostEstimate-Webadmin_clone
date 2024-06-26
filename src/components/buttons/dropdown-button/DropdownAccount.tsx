@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -9,7 +10,11 @@ import FallbackImage from '../../fallback-image'
 function AccountDropdownTemplate() {
 	const router = useRouter()
 	const handleClickChangePassword = () => {
-		router.push(APP_ROUTER.paths.center.forgotPassword.path)
+		router.push(APP_ROUTER.paths.admin.changePassword.path)
+	}
+	const handleClickSignOut = () => {
+		Cookies.remove('accessToken')
+		router.push(APP_ROUTER.paths.center.signIn.path)
 	}
 
 	const accountItems = [
@@ -103,7 +108,7 @@ function AccountDropdownTemplate() {
 					innerText: 'Sign out',
 					className: 'account__section--signout',
 					icon: 'logout',
-					onClick: handleClickChangePassword,
+					onClick: handleClickSignOut,
 				},
 			],
 		},
@@ -111,7 +116,7 @@ function AccountDropdownTemplate() {
 	return (
 		<div
 			id="dropdownNavbar"
-			className="absolute left-[-200px] z-10 w-60 divide-y divide-gray-100 rounded-lg bg-[var(--color-surface-300)] font-normal shadow dark:divide-gray-600 dark:bg-gray-700"
+			className="account absolute left-[-200px] z-10 w-60 divide-y divide-gray-100 rounded-lg font-normal shadow"
 		>
 			<div className="flex items-center p-4">
 				<div className="e-avatar e-avatar-circle">

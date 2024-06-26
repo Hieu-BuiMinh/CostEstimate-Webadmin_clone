@@ -1,0 +1,146 @@
+{
+	"RootLayout": {
+		"home_link": "Accueil",
+		"about_link": "A propos",
+		"guestbook_link": "Livre d'or",
+		"portfolio_link": "Portfolio",
+		"sign_in_link": "Se connecter",
+		"sign_up_link": "S'inscrire"
+	},
+	"BaseTemplate": {
+		"description": "Code de démarrage pour Next.js avec Tailwind CSS",
+		"made_with": "Fait avec"
+	},
+	"Index": {
+		"meta_title": "Présentation de Next.js Boilerplate",
+		"meta_description": "Next js Boilerplate est le code de démarrage parfait pour votre projet. Construisez votre application React avec le framework Next.js."
+	},
+	"Guestbook": {
+		"meta_title": "Livre d'or",
+		"meta_description": "Un exemple de fonctionnement CRUD",
+		"database_powered_by": "Base de données propulsée par",
+		"loading_guestbook": "Chargement du livre d'or..."
+	},
+	"GuestbookForm": {
+		"username": "Nom d'utilisateur",
+		"body": "Message",
+		"save": "Sauvegarder"
+	},
+	"About": {
+		"meta_title": "A propos",
+		"meta_description": "A propos description",
+		"about_paragraph": "Bienvenue sur notre page À propos ! Nous sommes une équipe de passionnés et dévoués à la création de logiciels.",
+		"translation_powered_by": "Traduction propulsée par"
+	},
+	"Portfolio": {
+		"meta_title": "Portfolio",
+		"meta_description": "Bienvenue sur la page de mon portfolio !",
+		"presentation": "Bienvenue sur ma page portfolio ! Vous trouverez ici une collection soigneusement organisée de mon travail et de mes réalisations. À travers ce portfolio, je mets en valeur mon expertise, ma créativité et la valeur que je peux apporter à vos projets.",
+		"portfolio_name": "Portfolio {name}",
+		"error_reporting_powered_by": "Rapport d'erreur propulsé par",
+		"coverage_powered_by": "Couverture de code propulsée par"
+	},
+	"PortfolioSlug": {
+		"meta_title": "Portfolio {slug}",
+		"meta_description": "Description du Portfolio {slug}",
+		"header": "Portfolio {slug}",
+		"content": "Créé un ensemble de matériel promotionnel et d'éléments de marquage pour un événement d'entreprise. Conçu un thème visuellement unifié, englobant un logo, des affiches, des bannières et des actifs numériques. Intégrer l'identité de marque du client tout en l'insufflant à une approche contemporaine et innovante. Des réponses favorables de la part des participants ont été obtenues, ce qui a donné lieu à un événement réussi avec un engagement accru des participants et une meilleure visibilité de la marque.",
+		"log_management_powered_by": "Gestion des logs propulsée par"
+	},
+	"Settings":{
+		"meta_title": "Cài đặt",
+		"hello_message": "Cài đặt"
+	},
+	"Dashboard": {
+		"meta_title": "Tableau de bord",
+		"hello_message": "Bonjour {email}!"
+	},
+	"UserProfile": {
+		"meta_title": "Profil de l'utilisateur"
+	},
+	"DashboardLayout": {
+		"dashboard_link": "Tableau de bord",
+		"user_profile_link": "Gérer votre compte",
+		"sign_out": "Se déconnecter"
+	},
+	"UserDashboard":{
+		"meta_title": "Trang người dùng",
+		"meta_description": "Trang người dùng"
+	},
+	"SignIn": {
+		"meta_title": "Đăng nhập",
+		"meta_description": "Đăng nhập",
+		"label_username_or_email": "Tên người dùng hoặc email",
+		"placeholder_username_or_email": "Nhập tên người dùng hoặc email",
+		"label_password": "Mật khẩu",
+		"placeholder_password": "Nhập mật khẩu",
+		"remember_password": "Nhớ mật khẩu",
+		"have_no_account": "Bạn không có tài khoản? Đăng ký",
+		"button_sign_in": "Đăng nhập",
+		"forgot_password": "Quên mật khẩu"
+	},
+	"SignUp": {
+		"meta_title": "Đăng ký",
+		"meta_description": "Đăng ký",
+		"label_fullname": "Họ và tên",
+		"placeholder_fullname": "Nhập họ và tên",
+		"label_firstname": "Tên",
+		"placeholder_firstname": "Nhập tên",
+		"label_lastname": "Họ",
+		"placeholder_lastname": "Nhập họ",
+		"label_email": "Email",
+		"placeholder_email": "Nhập email",
+		"label_username": "Tên người dùng",
+		"placeholder_username": "Nhập tên người dùng",
+		"label_password": "Mật khẩu",
+		"label_phone_number": "Số điện thoại",
+		"placeholder_phone_number": "Nhập số điện thoại",
+		"button_sign_up": "Đăng ký",
+		"already_have_account": "Bạn đã có tài khoản",
+		"sign_in_link": "Đăng nhập"
+	},
+	"ChangePassword":{
+		"meta_title": "Đổi mật khẩu",
+		"title_current_password": "Mật khẩu hiện tại",
+		"placeholder_current_password": "Nhập mật khẩu hiện tại",
+		"title_new_password": "Mật khẩu mới",
+		"placeholder_new_password": "Nhập mật khẩu mới",
+		"title_confirm_password": "Xác nhận mật khẩu mới",
+		"placeholder_confirm_password": "Nhập lại mật khẩu mới",
+		"button_update": "Cập nhật"
+	},
+	"UpdateInsertUser":{
+		"meta_title_update": "Cập nhật thông tin người dùng",
+		"meta_title_create": "Tạo người dùng",
+		"meta_description": "Cập nhật thông tin người dùng",
+		"button_update": "Cập nhật",
+		"button_create": "Tạo",
+		"label_fullname": "Họ và tên",
+		"placeholder_fullname": "Nhập họ và tên",
+		"label_firstname": "Tên",
+		"placeholder_firstname": "Nhập tên",
+		"label_lastname": "Họ",
+		"placeholder_lastname": "Nhập họ",
+		"label_username": "Tên người dùng",
+		"placeholder_username": "Nhập tên người dùng",
+		"load_data": "Đang tải dữ liệu..."
+	},
+	"UserDetail":{
+		"meta_title": "Thông tin người dùng",
+		"meta_description": "Thông tin người dùng",
+		"load_data": "Đang tải dữ liệu...",
+		"user_not_found": "Không thấy tài khoản người dùng",
+		"button_edit": "Chỉnh sửa",
+		"button_delete": "Xoá"
+	},
+	"Button": {
+		"delete": "Xoá",
+		"update": "Cập nhật",
+		"add": "Thêm",
+		"submit": "Nộp",
+		"create": "Tạo",
+		"edit": "Chỉnh sửa",
+		"cancel": "Huỷ",
+		"ok": "Ok"
+	}
+}

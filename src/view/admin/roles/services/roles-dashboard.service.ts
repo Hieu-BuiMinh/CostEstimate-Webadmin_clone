@@ -1,6 +1,8 @@
 import { API_ROUTES } from '@/common/config'
 import { httpClient } from '@/http'
 import type {
+	IAddRoleInforRequestDto,
+	IAddRoleInforResponseDto,
 	IDeleteRoleByIdResponseDto,
 	IGettAllRolesRequestDto,
 	IGettAllRolesResponseDto,
@@ -22,13 +24,17 @@ export const RolesDashboardService = {
 
 		return response?.data
 	},
-	updateRole: async (_user: IUpdateRoleInforRequestDto) => {
+	addRole: async (_role: IAddRoleInforRequestDto) => {
+		const response: IAddRoleInforResponseDto = await httpClient.post(API_ROUTES.rolesDashboard.insertRole, {
+			roleName: _role.roleName,
+		})
+
+		return response
+	},
+	updateRole: async (_role: IUpdateRoleInforRequestDto) => {
 		const response: IUpdateRoleInforResponseDto = await httpClient.put(API_ROUTES.rolesDashboard.updateRole, {
-			id: _user.id,
-			username: _user.username,
-			fullName: _user.fullName,
-			email: _user.email,
-			phoneNumber: _user.phoneNumber,
+			roleId: _role.roleId,
+			roleName: _role.roleName,
 		})
 
 		return response

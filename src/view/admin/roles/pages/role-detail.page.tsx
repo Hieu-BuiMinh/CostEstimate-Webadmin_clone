@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { APP_ROUTER } from '@/common/config'

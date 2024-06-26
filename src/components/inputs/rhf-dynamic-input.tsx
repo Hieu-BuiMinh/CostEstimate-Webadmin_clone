@@ -11,7 +11,7 @@ interface IRHFDynamicInput {
 	label?: string
 	defaultValue?: string | boolean
 	required?: boolean
-	radioOptions?: { value: string; label: string; id: string }[]
+	radioOptions?: { value: string | boolean; label: string; id: string }[]
 }
 
 export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
@@ -30,6 +30,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
 					</div>
 					<TextBoxComponent
+						placeholder={rest?.placeholder}
 						type={name === 'email' ? 'email' : type}
 						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
@@ -117,10 +118,12 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 										id={rad?.id ?? ''}
 										name={name}
 										type="radio"
-										value={rad?.value}
+										value={rad?.value as string}
 									/>
 									{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-									<label htmlFor={rad.id}>{rad.label}</label>
+									<label className="text-sm" htmlFor={rad.id}>
+										{rad.label}
+									</label>
 								</div>
 							)
 						})}

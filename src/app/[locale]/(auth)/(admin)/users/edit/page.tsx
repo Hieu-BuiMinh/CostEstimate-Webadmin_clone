@@ -1,7 +1,9 @@
-import UsersPageView from '@/view/admin/users/pages/users.page'
+import React from 'react'
 
-function pages() {
-	return <UsersPageView type="edit" />
+import { UserUpdatePage } from '@/view/admin/users/pages/user-update.page'
+
+function page() {
+	return <UserUpdatePage />
 }
 
-export default pages
+export default page

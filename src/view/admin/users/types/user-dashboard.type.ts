@@ -19,6 +19,8 @@ export interface IGettAllUsersResponseDto {
 
 interface IUsers {
 	id: string
+	firstName: string
+	lastName: string
 	fullName: string
 	phoneNumber: string
 	userName: string
@@ -34,6 +36,8 @@ export interface IGettUserByIdResponseDto {
 }
 interface User {
 	id: string
+	firstName: string
+	lastName: string
 	fullName: string
 	phoneNumber: string
 	username: string
@@ -44,11 +48,9 @@ interface User {
 // UPDATE_USER_INFOR
 export interface IUpdateUserInforRequestDto {
 	id: string
-	fullName: string
-	phoneNumber: string
-	username: string
-	email: string
-	createdDate: string
+	firstName: string
+	lastName: string
+	isReverse: boolean
 }
 export interface IUpdateUserInforResponseDto {
 	statusCode: number
@@ -58,6 +60,18 @@ export interface IUpdateUserInforResponseDto {
 
 // GET_USER_BY_ID
 export interface IDeleteUserByIdResponseDto {
+	statusCode: number
+	message: string
+	data: any
+}
+
+// INSERT_USER_ROLE
+
+export interface IInsertUserRoleRequestDto {
+	userId: string
+	roleIds: string[]
+}
+export interface IInsertUserRoleResponseDto {
 	statusCode: number
 	message: string
 	data: any

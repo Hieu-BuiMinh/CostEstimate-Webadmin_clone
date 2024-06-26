@@ -3,7 +3,8 @@
 // import './style.css'
 
 import Cookies from 'js-cookie'
-import { redirect, useRouter } from 'next/navigation'
+import { jwtDecode } from 'jwt-decode'
+import { useRouter } from 'next/navigation'
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
@@ -95,8 +96,13 @@ function AdminTemplate({ children }: IAdminTemplate) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	if (!accessToken) {
-		return redirect('/sign-in')
+	if (accessToken) {
+		const decoded = jwtDecode(accessToken)
+		const currentTime = Date.now() / 1000
+		const expire = decoded?.exp as number
+		if (expire < currentTime) {
+			handleLogout()
+		}
 	}
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks

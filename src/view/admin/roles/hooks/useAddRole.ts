@@ -4,22 +4,23 @@ import toast from 'react-hot-toast'
 
 import { APP_ROUTER } from '@/common/config'
 import { RolesDashboardService } from '@/view/admin/roles/services/roles-dashboard.service'
-import type { IDeleteUserByIdResponseDto } from '@/view/admin/users/types'
+import type { IAddRoleInforRequestDto, IAddRoleInforResponseDto } from '@/view/admin/roles/types'
 
-export function useDeleteRoleById() {
-	const router = useRouter()
+export function useAddRole() {
 	const queryClient = useQueryClient()
+	const router = useRouter()
 
 	return useMutation({
-		mutationKey: ['useDeleteRoleById'],
-		mutationFn: (_id: string) => {
-			return RolesDashboardService.deleteRoleById(_id)
+		mutationKey: ['useAddRole'],
+		mutationFn: (_role: IAddRoleInforRequestDto) => {
+			return RolesDashboardService.addRole(_role)
 		},
-		onSuccess: (res: IDeleteUserByIdResponseDto) => {
+		onSuccess: (res: IAddRoleInforResponseDto) => {
 			if (res?.statusCode === 200) {
+				queryClient.invalidateQueries({ queryKey: ['useGetRoleById'] })
 				queryClient.invalidateQueries({ queryKey: ['useGetAllRolesDashBoard'] })
 				router.push(APP_ROUTER.paths.admin.roles.path)
-				toast.success('Delete successfull')
+				toast.success('Add successfull')
 			}
 			if (res?.statusCode !== 200) {
 				toast.error(res.message)

@@ -1,7 +1,7 @@
-import UsersPageView from '@/view/admin/users/pages/users.page'
+import UserDetailPage from '@/view/admin/users/pages/user-detail.page'
 
-function Page() {
-	return <UsersPageView type="view" />
+function page() {
+	return <UserDetailPage />
 }
 
-export default Page
+export default page

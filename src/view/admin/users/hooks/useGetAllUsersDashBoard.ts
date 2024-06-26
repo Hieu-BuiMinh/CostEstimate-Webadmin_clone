@@ -8,7 +8,7 @@ export function useGetAllUsersDashBoard(_params: IGettAllUsersRequestDto) {
 	const accessToken = Cookies.get('accessToken')
 
 	return useQuery({
-		queryKey: ['useGettAllUsersDashBoard', _params],
+		queryKey: ['useGetAllUsersDashBoard', _params],
 		enabled: !!accessToken,
 		queryFn: () => {
 			return UsersDashboardService.getALlUsers(_params)

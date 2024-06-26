@@ -1,7 +1,7 @@
-import UsersPageView from '@/view/admin/users/pages/users.page'
+import React from 'react'
 
 function page() {
-	return <UsersPageView type="create" />
+	return <div>create</div>
 }
 
 export default page
