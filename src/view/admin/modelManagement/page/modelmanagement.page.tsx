@@ -9,10 +9,8 @@ import { fDateTime } from '@/utils/formatTime'
 
 import { useGetFileModelCostEstimates } from '../hooks/useGetFileModelCostEstimates'
 // Định nghĩa các component bên ngoài hàm render
-const CostEstimateTemplate = (props: MceModelCostEstimate) => <div>Version {props.costEstimateVersion}</div>
-const SizeTemplate = (props: MceModelCostEstimate) => CalculatorSizeFile(props.bucketObject.size)
-const DateTemplate = (props: MceModelCostEstimate) => fDateTime(props.bucketObject.createAt)
-function ModelManagementPage() {
+
+export const ModelManagementPage = () => {
 	const { data, isLoading } = useGetFileModelCostEstimates()
 
 	// console.log(data);
@@ -20,7 +18,6 @@ function ModelManagementPage() {
 	if (isLoading) {
 		return <div>loading...</div>
 	}
-
 	/* eslint-enable react/no-unstable-nested-components */
 	return (
 		<GridComponent dataSource={data?.data} height="100%" allowResizing>
@@ -33,7 +30,7 @@ function ModelManagementPage() {
 					width="170"
 					headerTextAlign="Center"
 					template={CostEstimateTemplate}
-				/>
+					/>
 				<ColumnDirective
 					field="bucketObject.size"
 					headerText="Size"
@@ -41,14 +38,14 @@ function ModelManagementPage() {
 					textAlign="Right"
 					headerTextAlign="Center"
 					template={SizeTemplate}
-				/>
+					/>
 				<ColumnDirective
 					field="bucketObject.createAt"
 					headerText="Date"
 					width="150"
 					headerTextAlign="Center"
 					template={DateTemplate}
-				/>
+					/>
 			</ColumnsDirective>
 			<Inject services={[Resize]} />
 		</GridComponent>
@@ -56,4 +53,6 @@ function ModelManagementPage() {
 	/* eslint-enable react/no-unstable-nested-components */
 }
 
-export default ModelManagementPage
+const CostEstimateTemplate = (props: MceModelCostEstimate) => <div>Version {props.costEstimateVersion}</div>
+const SizeTemplate = (props: MceModelCostEstimate) => CalculatorSizeFile(props.bucketObject.size)
+const DateTemplate = (props: MceModelCostEstimate) => fDateTime(props.bucketObject.createAt)
