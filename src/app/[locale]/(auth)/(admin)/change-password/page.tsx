@@ -5,7 +5,7 @@ import ChangePasswordPageView from '@/view/admin/users/pages/change-password.pag
 export async function generateMetadata(props: { params: { locale: string } }) {
 	const t = await getTranslations({
 		locale: props.params.locale,
-		namespace: 'ChangePassword',
+		namespace: 'Page.User.ChangePassword',
 	})
 
 	return {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { APP_ROUTER } from '@/common/config'
 import useAppModal from '@/components/modals/app-modal/store'
@@ -8,6 +9,7 @@ import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { useDeleteRoleById, useGetRoleById } from '@/view/admin/roles/hooks'
 
 function RoleDetailPage() {
+	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
 	const router = useRouter()
 	const params = useSearchParams()
 	const { open, close, setModalOptions } = useAppModal()
@@ -32,8 +34,8 @@ function RoleDetailPage() {
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title="Are you sure to delete this user?"
-					message="Confirm Delete"
+					title={`${modalTranslate('title')} ${roleData?.name}`}
+					message={`${modalTranslate('message')}`}
 					onClose={close}
 					onConfirm={() => {
 						handleDelete()

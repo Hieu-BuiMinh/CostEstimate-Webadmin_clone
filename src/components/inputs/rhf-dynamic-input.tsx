@@ -1,6 +1,7 @@
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons'
 import { DatePickerComponent, Inject, MaskedDateTime } from '@syncfusion/ej2-react-calendars'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
@@ -15,6 +16,7 @@ interface IRHFDynamicInput {
 }
 
 export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
+	const translateValidation = useTranslations()
 	const { register, formState, control } = useFormContext()
 	const [showPassword, setShowPassword] = useState('password')
 
@@ -36,7 +38,9 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						{...register(name)}
 					/>
 					{formState.errors[name] && (
-						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">
+							{translateValidation(formState?.errors[name]?.message as any)}
+						</span>
 					)}
 				</>
 			)
@@ -61,7 +65,9 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						</button>
 					</div>
 					{formState.errors[name] && (
-						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">
+							{translateValidation(formState?.errors[name]?.message as any)}
+						</span>
 					)}
 				</>
 			)
@@ -78,7 +84,9 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						{...register(name)}
 					/>
 					{formState.errors[name] && (
-						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">
+							{translateValidation(formState?.errors[name]?.message as any)}
+						</span>
 					)}
 				</>
 			)
@@ -109,7 +117,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 					<div className="flex gap-2 text-sm text-[var(--color-surface-800)]">
 						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
 					</div>
-					<div className="flex gap-2">
+					<div className="flex flex-col gap-2">
 						{rest.radioOptions?.map((rad) => {
 							return (
 								<div key={rad.id} className="flex gap-1">
@@ -119,6 +127,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 										name={name}
 										type="radio"
 										value={rad?.value as string}
+										defaultChecked={rest?.defaultValue === rad.id}
 									/>
 									{/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
 									<label className="text-sm" htmlFor={rad.id}>
@@ -129,7 +138,9 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						})}
 					</div>
 					{formState.errors[name] && (
-						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
+						<span className="text-xs text-red-400">
+							{translateValidation('Validation.User.UpdateUser.isreverse.required_message')}
+						</span>
 					)}
 				</>
 			)

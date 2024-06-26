@@ -21,7 +21,7 @@ import { UpdateUserFormValidation } from '@/view/admin/users/validations'
 type UpdateFormFields = z.infer<typeof UpdateUserFormValidation>
 
 export function UserUpdatePage() {
-	const translate = useTranslations('UpdateInsertUser')
+	const translate = useTranslations('Page.User.UpdateInsertUser')
 	const router = useRouter()
 	const params = useSearchParams()
 
@@ -60,32 +60,38 @@ export function UserUpdatePage() {
 			type: 'radio',
 			name: 'isReverse',
 			label: 'Chọn họ tên sau khi cập nhật',
-			required: true,
+			defaultValue: 'isReverse_01',
 			radioOptions: [
-				{ value: false, label: 'Họ và tên', id: 'isReverse_02' },
-				{ value: true, label: 'Tên và Họ', id: 'isReverse_01' },
+				{
+					value: 'isReverse_01',
+					label: `${userData?.firstName} ${userData?.lastName}`,
+					id: 'isReverse_01',
+				},
+				{
+					value: 'isReverse_02',
+					label: `${userData?.lastName} ${userData?.firstName}`,
+					id: 'isReverse_02',
+				},
 			],
 		},
 	]
 
 	const onSubmit: SubmitHandler<UpdateFormFields> = (_formData) => {
-		const isReverse = _formData.isReverse === 'true'
 		const data = {
 			..._formData,
-			isReverse,
+			isReverse: _formData.isReverse === 'isReverse_01',
 			id: params.get('id') || '',
 		}
 		handleUpdate(data as IUpdateUserInforRequestDto)
+		handleInsertUserRole({
+			userId: params.get('id') || '',
+			roleIds: roleIdsRef.current,
+		})
 	}
 
 	if (userDataIsLoading) {
 		return <>{translate('load_data')}</>
 	}
-
-	// eslint-disable-next-line react-hooks/rules-of-hooks
-	// useEffect(() => {
-	// 	handleInsertUserRole({ userId: params.get('id') || '', roleIds })
-	// }, [roleIds])
 
 	return (
 		<div className="flex flex-col gap-5 text-[var(--color-surface-999)]">
@@ -146,18 +152,10 @@ export function UserUpdatePage() {
 												change={(e: any) => {
 													if (e?.checked) {
 														roleIdsRef.current = [...roleIdsRef.current, role.id]
-														handleInsertUserRole({
-															userId: params.get('id') || '',
-															roleIds: roleIdsRef.current,
-														})
 													} else {
 														roleIdsRef.current = roleIdsRef.current.filter(
 															(item) => item !== role.id
 														)
-														handleInsertUserRole({
-															userId: params.get('id') || '',
-															roleIds: roleIdsRef.current,
-														})
 													}
 												}}
 											/>

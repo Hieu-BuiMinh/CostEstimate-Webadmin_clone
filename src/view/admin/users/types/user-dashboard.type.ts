@@ -17,13 +17,13 @@ export interface IGettAllUsersResponseDto {
 	statusCode: number
 }
 
-interface IUsers {
+export interface IUsers {
 	id: string
 	firstName: string
 	lastName: string
 	fullName: string
 	phoneNumber: string
-	userName: string
+	username: string
 	email: string
 	createdDate: string
 }

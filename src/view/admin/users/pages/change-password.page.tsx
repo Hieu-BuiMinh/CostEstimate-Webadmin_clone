@@ -5,7 +5,7 @@ import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import clsx from 'clsx'
 import { useTranslations } from 'next-intl'
 // import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
@@ -19,11 +19,11 @@ import useUserChangePassword from '../hooks/useUserResetPassword'
 type ResetPasswordFormFields = z.infer<typeof ChangePasswordFormValidation>
 
 function ChangePasswordPageView() {
-	const translate = useTranslations('ChangePassword')
-	const button = useTranslations('Button')
+	const translate = useTranslations('Page.User.ChangePassword')
+	const button = useTranslations('Common.Button')
 	// const router = useRouter()
 	const device = useResponsiveDevice()
-	const { mutate: handleChangePassword, isSuccess, isPending, data: resetPasswordData } = useUserChangePassword()
+	const { mutate: handleChangePassword, isPending } = useUserChangePassword()
 
 	const methods = useForm<ResetPasswordFormFields>({ resolver: zodResolver(ChangePasswordFormValidation) })
 
@@ -34,21 +34,21 @@ function ChangePasswordPageView() {
 
 	const formFields = [
 		{
-			type: 'text',
+			type: 'password',
 			name: 'OldPassword',
 			placeholder: translate('placeholder_current_password'),
 			label: translate('title_current_password'),
 			required: true,
 		},
 		{
-			type: 'text',
+			type: 'password',
 			name: 'NewPassword',
 			placeholder: translate('placeholder_new_password'),
 			label: translate('title_new_password'),
 			required: true,
 		},
 		{
-			type: 'text',
+			type: 'password',
 			name: 'RepeatPassword',
 			placeholder: translate('placeholder_confirm_password'),
 			label: translate('title_confirm_password'),
@@ -56,13 +56,12 @@ function ChangePasswordPageView() {
 		},
 	]
 
-	useEffect(() => {
-		if (resetPasswordData?.statusCode === 200) {
-			methods.reset()
-			// router.push(APP_ROUTER.paths.center.signIn.path)
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isSuccess])
+	// useEffect(() => {
+	// 	if (resetPasswordData?.statusCode === 200) {
+	// 		// methods.reset()
+	// 		// router.push(APP_ROUTER.paths.center.signIn.path)
+	// 	}
+	// }, [isSuccess])
 
 	return (
 		<FormProvider {...methods}>
@@ -87,7 +86,7 @@ function ChangePasswordPageView() {
 							<div key={field.name} className="flex w-full flex-col gap-2">
 								<RHFDynamicInput
 									name={field.name}
-									type={field.type as 'text'}
+									type={field.type as 'password'}
 									placeholder={field.placeholder}
 									label={field?.label}
 									required={field?.required}

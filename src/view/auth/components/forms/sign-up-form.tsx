@@ -22,7 +22,7 @@ import { SignUpFormValidation } from '@/view/auth/validations'
 type FormFields = z.infer<typeof SignUpFormValidation>
 
 function SignUpForm() {
-	const translate = useTranslations('SignUp')
+	const translate = useTranslations('Page.Auth.SignUp')
 	const router = useRouter()
 	const { mutate: handleRegister, isSuccess, isPending, data: registerData } = useAuthRegister()
 

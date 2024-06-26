@@ -1,6 +1,7 @@
 import type { PageSettingsModel } from '@syncfusion/ej2-react-grids'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
@@ -11,6 +12,7 @@ import { GridView } from '@/components/table'
 import { useDeleteRoleById, useGetAllRolesDashBoard } from '@/view/admin/roles/hooks'
 
 export function AllRolesTable() {
+	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
 	const router = useRouter()
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
@@ -48,12 +50,13 @@ export function AllRolesTable() {
 	}
 
 	const handleOpenModal = (_id: string) => {
+		const dataRole = tableData?.items.find((item) => item.id === _id)
 		setModalOptions({
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title="Are you sure to delete this role?"
-					message="Confirm Delete"
+					title={`${modalTranslate('title')} ${dataRole?.name}`}
+					message={`${modalTranslate('message')}`}
 					onClose={close}
 					onConfirm={() => {
 						handleDelete(_id)

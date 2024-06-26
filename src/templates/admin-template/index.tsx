@@ -98,6 +98,7 @@ function AdminTemplate({ children }: IAdminTemplate) {
 
 	if (accessToken) {
 		const decoded = jwtDecode(accessToken)
+		// console.log(decoded);
 		const currentTime = Date.now() / 1000
 		const expire = decoded?.exp as number
 		if (expire < currentTime) {

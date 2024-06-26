@@ -12,8 +12,9 @@ import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
 import { useGetUserById } from '@/view/admin/users/hooks/useGetUserById'
 
 function UserDetailPage() {
-	const translate = useTranslations('UserDetail')
-	const button = useTranslations('Button')
+	const translate = useTranslations('Page.User.UserDetail')
+	const translateButton = useTranslations('Common.Button')
+	const translateModal = useTranslations('Common.ModalConfirmDelete')
 	const router = useRouter()
 	const params = useSearchParams()
 	const { open, close, setModalOptions } = useAppModal()
@@ -38,8 +39,8 @@ function UserDetailPage() {
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title={`Are you sure to delete ${userData?.fullName}`}
-					message="Confirm Delete"
+					title={`${translateModal('title')} ${userData?.fullName}`}
+					message={`${translateModal('message')}`}
 					onClose={close}
 					onConfirm={() => {
 						handleDelete()
@@ -92,7 +93,7 @@ function UserDetailPage() {
 				<div className="mt-5 w-[500px]">
 					<div className="flex w-full items-center gap-3">
 						<span className="e-avatar e-avatar-circle shrink-0">
-							{userData?.username.substring(0, 2).toUpperCase()}
+							{userData?.firstName.substring(0, 2).toUpperCase()}
 						</span>
 
 						<div className="min-w-0">
@@ -106,10 +107,10 @@ function UserDetailPage() {
 						<UserInforBadge icon="calendar_month" innerText={userData?.createdDate || ''} />
 						<div className="flex justify-end gap-3">
 							<ButtonComponent type="submit" className="e-primary w-full" onClick={gotoUpdate}>
-								{button('edit')}
+								{translateButton('edit')}
 							</ButtonComponent>
 							<ButtonComponent type="button" className="e-danger w-full" onClick={handleOpenModal}>
-								{button('delete')}
+								{translateButton('delete')}
 							</ButtonComponent>
 						</div>
 					</div>

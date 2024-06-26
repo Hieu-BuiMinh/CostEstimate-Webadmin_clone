@@ -1,18 +1,22 @@
 import type { PageSettingsModel } from '@syncfusion/ej2-react-grids'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
-import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
-import { APP_ROUTER } from '@/common/config'
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
+import ModalUserDetailContent from '@/components/modals/modal-user-detail'
+import ModalUserUpdateContent from '@/components/modals/modal-user-update'
 import { GridView } from '@/components/table'
 import { useGetAllUsersDashBoard } from '@/view/admin/users/hooks'
 import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
 import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
 
+import type { IUsers } from '../../types'
+// import ModalUserDetailContent from '@/components/modals/modal-user-detail'
+
 export function AllUsersTable() {
-	const router = useRouter()
+	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
 		FullName: '',
@@ -51,12 +55,14 @@ export function AllUsersTable() {
 	}
 
 	const handleOpenModal = (_id: string) => {
+		const dataUser = tableData?.items.find((item) => item.id === _id)
+
 		setModalOptions({
 			showCloseIcon: false,
 			content: (
 				<ModalConfirmContent
-					title="Are you sure to delete this user?"
-					message="Confirm Delete"
+					title={`${modalTranslate('title')} ${dataUser?.fullName}`}
+					message={`${modalTranslate('message')}`}
 					onClose={close}
 					onConfirm={() => {
 						handleDelete(_id)
@@ -68,6 +74,23 @@ export function AllUsersTable() {
 		open()
 	}
 
+	const handleOpenDetailModal = (_id: string) => {
+		const userDataDetail: IUsers | undefined = tableData?.items.find((item) => item.id === _id)
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalUserDetailContent userData={userDataDetail} onClose={close} />,
+		})
+		open()
+	}
+
+	const handleOpenEditModal = (_id: string) => {
+		const userDataDetail: IUsers | undefined = tableData?.items.find((item) => item.id === _id)
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalUserUpdateContent userData={userDataDetail} onClose={close} />,
+		})
+		open()
+	}
 	const handleChangeSearchingInputs = ({ type, value }: { type: string; value: string }) => {
 		switch (type) {
 			case 'fullName':
@@ -102,7 +125,8 @@ export function AllUsersTable() {
 			<tr
 				className="e-rows cursor-pointer"
 				onClick={() => {
-					router.push(APP_ROUTER.paths.admin.users.children.view(Rows?.id))
+					handleOpenDetailModal(Rows?.id)
+					// router.push(APP_ROUTER.paths.admin.users.children.view(Rows?.id))
 				}}
 			>
 				{columns.map((cell) => {
@@ -117,7 +141,8 @@ export function AllUsersTable() {
 					<button
 						onClick={(event) => {
 							event.stopPropagation()
-							router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
+							handleOpenEditModal(Rows?.id)
+							// router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
 						}}
 						type="button"
 						className="material-symbols-outlined text-green-400"

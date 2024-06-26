@@ -11,28 +11,36 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
 
 export const LoginFormValidation = z.object({
 	usernameOrEmail: z
-		.string({ message: 'This field is required' })
+		.string({ message: 'Validation.Auth.SignIn.username_or_email.required_message' })
 		.refine((value) => /\S+@\S+\.\S+/.test(value) || /^[a-zA-Z0-9]+$/.test(value), {
-			message: 'Consider using an email format',
+			message: 'Validation.Auth.SignIn.username_or_email.invalid_message',
 		}),
-	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
-		message:
-			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character',
-	}),
+	password: z
+		.string({ message: 'Validation.Auth.SignIn.password.required_message' })
+		.refine((value) => passwordRegex.test(value), {
+			message: 'Validation.Auth.SignIn.password.invalid_message',
+		}),
 	remember: z.boolean(),
 })
 
 export const SignUpFormValidation = z.object({
-	firstname: z.string({ message: 'This field is require' }).min(1, { message: 'This field is require' }),
-	lastname: z.string({ message: 'This field is require' }).min(1, { message: 'This field is require' }),
-	email: z.string({ message: 'This field is require' }).email('Invalid e-mail format'),
+	firstname: z
+		.string({ message: 'Validation.Auth.SignUp.firstname.required_message' })
+		.min(1, { message: 'Validation.Auth.SignUp.firstname.required_message' }),
+	lastname: z
+		.string({ message: 'Validation.Auth.SignUp.lastname.required_message' })
+		.min(1, { message: 'Validation.Auth.SignUp.lastname.required_message' }),
+	email: z
+		.string({ message: 'Validation.Auth.SignUp.email.required_message' })
+		.email('Validation.Auth.SignUp.email.invalid_message'),
 	username: z
-		.string({ message: 'This field is require' })
-		.min(5, { message: 'Username must be at least 5 characters' }),
-	password: z.string({ message: 'This field is required' }).refine((value) => passwordRegex.test(value), {
-		message:
-			'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character',
-	}),
+		.string({ message: 'Validation.Auth.SignUp.username.required_message' })
+		.min(5, { message: 'Validation.Auth.SignUp.username.invalid_message' }),
+	password: z
+		.string({ message: 'Validation.Auth.SignUp.password.required_message' })
+		.refine((value) => passwordRegex.test(value), {
+			message: 'Validation.Auth.SignUp.password.invalid_message',
+		}),
 	phoneNumber: z
 		.string()
 		.optional()
@@ -41,7 +49,7 @@ export const SignUpFormValidation = z.object({
 				if (!value) return true
 				return phoneRegex.test(value)
 			},
-			{ message: 'Invalid phone number' }
+			{ message: 'Validation.Auth.SignUp.phonenumber.required_message' }
 		),
 })
 
@@ -56,22 +64,52 @@ export const TestLoginFormValidation = z.object({
 
 export const ResetPasswordFormValidation = z
 	.object({
-		OldPassword: z.string().min(8, 'Password must be at least 8 characters long'),
-		NewPassword: z.string().min(8, 'Password must be at least 8 characters long'),
-		RepeatPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		OldPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+		NewPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+		RepeatPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
 	})
 	.refine((data) => data.NewPassword === data.RepeatPassword, {
-		message: "Passwords don't match",
-		path: ['confirmPassword'],
+		message: 'Validation.User.ChangePassword.password.message3',
+		path: ['RepeatPassword'],
 	})
 
 export const ChangePasswordFormValidation = z
 	.object({
-		OldPassword: z.string().min(8, 'Password must be at least 8 characters long'),
-		NewPassword: z.string().min(8, 'Password must be at least 8 characters long'),
-		RepeatPassword: z.string().min(8, 'Password must be at least 8 characters long'),
+		OldPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+		NewPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+		RepeatPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
 	})
 	.refine((data) => data.NewPassword === data.RepeatPassword, {
-		message: "Passwords don't match",
-		path: ['confirmPassword'],
+		message: 'Validation.User.ChangePassword.password.message3',
+		path: ['RepeatPassword'],
 	})

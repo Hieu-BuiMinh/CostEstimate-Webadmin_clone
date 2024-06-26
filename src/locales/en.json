@@ -1,146 +1,182 @@
 {
-	"RootLayout": {
-		"home_link": "Home",
-		"about_link": "About",
-		"guestbook_link": "Guestbook",
-		"portfolio_link": "Portfolio",
-		"sign_in_link": "Sign in",
-		"sign_up_link": "Sign up"
+	"Common": {
+		"Settings": {
+			"meta_title": "Settings",
+			"hello_message": "Settings"
+		},
+		"Button": {
+			"delete": "Delete",
+			"update": "Update",
+			"add": "Add",
+			"submit": "Submit",
+			"create": "Create",
+			"edit": "Edit",
+			"cancel": "Cancel",
+			"ok": "Ok"
+		},
+		"ModalConfirmDelete": {
+			"title": "Are you sure to delete ",
+			"message": "Confirm Delete"
+		}
 	},
-	"BaseTemplate": {
-		"description": "Starter code for your Nextjs Boilerplate with Tailwind CSS",
-		"made_with": "Made with"
+	"Index":{
+		"meta_title": "Index",
+		"meta_description": "Index"
 	},
-	"Index": {
-		"meta_title": "Next.js Boilerplate Presentation",
-		"meta_description": "Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
+	"Validation": {
+		"Auth": {
+			"SignIn": {
+				"username_or_email": {
+					"required_message": "This field is require",
+					"invalid_message": "This field is require email format"
+				},
+				"password": {
+					"required_message": "This field is require",
+					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+				}
+			},
+			"SignUp": {
+
+				"email": {
+					"required_message": "This field is require",
+					"invalid_message": "This field is require email format"
+				},
+				"username": {
+					"required_message": "This field is require",
+					"invalid_message": "Username must be at least 5 characters long"
+				},
+				"firstname": {
+					"required_message": "This field is require",
+					"invalid_message": "This field is require"
+				},
+				"lastname": {
+					"required_message": "This field is require",
+					"invalid_message": "This field is require"
+				},
+				"password": {
+					"required_message": "This field is require",
+					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+				},
+				"phonenumber": {
+					"required_message": "Invalid phone number"
+				}
+			}
+		},
+		"User": {
+			"ChangePassword": {
+				"password": {
+					"required_message": "This field is require",
+					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
+					"message3": "Password is not match"
+				}
+			},
+			"UpdateUser": {
+				"firstname": {
+					"required_message": "This field is require"
+				},
+				"lastname": {
+					"required_message": "This field is require"
+				},
+				"isreverse": {
+					"required_message": "You have to choose fullname display style"
+				}
+			}
+		},
+		"Role": {
+			"fullname": {
+				"required_message": "This field is require",
+				"invalid_message": "This field is require"
+			},
+			"username":{
+				"required_message": "This field is require",
+				"invalid_message": "Username must only contain lowercase letters and numbers"
+			}
+		}
 	},
-	"Guestbook": {
-		"meta_title": "Guestbook",
-		"meta_description": "An example of CRUD operation",
-		"database_powered_by": "Database powered by",
-		"loading_guestbook": "Loading guestbook..."
-	},
-	"GuestbookForm": {
-		"username": "Username",
-		"body": "Body",
-		"save": "Save"
-	},
-	"About": {
-		"meta_title": "About",
-		"meta_description": "About page description",
-		"about_paragraph": "Welcome to our About page! We are a team of passionate individuals dedicated to creating amazing software.",
-		"translation_powered_by": "Translation powered by"
-	},
-	"Portfolio": {
-		"meta_title": "Portfolio",
-		"meta_description": "Welcome to my portfolio page!",
-		"presentation": "Welcome to my portfolio page! Here you will find a carefully curated collection of my work and accomplishments. Through this portfolio, I'm to showcase my expertise, creativity, and the value I can bring to your projects.",
-		"portfolio_name": "Portfolio {name}",
-		"error_reporting_powered_by": "Error reporting powered by",
-		"coverage_powered_by": "Code coverage powered by"
-	},
-	"PortfolioSlug": {
-		"meta_title": "Portfolio {slug}",
-		"meta_description": "Portfolio {slug} description",
-		"header": "Portfolio {slug}",
-		"content": "Created a set of promotional materials and branding elements for a corporate event. Crafted a visually unified theme, encompassing a logo, posters, banners, and digital assets. Integrated the client's brand identity while infusing it with a contemporary and innovative approach. Garnered favorable responses from event attendees, resulting in a successful event with heightened participant engagement and increased brand visibility.",
-		"log_management_powered_by": "Log management powered by"
-	},
-	"Settings": {
-		"meta_title": "Settings",
-		"hello_message": "Settings"
-	},
-	"SignIn": {
-		"meta_title": "Sign in",
-		"meta_description": "Sign in to your account",
-		"label_username_or_email": "Username or Email",
-		"placeholder_username_or_email": "Enter username or email",
-		"label_password": "Password",
-		"placeholder_password": "Enter password",
-		"remember_password": "Remember me",
-		"have_no_account": "Don't have an account?",
-		"button_sign_in": "Sign in",
-		"forgot_password": "Forgot password"
-	},
-	"SignUp": {
-		"meta_title": "Sign up",
-		"meta_description": "Sign up",
-		"label_fullname": "Full name",
-		"placeholder_fullname": "Enter fullname",
-		"label_firstname": "First name",
-		"placeholder_firstname": "Enter first name",
-		"label_lastname": "Last name",
-		"placeholder_lastname": "Enter lastname",
-		"label_email": "Email",
-		"placeholder_email": "Enter email",
-		"label_username": "Username",
-		"placeholder_username": "Enter username",
-		"label_password": "Password",
-		"label_phone_number": "Phone number",
-		"placeholder_phone_number": "Enter phone number",
-		"button_sign_up": "Sign Up",
-		"already_have_account": "Already have an account",
-		"sign_in_link": "Sign in"
-	},
-	"UserDashboard": {
-		"meta_title": "User page",
-		"meta_description": "User page"
+	"Page": {
+		"Auth": {
+			"SignIn": {
+				"meta_title": "Sign in",
+				"meta_description": "Sign in to your account",
+				"label_username_or_email": "Username or Email",
+				"placeholder_username_or_email": "Enter username or email",
+				"label_password": "Password",
+				"placeholder_password": "Enter password",
+				"remember_password": "Remember me",
+				"have_no_account": "Don't have an account?",
+				"button_sign_in": "Sign in",
+				"forgot_password": "Forgot password"
+			},
+			"SignUp": {
+				"meta_title": "Sign up",
+				"meta_description": "Sign up",
+				"label_fullname": "Full name",
+				"placeholder_fullname": "Enter fullname",
+				"label_firstname": "First name",
+				"placeholder_firstname": "Enter first name",
+				"label_lastname": "Last name",
+				"placeholder_lastname": "Enter lastname",
+				"label_email": "Email",
+				"placeholder_email": "Enter email",
+				"label_username": "Username",
+				"placeholder_username": "Enter username",
+				"label_password": "Password",
+				"label_phone_number": "Phone number",
+				"placeholder_phone_number": "Enter phone number",
+				"button_sign_up": "Sign Up",
+				"already_have_account": "Already have an account",
+				"sign_in_link": "Sign in"
+			}
+		},
+		"User": {
+			"UpdateInsertUser": {
+				"meta_title_update": "Update user information",
+				"meta_title_create": "Create user",
+				"meta_description": "Update user information",
+				"button_update": "Update",
+				"button_create": "Create",
+				"label_fullname": "Full name",
+				"placeholder_fullname": "Enter fullname",
+				"label_firstname": "First name",
+				"placeholder_firstname": "Enter first name",
+				"label_lastname": "Last name",
+				"placeholder_lastname": "Enter lastname",
+				"label_username": "Username",
+				"placeholder_username": "Enter username",
+				"label_fullname_required": "Choose display fullname",
+				"label_fullname_reverse": "Lastname and Firstname",
+				"label_fullname_noreverse": "Firstname and Lastname",
+				"load_data": "Loading data..."
+			},
+			"UserDetail": {
+				"meta_title": "User info",
+				"meta_description": "User info",
+				"load_data": "Loading data...",
+				"user_not_found": "User not found",
+				"button_edit": "Edit",
+				"button_delete": "Delete"
+			},
+			"UserDashboard": {
+				"meta_title": "User page",
+				"meta_description": "User page"
+			},
+			"ChangePassword": {
+				"meta_title": "Change password",
+				"title_current_password": "Current password",
+				"placeholder_current_password": "Enter current password",
+				"title_new_password": "New password",
+				"placeholder_new_password": "Enter new password",
+				"title_confirm_password": "Confirm password",
+				"placeholder_confirm_password": "Enter confirm password",
+				"button_update": "Update"
+			},
+			"UserProfile": {
+				"meta_title": "User Profile"
+			}
+		}
 	},
 	"Dashboard": {
 		"meta_title": "Dashboard",
 		"hello_message": "Hello {email}!"
-	},
-	"UserProfile": {
-		"meta_title": "User Profile"
-	},
-	"ChangePassword": {
-		"meta_title": "Change password",
-		"title_current_password": "Current password",
-		"placeholder_current_password": "Enter current password",
-		"title_new_password": "New password",
-		"placeholder_new_password": "Enter new password",
-		"title_confirm_password": "Confirm password",
-		"placeholder_confirm_password": "Enter confirm password",
-		"button_update": "Update"
-	},
-	"DashboardLayout": {
-		"dashboard_link": "Dashboard",
-		"user_profile_link": "Manage your account",
-		"sign_out": "Sign out"
-	},
-	"UpdateInsertUser": {
-		"meta_title_update": "Update user information",
-		"meta_title_create": "Create user",
-		"meta_description": "Update user information",
-		"button_update": "Update",
-		"button_create": "Create",
-		"label_fullname": "Full name",
-		"placeholder_fullname": "Enter fullname",
-		"label_firstname": "First name",
-		"placeholder_firstname": "Enter first name",
-		"label_lastname": "Last name",
-		"placeholder_lastname": "Enter lastname",
-		"label_username": "Username",
-		"placeholder_username": "Enter username",
-		"load_data": "Loading data..."
-	},
-	"UserDetail": {
-		"meta_title": "User info",
-		"meta_description": "User info",
-		"load_data": "Loading data...",
-		"user_not_found": "User not found",
-		"button_edit": "Edit",
-		"button_delete": "Delete"
-	},
-	"Button": {
-		"delete": "Delete",
-		"update": "Update",
-		"add": "Add",
-		"submit": "Submit",
-		"create": "Create",
-		"edit": "Edit",
-		"cancel": "Cancel",
-		"ok": "Ok"
 	}
 }

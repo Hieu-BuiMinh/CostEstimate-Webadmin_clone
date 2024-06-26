@@ -1,4 +1,5 @@
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 interface IModalConfirmContent {
@@ -9,7 +10,7 @@ interface IModalConfirmContent {
 }
 
 function ModalConfirmContent({ onClose, onConfirm, title, message }: IModalConfirmContent) {
-	// const translate = useTranslations('U')
+	const translate = useTranslations('Common.Button')
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="modal__header">
@@ -20,10 +21,10 @@ function ModalConfirmContent({ onClose, onConfirm, title, message }: IModalConfi
 			</div>
 			<div className="flex items-center justify-end gap-3">
 				<ButtonComponent cssClass="e-cancel" className="modal__button" onClick={onClose}>
-					Cancel
+					{translate('cancel')}
 				</ButtonComponent>
 				<ButtonComponent cssClass="e-warning" className="modal__button" onClick={onConfirm}>
-					Delete
+					{translate('delete')}
 				</ButtonComponent>
 			</div>
 		</div>

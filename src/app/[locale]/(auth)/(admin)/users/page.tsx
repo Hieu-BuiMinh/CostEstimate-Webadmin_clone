@@ -5,7 +5,7 @@ import UsersPageView from '@/view/admin/users/pages/users.page'
 export async function generateMetadata(props: { params: { locale: string } }) {
 	const t = await getTranslations({
 		locale: props.params.locale,
-		namespace: 'UserDashboard',
+		namespace: 'Page.User.UserDashboard',
 	})
 
 	return {

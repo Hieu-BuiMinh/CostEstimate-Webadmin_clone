@@ -1,5 +1,6 @@
 // Modal.tsx
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 interface ModalProps {
@@ -12,6 +13,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ show, icon, onClose, onConfirm, title, message }) => {
+	const translate = useTranslations('Common.Button')
 	if (!show) return null
 
 	return (
@@ -33,11 +35,10 @@ const Modal: React.FC<ModalProps> = ({ show, icon, onClose, onConfirm, title, me
 				</div>
 				<div className="modal__footer">
 					<ButtonComponent cssClass="e-warning" className="modal__button" onClick={onConfirm}>
-						Delete
+						{translate('delete')}
 					</ButtonComponent>
 					<ButtonComponent cssClass="e-primary" className="modal__button" onClick={onClose}>
-						{' '}
-						Cancel{' '}
+						{translate('cancel')}
 					</ButtonComponent>
 				</div>
 			</div>

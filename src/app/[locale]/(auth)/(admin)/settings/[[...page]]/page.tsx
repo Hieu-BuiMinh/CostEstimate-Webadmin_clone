@@ -5,7 +5,7 @@ import SettingsPageView from '@/view/admin/settings/pages/settings.page'
 export async function generateMetadata(props: { params: { locale: string } }) {
 	const t = await getTranslations({
 		locale: props.params.locale,
-		namespace: 'Settings',
+		namespace: 'Common.Settings',
 	})
 
 	return {

@@ -24,7 +24,7 @@ type LoginFormFields = z.infer<typeof LoginFormValidation>
 
 function AuthLoginForm() {
 	const router = useRouter()
-	const translate = useTranslations('SignIn')
+	const translate = useTranslations('Page.Auth.SignIn')
 
 	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
 
