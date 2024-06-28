@@ -1,11 +1,11 @@
 // GET_ALL_ROLES
-export interface IGettAllRolesRequestDto {
+export interface IGetRolesDasboardRequestDto {
 	PageNumber: string | number
 	PageSize: string | number
 	Name?: string
 }
 
-export interface IGettAllRolesResponseDto {
+export interface IGetRolesDasboardResponseDto {
 	data: {
 		totalItems: number
 		items: Pick<IRole, 'id' | 'name' | 'createdDate'>[]

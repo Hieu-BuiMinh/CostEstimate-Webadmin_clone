@@ -84,7 +84,7 @@ export const ResetPasswordFormValidation = z
 			}),
 	})
 	.refine((data) => data.NewPassword === data.RepeatPassword, {
-		message: 'Validation.User.ChangePassword.password.message3',
+		message: 'Validation.User.ChangePassword.password.match_message',
 		path: ['RepeatPassword'],
 	})
 
@@ -110,6 +110,6 @@ export const ChangePasswordFormValidation = z
 			}),
 	})
 	.refine((data) => data.NewPassword === data.RepeatPassword, {
-		message: 'Validation.User.ChangePassword.password.message3',
+		message: 'Validation.User.ChangePassword.password.match_message',
 		path: ['RepeatPassword'],
 	})

@@ -3,7 +3,9 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { APP_ROUTER } from '@/common/config'
+import useAppModal from '@/components/modals/app-modal/store'
 import SidebarButton from '@/templates/admin-template/components/sidebar-button'
+import ModalChangePasswordContent from '@/view/admin/users/components/modals/modal-change-password'
 
 import FallbackImage from '../../fallback-image'
 
@@ -15,6 +17,15 @@ function AccountDropdownTemplate() {
 	const handleClickSignOut = () => {
 		Cookies.remove('accessToken')
 		router.push(APP_ROUTER.paths.center.signIn.path)
+	}
+	const { open, close, setModalOptions } = useAppModal()
+
+	const handleOpenEditModal = () => {
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalChangePasswordContent onClose={close} />,
+		})
+		open()
 	}
 
 	const accountItems = [
@@ -41,7 +52,7 @@ function AccountDropdownTemplate() {
 					innerText: 'Change Password',
 					className: 'account__section--button',
 					icon: 'key',
-					onClick: handleClickChangePassword,
+					onClick: handleOpenEditModal,
 				},
 			],
 		},

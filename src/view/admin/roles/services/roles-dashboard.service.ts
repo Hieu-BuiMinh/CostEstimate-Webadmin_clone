@@ -4,18 +4,26 @@ import type {
 	IAddRoleInforRequestDto,
 	IAddRoleInforResponseDto,
 	IDeleteRoleByIdResponseDto,
-	IGettAllRolesRequestDto,
-	IGettAllRolesResponseDto,
+	IGetRolesDasboardRequestDto,
+	IGetRolesDasboardResponseDto,
 	IGettRoleByIdResponseDto,
 	IUpdateRoleInforRequestDto,
 	IUpdateRoleInforResponseDto,
 } from '@/view/admin/roles/types'
 
 export const RolesDashboardService = {
-	getALlRoles: async (_params: IGettAllRolesRequestDto) => {
-		const response: IGettAllRolesResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getAllRoles, {
-			params: _params,
-		})
+	getRolesGridView: async (_params: IGetRolesDasboardRequestDto) => {
+		const response: IGetRolesDasboardResponseDto = await httpClient.get(
+			API_ROUTES.rolesDashboard.getRolesGridView,
+			{
+				params: _params,
+			}
+		)
+
+		return response?.data
+	},
+	getAllRoles: async () => {
+		const response: IGetRolesDasboardResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getAllRoles)
 
 		return response?.data
 	},

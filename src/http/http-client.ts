@@ -1,7 +1,7 @@
 import type { AxiosError, AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
-import toast from 'react-hot-toast'
 
+import useToast from '@/hooks/custom-hooks/useToast'
 import { AxiosBuilder } from '@/http/axios-builder'
 import type { IHttpResponseDto } from '@/http/types/http.response'
 
@@ -48,12 +48,13 @@ const axiosBuilder = new AxiosBuilder()
 	.setErrorInterceptor(async (error: AxiosError<any, any>) => {
 		// eslint-disable-next-line no-console
 		console.log(error)
+		const toast = useToast()
 		if (error.response?.data.message) {
-			toast.error(error.response?.data.message)
+			toast.errorToast(error.response?.data.message)
 		}
 
 		if (!error.response?.data.message) {
-			toast.error(error.message)
+			toast.errorToast(error.message)
 		}
 		return error
 	})

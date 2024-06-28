@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
@@ -19,6 +20,8 @@ interface IRoleUpsertPage {
 type UpsertFormFields = z.infer<typeof UpsertRoleFormValidation>
 
 export function RoleUpsertPage({ type }: IRoleUpsertPage) {
+	const translate = useTranslations('Page.Role.UpSert')
+	const translateButton = useTranslations('Common.Button')
 	const methods = useForm<UpsertFormFields>({ resolver: zodResolver(UpsertRoleFormValidation) })
 	const router = useRouter()
 	const params = useSearchParams()
@@ -59,7 +62,7 @@ export function RoleUpsertPage({ type }: IRoleUpsertPage) {
 	}
 
 	if (roleDataIsLoading) {
-		return <>Loading...</>
+		return <>{translate('load_data')}</>
 	}
 
 	return (
@@ -68,7 +71,7 @@ export function RoleUpsertPage({ type }: IRoleUpsertPage) {
 				<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 					arrow_back_ios
 				</button>
-				<span className="text-xl font-semibold">Update role information</span>
+				<span className="text-xl font-semibold">{translate('title_role_update')}</span>
 			</div>
 
 			<div className="mt-5 flex flex-col gap-8">
@@ -99,7 +102,7 @@ export function RoleUpsertPage({ type }: IRoleUpsertPage) {
 							})}
 						</div>
 
-						<button type="submit">SUBMIT</button>
+						<button type="submit">{translateButton('submit')}</button>
 					</form>
 				</FormProvider>
 			</div>

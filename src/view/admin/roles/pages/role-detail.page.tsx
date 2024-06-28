@@ -10,6 +10,8 @@ import { useDeleteRoleById, useGetRoleById } from '@/view/admin/roles/hooks'
 
 function RoleDetailPage() {
 	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
+	const translate = useTranslations('Page.Role.Detail')
+	const translateButton = useTranslations('Common.Button')
 	const router = useRouter()
 	const params = useSearchParams()
 	const { open, close, setModalOptions } = useAppModal()
@@ -54,9 +56,9 @@ function RoleDetailPage() {
 					<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 						arrow_back_ios
 					</button>
-					<span className="text-xl font-semibold">Role information</span>
+					<span className="text-xl font-semibold">{translate('role_info')}</span>
 				</div>
-				Loading data...
+				{translate('load_data')}
 			</div>
 		)
 	}
@@ -68,9 +70,9 @@ function RoleDetailPage() {
 					<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 						arrow_back_ios
 					</button>
-					<span className="text-xl font-semibold">Role information</span>
+					<span className="text-xl font-semibold">{translate('role_info')}</span>
 				</div>
-				Role not found!
+				{translate('role_not_found')}
 			</div>
 		)
 	}
@@ -81,7 +83,7 @@ function RoleDetailPage() {
 				<button type="button" className="material-symbols-outlined" onClick={handleBack}>
 					arrow_back_ios
 				</button>
-				<span className="text-xl font-semibold">Role information</span>
+				<span className="text-xl font-semibold">{translate('role_info')}</span>
 			</div>
 
 			<div className="mt-5">
@@ -96,10 +98,10 @@ function RoleDetailPage() {
 
 			<div className="flex justify-end gap-3">
 				<button type="button" onClick={gotoUpdate}>
-					edit
+					{translateButton('edit')}
 				</button>
 				<button type="button" onClick={handleOpenModal}>
-					delete
+					{translateButton('delete')}
 				</button>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 {
-	"Index":{
+	"Index": {
 		"meta_title": "Index",
 		"meta_description": "Index"
 	},
@@ -70,9 +70,8 @@
 				"password": {
 					"required_message": "Bạn cần nhập vào ô này",
 					"invalid_message": "Mật khẩu bao gồm ít nhất 8 ký tự, một ký tự viết hoa, một ký tự thường, một chữ số và một chữ cái",
-					"message3": "Mật khẩu không trùng khớp"
+					"match_message": "Mật khẩu không trùng khớp"
 				}
-
 			},
 			"UpdateUser": {
 				"firstname": {
@@ -87,13 +86,9 @@
 			}
 		},
 		"Role": {
-			"fullname": {
+			"rolename": {
 				"required_message": "Bạn cần nhập vào ô này",
 				"invalid_message": "Bạn cần nhập vào ô này"
-			},
-			"username":{
-				"required_message": "Bạn cần nhập vào ô này",
-				"invalid_message": "Tên người dùng chỉ chứa chữ viết thường và số"
 			}
 		}
 	},
@@ -130,6 +125,13 @@
 				"button_sign_up": "Đăng ký",
 				"already_have_account": "Bạn đã có tài khoản",
 				"sign_in_link": "Đăng nhập"
+			},
+			"ResetPassword": {
+				"meta_title": "Đặt lại mật khẩu",
+				"meta_description": "Đặt lại mật khẩu",
+				"place_holder_cur_pass": "Mật khẩu hiện tại",
+				"place_holder_new_pass": "Mật khẩu mới",
+				"place_holder_confirm_pass": "Xác nhận mật khẩu mới"
 			}
 		},
 		"User": {
@@ -151,6 +153,8 @@
 				"button_create": "Tạo",
 				"label_fullname": "Họ và tên",
 				"placeholder_fullname": "Nhập họ và tên",
+				"label_email": "Email",
+				"placeholder_email": "Nhập email",
 				"label_firstname": "Tên",
 				"placeholder_firstname": "Nhập tên",
 				"label_lastname": "Họ",
@@ -160,6 +164,7 @@
 				"label_fullname_required": "Chọn họ và tên sau khi cập nhật",
 				"label_fullname_reverse": "Họ và tên",
 				"label_fullname_noreverse": "Tên và họ",
+				"label_assign_role": "Gán quyền cho người dùng",
 				"load_data": "Đang tải dữ liệu..."
 			},
 			"UserDetail": {
@@ -176,6 +181,19 @@
 			"UserDashboard": {
 				"meta_title": "Trang người dùng",
 				"meta_description": "Trang người dùng"
+			}
+		},
+		"Role": {
+			"Detail": {
+				"load_data": "Đang tải dữ liệu...",
+				"role_not_found": "Không thấy quyền",
+				"role_info": "Thông tin quyền"
+			},
+			"UpSert": {
+				"placeholder_role": "Nhập tên quyền",
+				"label_role": "Tên quyền",
+				"title_role_update": "Cập nhật thông tin quyền",
+				"load_data": "Đang tải dữ liệu..."
 			}
 		}
 	}

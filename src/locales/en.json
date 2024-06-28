@@ -19,7 +19,7 @@
 			"message": "Confirm Delete"
 		}
 	},
-	"Index":{
+	"Index": {
 		"meta_title": "Index",
 		"meta_description": "Index"
 	},
@@ -36,7 +36,6 @@
 				}
 			},
 			"SignUp": {
-
 				"email": {
 					"required_message": "This field is require",
 					"invalid_message": "This field is require email format"
@@ -67,7 +66,7 @@
 				"password": {
 					"required_message": "This field is require",
 					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
-					"message3": "Password is not match"
+					"match_message": "Password is not match"
 				}
 			},
 			"UpdateUser": {
@@ -83,13 +82,11 @@
 			}
 		},
 		"Role": {
-			"fullname": {
-				"required_message": "This field is require",
-				"invalid_message": "This field is require"
-			},
-			"username":{
-				"required_message": "This field is require",
-				"invalid_message": "Username must only contain lowercase letters and numbers"
+			"Role": {
+				"rolename": {
+					"required_message": "This field is require",
+					"invalid_message": "This field is require"
+				}
 			}
 		}
 	},
@@ -126,6 +123,13 @@
 				"button_sign_up": "Sign Up",
 				"already_have_account": "Already have an account",
 				"sign_in_link": "Sign in"
+			},
+			"ResetPassword": {
+				"meta_title": "Reset password",
+				"meta_description": "Reset password",
+				"place_holder_cur_pass": "Current password",
+				"place_holder_new_pass": "New password",
+				"place_holder_confirm_pass": "Confirm password"
 			}
 		},
 		"User": {
@@ -137,6 +141,8 @@
 				"button_create": "Create",
 				"label_fullname": "Full name",
 				"placeholder_fullname": "Enter fullname",
+				"label_email": "Email",
+				"placeholder_email": "Enter email",
 				"label_firstname": "First name",
 				"placeholder_firstname": "Enter first name",
 				"label_lastname": "Last name",
@@ -144,8 +150,9 @@
 				"label_username": "Username",
 				"placeholder_username": "Enter username",
 				"label_fullname_required": "Choose display fullname",
-				"label_fullname_reverse": "Lastname and Firstname",
-				"label_fullname_noreverse": "Firstname and Lastname",
+				"label_fullname_reverse": "First and last name",
+				"label_fullname_noreverse": "Last and first name",
+				"label_assign_role": "Assign roles for user",
 				"load_data": "Loading data..."
 			},
 			"UserDetail": {
@@ -172,6 +179,19 @@
 			},
 			"UserProfile": {
 				"meta_title": "User Profile"
+			}
+		},
+		"Role": {
+			"Detail": {
+				"load_data": "Loading data...",
+				"role_not_found": "Role not found!",
+				"role_info": "Role information"
+			},
+			"UpSert": {
+				"placeholder_role": "Enter role name",
+				"label_role": "Role name",
+				"title_role_update": "Update role information",
+				"load_data": "Loading data..."
 			}
 		}
 	},
