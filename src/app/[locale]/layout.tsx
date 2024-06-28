@@ -1,7 +1,6 @@
 import '@/public/assets/scss/global.css'
 import '@/public/assets/scss/base/base.scss'
 
-import { registerLicense } from '@syncfusion/ej2-base'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
@@ -42,9 +41,6 @@ export default function RootLayout(props: { children: React.ReactNode; params: {
 
 	// Using internationalization in Client Components
 	const messages = useMessages()
-	registerLicense(
-		'ORg4AjUWIQA/Gnt2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5WdURjXH5Wc3RXRGhZ;MzMwMDA2MEAzMjM1MmUzMDJlMzBEMUFaQVRveGRnZnZEdytIN0h0bDdFNnUxaFViWW45K21icFdDandaK3YwPQ=='
-	)
 
 	return (
 		<html suppressHydrationWarning lang={props.params.locale}>
@@ -57,14 +53,6 @@ export default function RootLayout(props: { children: React.ReactNode; params: {
 					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 				/>
-
-				<link
-					rel="stylesheet"
-					href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
-					type="text/css"
-				/>
-				{/* eslint-disable-next-line @next/next/no-sync-scripts */}
-				<script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js" />
 			</head>
 			<body suppressHydrationWarning>
 				<NextIntlClientProvider locale={props.params.locale} messages={messages}>

@@ -8,7 +8,7 @@ import Button from '@/components/buttons/button'
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
-import SettingModelModal from '@/view/admin/model-management/components/modals/setting-model.modal'
+import SettingModelModal from '@/view/admin/model-management/components/modals/add-params/setting-model.modal'
 import { filesfakeData } from '@/view/admin/model-management/services/data-table.fake'
 import { useDeleteRoleById } from '@/view/admin/roles/hooks'
 

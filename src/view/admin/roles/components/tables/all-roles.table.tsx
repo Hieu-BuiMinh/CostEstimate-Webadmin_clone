@@ -1,19 +1,20 @@
 import type { PageSettingsModel } from '@syncfusion/ej2-react-grids'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
-import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
-import { APP_ROUTER } from '@/common/config'
 import Button from '@/components/buttons/button'
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
 import { useDeleteRoleById, useGetAllRolesDashBoard } from '@/view/admin/roles/hooks'
 
+import type { IRole } from '../../types'
+import ModalRoleInsertContent from '../modals/modal-role-insert'
+import ModalRoleUpdateContent from '../modals/modal-role-update'
+
 export function AllRolesTable() {
 	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
-	const router = useRouter()
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
 		Name: '',
@@ -68,6 +69,23 @@ export function AllRolesTable() {
 		open()
 	}
 
+	const handleOpenUpdateModal = (_id: string) => {
+		const dataRole = tableData?.items.find((item) => item.id === _id) as IRole
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalRoleUpdateContent onClose={close} dataRole={dataRole} />,
+		})
+		open()
+	}
+
+	const handleOpenInsertModal = () => {
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalRoleInsertContent onClose={close} />,
+		})
+		open()
+	}
+
 	const handleChangeSearchingInputs = ({ type, value }: { type: string; value: string }) => {
 		switch (type) {
 			case 'name':
@@ -90,12 +108,7 @@ export function AllRolesTable() {
 
 	const rowTemplate = (Rows: any) => {
 		return (
-			<tr
-				className="e-rows cursor-pointer"
-				onClick={() => {
-					router.push(APP_ROUTER.paths.admin.roles.children.view(Rows?.id))
-				}}
-			>
+			<tr className="e-rows">
 				{columns.map((cell) => {
 					// we can switch case in here for image rendering or action button
 					return (
@@ -108,7 +121,8 @@ export function AllRolesTable() {
 					<button
 						onClick={(event) => {
 							event.stopPropagation()
-							router.push(APP_ROUTER.paths.admin.roles.children.edit(Rows?.id))
+							handleOpenUpdateModal(Rows?.id)
+							// router.push(APP_ROUTER.paths.admin.roles.children.edit(Rows?.id))
 						}}
 						type="button"
 						className="material-symbols-outlined text-green-400"
@@ -138,7 +152,7 @@ export function AllRolesTable() {
 					innerItext="Add role"
 					className="e-outline !w-28"
 					onClick={() => {
-						router.push(APP_ROUTER.paths.admin.roles.children.create)
+						handleOpenInsertModal()
 					}}
 				/>
 				{/* eslint-disable-next-line array-callback-return, consistent-return */}

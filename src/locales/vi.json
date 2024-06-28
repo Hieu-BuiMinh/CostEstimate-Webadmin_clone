@@ -37,7 +37,13 @@
 				"password": {
 					"required_message": "Bạn cần nhập vào ô này",
 					"invalid_message": "Mật khẩu bao gồm ít nhất 8 ký tự, một ký tự viết hoa, một ký tự thường, một chữ số và một chữ cái"
+				},
+				"APIResponse": {
+					"password_ERR_INVALID": "Mật khẩu không hợp lệ",
+					"username_ERR_NOT_FOUND": "Tên người dùng không tồn tại",
+					"SYS_ERR": "Lỗi hệ thống"
 				}
+
 			},
 			"SignUp": {
 				"email": {
@@ -62,6 +68,11 @@
 				},
 				"phonenumber": {
 					"required_message": "Số điện thoại không đúng định dạng"
+				},
+				"APIResponse": {
+					"username_ERR_DUPLICATE": "Tên người dùng đã tồn tại",
+					"email_ERR_DUPLICATE": "Email đã tồn tại",
+					"phoneNumber_ERR_DUPLICATE": "Số điện thoại đã tồn tại"
 				}
 			}
 		},
@@ -86,9 +97,17 @@
 			}
 		},
 		"Role": {
-			"rolename": {
-				"required_message": "Bạn cần nhập vào ô này",
-				"invalid_message": "Bạn cần nhập vào ô này"
+			"UpDate": {
+				"role_name": {
+					"require_message": "Tên quyền không được để trống",
+					"invalid_message": "Tên quyền chứa ít nhất 1 ký tự "
+				}
+			},
+			"Insert": {
+				"role_name": {
+					"require_message": "Tên quyền không được để trống",
+					"invalid_message": "Tên quyền chứa ít nhất 1 ký tự "
+				}
 			}
 		}
 	},
@@ -185,16 +204,60 @@
 		},
 		"Role": {
 			"Detail": {
+				"title": "Role Detail",
 				"load_data": "Đang tải dữ liệu...",
 				"role_not_found": "Không thấy quyền",
 				"role_info": "Thông tin quyền"
 			},
 			"UpSert": {
+				"meta_title_update": "Cập nhật quyền",
+				"meta_title_create": "Thêm quyền",
 				"placeholder_role": "Nhập tên quyền",
-				"label_role": "Tên quyền",
+				"label_role_name": "Tên quyền",
+				"placeholder_role_name": "Nhập tên quyền",
 				"title_role_update": "Cập nhật thông tin quyền",
-				"load_data": "Đang tải dữ liệu..."
+				"load_data": "Đang tải dữ liệu...",
+				"require_message": "Tên quyền không được để trống",
+				"invalid_message": "Tên quyền chứa ít nhất 1 ký tự"
 			}
 		}
+	},
+	"Template": {
+		"AdminTemplate": {
+			"SideBar": {
+				"dashboard": "Dashboard",
+				"user": "Quản lý người dùng",
+				"role": "Quản lý quyền",
+				"file": "Quản lý file",
+				"model": "Quản lý model",
+				"compare_model": "So sánh model",
+				"cost_estimate": "Cost estimate",
+				"equipment": "Equipment",
+				"project": "Quản lý dự án",
+				"system_log": "Lịch sử đăng nhập",
+				"setting": "Cài đặt",
+				"sign_out": "Đăng xuất"
+			},
+			"NavBar": {
+				"switch_account": "Đổi tài khoản",
+				"manage_account": "Quản lý tài khoản",
+				"change_password": "Đổi mật khẩu",
+				"profile": "Thông tin tài khoản",
+				"activity": "Lịch sử hoạt động",
+				"help": "Trợ giúp",
+				"short_cut": "Phím tắt"
+			}
+		}
+	},
+	"APIResponse": {
+		"COM_ERR_DATA_NOT_FOUND": "dữ liệu không tìm thấy",
+		"SYS_ERR": "lỗi hệ thống",
+		"_ERR_REQUIRED": "không được để trống",
+		"_ERR_FK_INVALID": "không hợp lệ",
+		"_ERR_DUPLICATE": "đã tồn tại",
+		"_ERR_INVALID": "không hợp lệ",
+		"_ERR_NOT_FOUND": "không tìm thấy",
+		"_ERR_EXIST": "đã tồn tại",
+		"_ERR_NOT_MATCH": "không trùng khớp"
 	}
 }

@@ -2,7 +2,7 @@ import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import { useState } from 'react'
 
 import { InnerModal } from '@/components/modals'
-import ParameterSettingModal from '@/view/admin/model-management/components/modals/parameter-setting.modal copy'
+import ParameterSettingModal from '@/view/admin/model-management/components/modals/add-params/parameter-setting.modal'
 
 function SettingModelModal() {
 	const [openSecond, setOpenSecond] = useState(false)

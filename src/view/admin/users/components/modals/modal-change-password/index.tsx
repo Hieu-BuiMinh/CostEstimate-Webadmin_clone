@@ -2,6 +2,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import clsx from 'clsx'
+import Cookies from 'js-cookie'
+import { jwtDecode } from 'jwt-decode'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -20,6 +22,8 @@ interface IModalConfirmContent {
 function ModalChangePasswordContent({ onClose }: IModalConfirmContent) {
 	// const translate = useTranslations('U')
 	// const translate = useTranslations('Page.User.UserDetail')
+	const accessToken = Cookies.get('accessToken')
+
 	const translate = useTranslations('Page.User.ChangePassword')
 	const button = useTranslations('Common.Button')
 	// const router = useRouter()
@@ -33,7 +37,23 @@ function ModalChangePasswordContent({ onClose }: IModalConfirmContent) {
 		// console.log(formData);
 	}
 
+	let userId = ''
+	if (accessToken) {
+		const decoded: { [key: string]: any } = jwtDecode(accessToken)
+		userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
+	}
+	// console.log(userId)
+	// const { data: userData, isLoading: userDataIsLoading } = useGetUserById(userId)
+
+	// console.log(userId, userData)
+	// const { data: userData, isLoading: userDataIsLoading } = useGetUserById(params.get('id') || '')
+
 	const formFields = [
+		{
+			type: 'hidden',
+			name: 'userId',
+			defaultValue: userId,
+		},
 		{
 			type: 'password',
 			name: 'OldPassword',
@@ -88,18 +108,19 @@ function ModalChangePasswordContent({ onClose }: IModalConfirmContent) {
 					<section className="gap-4">
 						{formFields.map((field) => {
 							return (
-								<div key={field.name} className="flex w-full flex-col gap-2">
+								<div key={field.name} className="flex w-full flex-col gap-2 pb-3">
 									<RHFDynamicInput
 										name={field.name}
 										type={field.type as 'password'}
 										placeholder={field.placeholder}
 										label={field?.label}
 										required={field?.required}
+										defaultValue={field?.defaultValue}
 									/>
 								</div>
 							)
 						})}
-						<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
+						<ButtonComponent disabled={isPending} type="submit" className="e-primary my-2 w-full">
 							{button('update')}
 						</ButtonComponent>
 					</section>

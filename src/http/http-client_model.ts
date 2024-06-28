@@ -6,7 +6,7 @@ import { AxiosBuilder } from '@/http/axios-builder'
 import type { IHttpResponseDto } from '@/http/types/http.response'
 
 const axiosBuilder = new AxiosBuilder()
-	.setBaseUrl(process.env.NEXT_PUBLIC_BASE_API_URL)
+	.setBaseUrl('https://forgedev.corebim.com')
 	.addInterceptor(async (config: any) => {
 		const accessToken = Cookies.get('accessToken') || ''
 
@@ -25,9 +25,9 @@ const axiosBuilder = new AxiosBuilder()
 	.setResponseInterceptor(async (response: AxiosResponse<IHttpResponseDto<any>, any>) => {
 		if (response.status === 200) {
 			if (typeof window !== 'undefined') {
-				// if (response?.data?.statusCode === 500) {
-				// 	window.location.href = '/500'
-				// }
+				if (response?.data?.statusCode === 500) {
+					window.location.href = '/500'
+				}
 				if (response?.data?.statusCode === 502) {
 					window.location.href = '/502'
 				}
@@ -59,4 +59,4 @@ const axiosBuilder = new AxiosBuilder()
 		return error
 	})
 	.build()
-export const httpClient = axiosBuilder
+export const httpClientModel = axiosBuilder

@@ -90,6 +90,7 @@ export const ResetPasswordFormValidation = z
 
 export const ChangePasswordFormValidation = z
 	.object({
+		userId: z.string(),
 		OldPassword: z
 			.string()
 			.min(8, 'Validation.User.ChangePassword.password.invalid_message')

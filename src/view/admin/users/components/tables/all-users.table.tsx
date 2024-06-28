@@ -149,6 +149,17 @@ export function AllUsersTable() {
 						type="button"
 						className="material-symbols-outlined text-green-400"
 					>
+						next_plan
+					</button>
+					<button
+						onClick={(event) => {
+							event.stopPropagation()
+							handleOpenEditModal(Rows?.id)
+							// router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
+						}}
+						type="button"
+						className="material-symbols-outlined text-green-400"
+					>
 						edit
 					</button>
 					<button

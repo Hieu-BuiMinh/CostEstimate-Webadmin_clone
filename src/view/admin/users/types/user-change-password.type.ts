@@ -10,6 +10,7 @@
 // }
 
 export interface IChangePasswordRequestDto {
+	userId: string
 	OldPassword: string
 	NewPassword: string
 	RepeatPassword: string

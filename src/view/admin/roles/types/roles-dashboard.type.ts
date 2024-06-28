@@ -30,7 +30,7 @@ export interface IGettRoleByIdResponseDto {
 	message: string
 	data: IRole
 }
-interface IRole {
+export interface IRole {
 	createdDate: string
 	createdBy: string
 	modifiedDate: any

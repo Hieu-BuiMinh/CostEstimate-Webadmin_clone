@@ -33,6 +33,11 @@
 				"password": {
 					"required_message": "This field is require",
 					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+				},
+				"APIResponse": {
+					"password_ERR_INVALID": "Password invalid",
+					"username_ERR_NOT_FOUND": "Username not found",
+					"SYS_ERR": "system error"
 				}
 			},
 			"SignUp": {
@@ -58,6 +63,11 @@
 				},
 				"phonenumber": {
 					"required_message": "Invalid phone number"
+				},
+				"APIResponse": {
+					"username_ERR_DUPLICATE": "Username is exists",
+					"email_ERR_DUPLICATE": "Email is exists",
+					"phoneNumber_ERR_DUPLICATE": "Phone number is exist"
 				}
 			}
 		},
@@ -82,10 +92,16 @@
 			}
 		},
 		"Role": {
-			"Role": {
-				"rolename": {
-					"required_message": "This field is require",
-					"invalid_message": "This field is require"
+			"UpDate": {
+				"role_name": {
+					"require_message": "Role name is require",
+					"invalid_message": "Role name is at least have 1 character"
+				}
+			},
+			"Insert": {
+				"role_name": {
+					"require_message": "Role name is require",
+					"invalid_message": "Role name is at least have 1 character"
 				}
 			}
 		}
@@ -183,13 +199,17 @@
 		},
 		"Role": {
 			"Detail": {
+				"title": "Role Detail",
 				"load_data": "Loading data...",
 				"role_not_found": "Role not found!",
 				"role_info": "Role information"
 			},
 			"UpSert": {
+				"meta_title_update": "Update role",
+				"meta_title_create": "Create new role",
 				"placeholder_role": "Enter role name",
-				"label_role": "Role name",
+				"label_role_name": "Role name",
+				"placeholder_role_name": "Enter role name",
 				"title_role_update": "Update role information",
 				"load_data": "Loading data..."
 			}
@@ -198,5 +218,43 @@
 	"Dashboard": {
 		"meta_title": "Dashboard",
 		"hello_message": "Hello {email}!"
+	},
+	"Template": {
+		"AdminTemplate": {
+			"SideBar": {
+				"dashboard": "Dashboard",
+				"user": "User management",
+				"role": "Role management",
+				"file": "File management",
+				"model": "Model management",
+				"compare_model": "Model comparision",
+				"cost_estimate": "Cost estimate",
+				"equipment": "Equipment",
+				"system_log": "System log",
+				"project": "Project management",
+				"setting": "Settings",
+				"sign_out": "Logout"
+			},
+			"NavBar": {
+				"switch_account": "Switch account",
+				"manage_account": "Manage account",
+				"change_password": "Change Password",
+				"profile": "Profile and visibility",
+				"activity": "Activity history",
+				"help": "Helps",
+				"short_cut": "Short cut"
+			}
+		}
+	},
+	"APIResponse": {
+		"COM_ERR_DATA_NOT_FOUND": "data not found",
+		"SYS_ERR": "system error",
+		"_ERR_REQUIRED": "required",
+		"_ERR_FK_INVALID": "invalid",
+		"_ERR_DUPLICATE": "is duplicate",
+		"_ERR_INVALID": "invalid",
+		"_ERR_NOT_FOUND": "not found",
+		"_ERR_EXIST": "is exist",
+		"_ERR_NOT_MATCH": "not match"
 	}
 }
