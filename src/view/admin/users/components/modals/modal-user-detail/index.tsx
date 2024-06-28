@@ -13,14 +13,14 @@ function ModalUserDetailContent({ onClose, userData }: IModalConfirmContent) {
 	// const translate = useTranslations('U')
 	const translate = useTranslations('Page.User.UserDetail')
 	return (
-		<div className="flex flex-col gap-5 text-[var(--color-surface-999)]">
+		<div className="flex flex-col text-[var(--color-surface-999)]">
 			<div className="flex items-center justify-between gap-5">
 				<div className="text-xl font-semibold">{translate('meta_title')}</div>
 				<div className="text-xl font-semibold">
 					<button
 						type="button"
 						className="material-symbols-outlined cursor-pointer"
-						onDoubleClick={onClose}
+						onClick={onClose}
 						style={{ fontSize: 24 }}
 					>
 						close
@@ -28,8 +28,8 @@ function ModalUserDetailContent({ onClose, userData }: IModalConfirmContent) {
 				</div>
 			</div>
 			<section className="bordered gap-4">
-				<div className="mt-5 w-[700px]">
-					<div className="mb-4 flex w-full items-center justify-center gap-3">
+				<div className="mt-5">
+					<div className="mb-4 flex w-full items-center gap-3">
 						<span className="e-avatar e-avatar-circle shrink-0">
 							{userData?.firstName.substring(0, 2).toUpperCase()}
 						</span>

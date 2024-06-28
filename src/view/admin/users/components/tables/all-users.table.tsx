@@ -5,9 +5,9 @@ import { useCallback, useState } from 'react'
 
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
-import ModalUserDetailContent from '@/components/modals/modal-user-detail'
-import ModalUserUpdateContent from '@/components/modals/modal-user-update'
 import { GridView } from '@/components/table'
+import ModalUserDetailContent from '@/view/admin/users/components/modals/modal-user-detail'
+import ModalUserUpdateContent from '@/view/admin/users/components/modals/modal-user-update'
 import { useGetAllUsersDashBoard } from '@/view/admin/users/hooks'
 import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
 import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
@@ -112,13 +112,15 @@ export function AllUsersTable() {
 	}
 
 	const columns: UsersColumn[] = [
-		{ id: 1, field: 'id', direction: 'Ascending', allowSearching: false },
+		{ id: 1, field: 'id', allowSorting: false },
 		{ id: 2, field: 'fullName', direction: 'Ascending', allowSearching: true },
 		{ id: 3, field: 'phoneNumber', direction: 'Ascending', allowSearching: true },
 		{ id: 4, field: 'username', direction: 'Ascending', allowSearching: true },
 		{ id: 5, field: 'email', direction: 'Ascending', allowSearching: true },
 		{ id: 6, field: 'createdDate', direction: 'Ascending', allowSearching: false },
 	]
+
+	// Assuming tableData.items is already fetched and available
 
 	const rowTemplate = (Rows: any) => {
 		return (
@@ -138,6 +140,17 @@ export function AllUsersTable() {
 					)
 				})}
 				<td className="e-rowcell !flex items-center justify-end gap-3">
+					<button
+						onClick={(event) => {
+							event.stopPropagation()
+							handleOpenEditModal(Rows?.id)
+							// router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
+						}}
+						type="button"
+						className="material-symbols-outlined text-green-400"
+					>
+						next_plan
+					</button>
 					<button
 						onClick={(event) => {
 							event.stopPropagation()

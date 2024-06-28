@@ -23,6 +23,7 @@ type FormFields = z.infer<typeof SignUpFormValidation>
 
 function SignUpForm() {
 	const translate = useTranslations('Page.Auth.SignUp')
+	const translateValidation = useTranslations()
 	const router = useRouter()
 	const { mutate: handleRegister, isSuccess, isPending, data: registerData } = useAuthRegister()
 
@@ -158,7 +159,16 @@ function SignUpForm() {
 						)
 					})}
 					<div className="flex w-full flex-col gap-1">
-						{registerData?.statusCode !== 200 && <p className="text-red-400">{registerData?.message}</p>}
+						{registerData?.statusCode === 200
+							? ''
+							: isSuccess && (
+									<p className="text-sm text-red-400">
+										{translateValidation(
+											`Validation.Auth.SignUp.APIResponse.${registerData?.message}` as any
+										)}
+									</p>
+								)}
+						{/* {registerData?.statusCode !== 200 && <p className="text-red-400">{registerData?.message}</p>} */}
 						<ButtonComponent disabled={isPending} type="submit" className="e-primary mt-4 w-full">
 							{translate('button_sign_up')}
 						</ButtonComponent>

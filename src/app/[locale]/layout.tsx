@@ -1,7 +1,6 @@
 import '@/public/assets/scss/global.css'
 import '@/public/assets/scss/base/base.scss'
 
-import { registerLicense } from '@syncfusion/ej2-base'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
@@ -42,15 +41,13 @@ export default function RootLayout(props: { children: React.ReactNode; params: {
 
 	// Using internationalization in Client Components
 	const messages = useMessages()
-	registerLicense(
-		'ORg4AjUWIQA/Gnt2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5WdURjXH5Wc3RXRGhZ;MzMwMDA2MEAzMjM1MmUzMDJlMzBEMUFaQVRveGRnZnZEdytIN0h0bDdFNnUxaFViWW45K21icFdDandaK3YwPQ=='
-	)
 
 	return (
 		<html suppressHydrationWarning lang={props.params.locale}>
 			<head>
 				{/* eslint-disable-next-line @next/next/no-css-tags */}
 				<link id="app-themes-cdn" rel="stylesheet" />
+				{/* eslint-disable-next-line @next/next/no-css-tags */}
 				{/* eslint-disable-next-line @next/next/google-font-display, @next/next/no-page-custom-font */}
 				<link
 					rel="stylesheet"

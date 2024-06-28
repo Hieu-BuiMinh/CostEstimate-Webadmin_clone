@@ -21,25 +21,71 @@ const initData = {
 	sidebarData: {
 		sections: {
 			navigator: [
-				{ innerText: 'Dashboard', icon: 'dashboard', path: '/dashboard', key: 'nav_00' },
-				{ innerText: 'Users', icon: 'group', path: '/users', key: 'nav_01' },
-				{ innerText: 'Roles', icon: 'admin_panel_settings', path: '/roles', key: 'nav_02' },
-				{ innerText: 'Files', icon: 'draft', path: '/file', key: 'nav_03' },
-				{ innerText: 'Model management', icon: 'more_horiz', path: '/model-management', key: 'nav_04' },
-				{ innerText: 'Coparison model', icon: 'compare_arrows', path: '/comparison-model', key: 'nav_05' },
-				{ innerText: 'Cost estimate', icon: 'function', path: '/cost-estimate', key: 'nav_06' },
-				{ innerText: 'Equipment', icon: 'settings', path: '/equipment', key: 'nav_07' },
 				{
-					innerText: 'Project Management',
+					innerText: 'Template.AdminTemplate.SideBar.dashboard',
+					icon: 'dashboard',
+					path: '/dashboard',
+					key: 'nav_00',
+				},
+				{ innerText: 'Template.AdminTemplate.SideBar.user', icon: 'group', path: '/users', key: 'nav_01' },
+				{
+					innerText: 'Template.AdminTemplate.SideBar.role',
+					icon: 'admin_panel_settings',
+					path: '/roles',
+					key: 'nav_02',
+				},
+				{ innerText: 'Template.AdminTemplate.SideBar.file', icon: 'draft', path: '/file', key: 'nav_03' },
+				{
+					innerText: 'Template.AdminTemplate.SideBar.model',
+					icon: 'more_horiz',
+					path: '/model-management',
+					key: 'nav_04',
+				},
+				{
+					innerText: 'Template.AdminTemplate.SideBar.compare_model',
+					icon: 'compare_arrows',
+					path: '/comparison-model',
+					key: 'nav_05',
+				},
+				{
+					innerText: 'Template.AdminTemplate.SideBar.cost_estimate',
+					icon: 'function',
+					path: '/cost-estimate',
+					key: 'nav_06',
+				},
+				{
+					innerText: 'Template.AdminTemplate.SideBar.equipment',
+					icon: 'settings',
+					path: '/equipment',
+					key: 'nav_07',
+				},
+				{
+					innerText: 'Template.AdminTemplate.SideBar.project',
 					icon: 'format_list_bulleted',
 					path: '/project-management',
 					key: 'nav_08',
 				},
-				{ innerText: 'System Log', icon: 'history', path: '/system-log', key: 'nav_09' },
+				{
+					innerText: 'Template.AdminTemplate.SideBar.system_log',
+					icon: 'history',
+					path: '/system-log',
+					key: 'nav_09',
+				},
 			],
 			settings: [
-				{ innerText: 'Setting', icon: 'settings', path: '/settings', key: 'setting_01' },
-				{ innerText: 'Logout', icon: 'logout', path: '', key: 'user_setting_02', type: 'logout' },
+				{
+					innerText: 'Template.AdminTemplate.SideBar.setting',
+					icon: 'settings',
+					path: '/settings',
+					key: 'setting_01',
+				},
+				{
+					innerText: 'Template.AdminTemplate.SideBar.sign_out',
+					icon: 'logout',
+					path: '',
+					key: 'user_setting_02',
+					type: 'logout',
+				},
 			],
 		},
 	},
@@ -86,8 +132,9 @@ function AdminTemplate({ children }: IAdminTemplate) {
 		if (accessToken) {
 			Cookies.remove('accessToken')
 			Cookies.remove('refreshToken')
-			router.push(APP_ROUTER.paths.center.signIn.path)
 		}
+		router.push(APP_ROUTER.paths.center.signIn.path)
+
 		return null
 	}
 
@@ -104,6 +151,8 @@ function AdminTemplate({ children }: IAdminTemplate) {
 		if (expire < currentTime) {
 			handleLogout()
 		}
+	} else {
+		handleLogout()
 	}
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks

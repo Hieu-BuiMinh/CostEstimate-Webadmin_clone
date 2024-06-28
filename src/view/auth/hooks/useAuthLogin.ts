@@ -12,13 +12,14 @@ export function useAuthLogin() {
 			return AuthService.login(_user)
 		},
 		onSuccess: (res: ILoginResponseDto) => {
+			console.log(res.statusCode)
 			if (res.statusCode === 200) {
 				if (res.data.accessToken) Cookies.set('accessToken', res.data.accessToken)
 				if (res.data.refreshToken) Cookies.set('refreshToken', res.data.refreshToken)
 				toast.success('Login successful!')
 			}
 			if (res.statusCode !== 200) {
-				toast.error('Login failded')
+				toast.error('Login failed')
 			}
 		},
 	})

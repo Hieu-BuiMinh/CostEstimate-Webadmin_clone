@@ -26,6 +26,7 @@ export interface IUsers {
 	username: string
 	email: string
 	createdDate: string
+	userRoles: string | string[]
 }
 
 // GET_USER_BY_ID

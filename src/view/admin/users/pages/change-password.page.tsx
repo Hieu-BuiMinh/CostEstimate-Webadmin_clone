@@ -83,7 +83,7 @@ function ChangePasswordPageView() {
 				<section className="login-section gap-4">
 					{formFields.map((field) => {
 						return (
-							<div key={field.name} className="flex w-full flex-col gap-2">
+							<div key={field.name} className="flex w-full flex-col gap-2 pb-3">
 								<RHFDynamicInput
 									name={field.name}
 									type={field.type as 'password'}

@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -18,6 +19,8 @@ import useAuthResetPassword from '../../hooks/userAuthResetPassword'
 type ResetPasswordFormFields = z.infer<typeof ResetPasswordFormValidation>
 
 function ResetPasswordForm() {
+	const buttontranslate = useTranslations('Common.Button')
+	const translate = useTranslations('Page.Auth.ResetPassword')
 	const router = useRouter()
 	const { mutate: handleResetPassword, isSuccess, isPending, data: resetPasswordData } = useAuthResetPassword()
 
@@ -35,9 +38,9 @@ function ResetPasswordForm() {
 	}
 
 	const formFields = [
-		{ type: 'text', name: 'curPassword', placeholder: 'Current password' },
-		{ type: 'text', name: 'password', placeholder: 'New password' },
-		{ type: 'text', name: 'confirmPassword', placeholder: 'Confirm password', label: '' },
+		{ type: 'text', name: 'curPassword', placeholder: translate('place_holder_cur_pass') },
+		{ type: 'text', name: 'password', placeholder: translate('place_holder_new_pass') },
+		{ type: 'text', name: 'confirmPassword', placeholder: translate('place_holder_confirm_pass'), label: '' },
 	]
 
 	useEffect(() => {
@@ -62,7 +65,9 @@ function ResetPasswordForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">Reset password</p>
+					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+						{translate('meta_title')}
+					</p>
 				</section>
 
 				<section className="login-section gap-4">
@@ -79,59 +84,11 @@ function ResetPasswordForm() {
 						)
 					})}
 					<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
-						SUBMIT
+						{buttontranslate('submit')}
 					</ButtonComponent>
 				</section>
 			</form>
 		</FormProvider>
-		// <form
-		// 	onSubmit={handleSubmit(onSubmit)}
-		// 	className="my-form flex min-w-[385px] flex-col gap-6 rounded border bg-[var(--color-login-form-bg)] p-3"
-		// >
-		// 	<section className="sign-in-section h-[93px] !py-0">
-		// 		<Image
-		// 			src="/assets/auth/imgs/auth_form_header_img.png"
-		// 			alt="auth_form_header_img"
-		// 			width={40}
-		// 			height={10}
-		// 			className="h-auto"
-		// 		/>
-		// 		<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">Reset Password</p>
-		// 	</section>
-
-		// 	<section className="sign-in-section gap-4">
-		// 		<div className="flex w-full flex-col gap-2">
-		// 			<TextBoxComponent
-		// 				{...register('curPassword')}
-		// 				placeholder="Current password"
-		// 				type="password"
-		// 				floatLabelType="Always"
-		// 			/>
-		// 			{errors.curPassword && <span className="sign-in-error">{errors.curPassword.message}</span>}
-		// 		</div>
-		// 		<div className="flex w-full flex-col gap-2">
-		// 			<TextBoxComponent
-		// 				{...register('password')}
-		// 				placeholder="New password"
-		// 				type="password"
-		// 				floatLabelType="Always"
-		// 			/>
-		// 			{errors.password && <span className="sign-in-error">{errors.password.message}</span>}
-		// 		</div>
-		// 		<div className="flex w-full flex-col gap-2">
-		// 			<TextBoxComponent
-		// 				{...register('confirmPassword')}
-		// 				placeholder="Confirm new password"
-		// 				type="password"
-		// 				floatLabelType="Always"
-		// 			/>
-		// 			{errors.confirmPassword && <span className="sign-in-error">{errors.confirmPassword.message}</span>}
-		// 		</div>
-		// 		<ButtonComponent disabled={isPending} type="submit" className="e-primary mb-4 mt-2 w-full">
-		// 			SUBMIT
-		// 		</ButtonComponent>
-		// 	</section>
-		// </form>
 	)
 }
 

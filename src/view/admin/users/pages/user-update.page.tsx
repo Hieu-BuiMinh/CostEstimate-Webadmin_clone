@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ButtonComponent, CheckBoxComponent } from '@syncfusion/ej2-react-buttons'
+import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
@@ -11,7 +11,6 @@ import type { z } from 'zod'
 
 import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
-import { useGetAllRolesDashBoard } from '@/view/admin/roles/hooks'
 import { useGetUserById } from '@/view/admin/users/hooks/useGetUserById'
 import { useInsertUserRole } from '@/view/admin/users/hooks/useInsertUserRole'
 import { useUpdateUserInfor } from '@/view/admin/users/hooks/useUpdateUserInfor'
@@ -32,7 +31,6 @@ export function UserUpdatePage() {
 	const roleIdsRef = useRef<string[]>([])
 
 	const { data: userData, isLoading: userDataIsLoading } = useGetUserById(params.get('id') || '')
-	const { data: roleData } = useGetAllRolesDashBoard({ PageNumber: 1, PageSize: 999 })
 
 	const { mutate: handleUpdate } = useUpdateUserInfor()
 	const { mutate: handleInsertUserRole } = useInsertUserRole()
@@ -59,7 +57,7 @@ export function UserUpdatePage() {
 		{
 			type: 'radio',
 			name: 'isReverse',
-			label: 'Chọn họ tên sau khi cập nhật',
+			label: translate('label_fullname_required'),
 			defaultValue: 'isReverse_01',
 			radioOptions: [
 				{
@@ -138,31 +136,6 @@ export function UserUpdatePage() {
 									)
 								})}
 							</div>
-
-							<section className="flex flex-col gap-3">
-								<p>Assign Roles</p>
-								<div className="flex w-full flex-wrap gap-3">
-									{roleData?.items.map((role) => {
-										return (
-											<CheckBoxComponent
-												key={role?.id}
-												name={role?.name}
-												type="checkbox"
-												label={role?.name}
-												change={(e: any) => {
-													if (e?.checked) {
-														roleIdsRef.current = [...roleIdsRef.current, role.id]
-													} else {
-														roleIdsRef.current = roleIdsRef.current.filter(
-															(item) => item !== role.id
-														)
-													}
-												}}
-											/>
-										)
-									})}
-								</div>
-							</section>
 
 							<div className="flex w-full flex-col gap-1">
 								<ButtonComponent type="submit" className="e-primary w-full">

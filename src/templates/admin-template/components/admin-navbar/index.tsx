@@ -4,24 +4,28 @@ import Image from 'next/image'
 import { DropdownButton } from '@/components/buttons'
 import AccountDropdownTemplate from '@/components/buttons/dropdown-button/DropdownAccount'
 import FallbackImage from '@/components/fallback-image'
+import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAdminTemplateContext } from '@/templates/admin-template'
 
 enableRipple(true)
 
 function AdminNavbar() {
+	const device = useResponsiveDevice()
 	const { handleToggleSidebar } = useAdminTemplateContext()
 
 	return (
 		<div className="admin__navbar-component">
 			<section className="flex items-center justify-between gap-3">
-				<button
-					type="button"
-					onClick={handleToggleSidebar}
-					className="material-symbols-outlined"
-					style={{ fontSize: 34 }}
-				>
-					menu
-				</button>
+				{device === 'mobile' && (
+					<button
+						type="button"
+						onClick={handleToggleSidebar}
+						className="material-symbols-outlined"
+						style={{ fontSize: 34 }}
+					>
+						menu
+					</button>
+				)}
 				<Image
 					src="/assets/layout/imgs/header_logo.svg"
 					alt="header_logo"

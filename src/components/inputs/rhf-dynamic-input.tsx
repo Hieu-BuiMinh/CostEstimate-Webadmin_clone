@@ -6,13 +6,14 @@ import { useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 
 interface IRHFDynamicInput {
-	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area' | 'number' | 'password'
+	type: 'text' | 'radio' | 'checkbox' | 'date' | 'text-area' | 'number' | 'password' | 'hidden'
 	name: string
 	placeholder?: string
 	label?: string
 	defaultValue?: string | boolean
 	required?: boolean
 	radioOptions?: { value: string | boolean; label: string; id: string }[]
+	readonly?: boolean
 }
 
 export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
@@ -36,6 +37,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						type={name === 'email' ? 'email' : type}
 						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
+						readOnly={rest.readonly}
 					/>
 					{formState.errors[name] && (
 						<span className="text-xs text-red-400">
@@ -138,9 +140,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						})}
 					</div>
 					{formState.errors[name] && (
-						<span className="text-xs text-red-400">
-							{translateValidation('Validation.User.UpdateUser.isreverse.required_message')}
-						</span>
+						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>
 					)}
 				</>
 			)
@@ -182,7 +182,8 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 					)}
 				</>
 			)
-
+		case 'hidden':
+			return <TextBoxComponent type="hidden" {...register(name)} value={rest?.defaultValue as string} />
 		default:
 			return <>default</>
 	}

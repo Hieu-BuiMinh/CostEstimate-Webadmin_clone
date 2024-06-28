@@ -3,8 +3,11 @@
 import { Modal } from 'react-responsive-modal'
 
 import useAppModal from '@/components/modals/app-modal/store'
+import { useLocalStorage } from '@/hooks/custom-hooks'
 
 export function AppModalProvider() {
+	const { getItem } = useLocalStorage('mode')
+
 	const { isOpen, content, showCloseIcon, close } = useAppModal((state) => ({
 		isOpen: state.isOpen,
 		title: state.title,
@@ -17,7 +20,16 @@ export function AppModalProvider() {
 	}))
 
 	return (
-		<Modal open={isOpen} onClose={close} center showCloseIcon={showCloseIcon}>
+		<Modal
+			classNames={{
+				modal: getItem() === 'dark' ? 'bg-[#232e3e] text-white' : 'bg-white',
+			}}
+			open={isOpen}
+			onClose={close}
+			center
+			showCloseIcon={showCloseIcon}
+			focusTrapped={false}
+		>
 			{/* <h2>{title}</h2> */}
 			<div>{content}</div>
 		</Modal>

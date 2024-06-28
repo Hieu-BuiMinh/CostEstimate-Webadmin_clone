@@ -10,6 +10,7 @@ export const UsersChangePasswordService: any = {
 		const response: IChangePasswordResponseDto = await httpClient.post(
 			API_ROUTES.usersDashboard.changePasswordUser,
 			{
+				userId: _user.userId,
 				OldPassword: _user.OldPassword,
 				NewPassword: _user.NewPassword,
 				RepeatPassword: _user.RepeatPassword,

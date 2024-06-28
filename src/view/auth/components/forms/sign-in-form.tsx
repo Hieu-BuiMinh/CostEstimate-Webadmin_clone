@@ -25,9 +25,9 @@ type LoginFormFields = z.infer<typeof LoginFormValidation>
 function AuthLoginForm() {
 	const router = useRouter()
 	const translate = useTranslations('Page.Auth.SignIn')
+	const translateValidation = useTranslations()
 
 	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
-
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(LoginFormValidation) })
 
 	const device = useResponsiveDevice()
@@ -110,7 +110,15 @@ function AuthLoginForm() {
 					</Link>
 
 					<div className="flex w-full flex-col gap-1">
-						{loginData?.statusCode !== 200 && <p className="text-red-400">{loginData?.message}</p>}
+						{loginData?.statusCode === 200
+							? ''
+							: isSuccess && (
+									<p className="text-sm text-red-400">
+										{translateValidation(
+											`Validation.Auth.SignIn.APIResponse.${loginData?.message}` as any
+										)}
+									</p>
+								)}
 						<ButtonComponent disabled={isPending} type="submit" className="e-primary w-full">
 							{translate('button_sign_in')}
 						</ButtonComponent>
