@@ -16,7 +16,9 @@
 			"create": "Tạo",
 			"edit": "Chỉnh sửa",
 			"cancel": "Huỷ",
-			"ok": "Ok"
+			"ok": "Ok",
+			"assign_role": "Gán quyền",
+			"detail": "Chi tiết"
 		},
 		"ModalConfirmDelete": {
 			"title": "Bạn chắc chắn muốn xoá ",
@@ -31,39 +33,39 @@
 		"Auth": {
 			"SignIn": {
 				"username_or_email": {
-					"required_message": "Bạn cần nhập vào ô này",
+					"required_message": "không được để trống",
 					"invalid_message": "Bạn phải nhập đúng email format"
 				},
 				"password": {
-					"required_message": "Bạn cần nhập vào ô này",
+					"required_message": "không được để trống",
 					"invalid_message": "Mật khẩu bao gồm ít nhất 8 ký tự, một ký tự viết hoa, một ký tự thường, một chữ số và một chữ cái"
 				},
 				"APIResponse": {
 					"password_ERR_INVALID": "Mật khẩu không hợp lệ",
 					"username_ERR_NOT_FOUND": "Tên người dùng không tồn tại",
-					"SYS_ERR": "Lỗi hệ thống"
+					"SYS_ERR": "Lỗi hệ thống",
+					"Network Error": "Lỗi hệ thống"
 				}
-
 			},
 			"SignUp": {
 				"email": {
-					"required_message": "Bạn cần nhập vào ô này",
+					"required_message": "Email không được để trống",
 					"invalid_message": "Bạn phải nhập đúng email format"
 				},
 				"username": {
-					"required_message": "Bạn cần nhập vào ô này",
-					"invalid_message": "Tên người dùng chứa ít nhất 5 ký tự"
+					"required_message": "Tên người dùng không được để trống",
+					"invalid_message": "Tên người dùng chứa ít nhất 5 ký tự, không chứa ký tự viết hoa, ký tự đầu tiên là chữ"
 				},
 				"firstname": {
-					"required_message": "Bạn cần nhập vào ô này",
-					"invalid_message": "Bạn cần nhập vào ô này"
+					"required_message": "Tên không được để trống",
+					"invalid_message": "Tên bao gồm chữ in hoa, chữ thường và không chứa ký tự đặc biệt"
 				},
 				"lastname": {
-					"required_message": "Bạn cần nhập vào ô này",
-					"invalid_message": "Bạn cần nhập vào ô này"
+					"required_message": "Họ không được để trống",
+					"invalid_message": "Họ bao gồm chữ in hoa, chữ thường và không chứa ký tự đặc biệt"
 				},
 				"password": {
-					"required_message": "Bạn cần nhập vào ô này",
+					"required_message": "Mật khẩu không được để trống",
 					"invalid_message": "Mật khẩu bao gồm ít nhất 8 ký tự, một ký tự viết hoa, một ký tự thường, một chữ số và một chữ cái"
 				},
 				"phonenumber": {
@@ -79,17 +81,19 @@
 		"User": {
 			"ChangePassword": {
 				"password": {
-					"required_message": "Bạn cần nhập vào ô này",
+					"required_message": "Mật khẩu không được để trống",
 					"invalid_message": "Mật khẩu bao gồm ít nhất 8 ký tự, một ký tự viết hoa, một ký tự thường, một chữ số và một chữ cái",
 					"match_message": "Mật khẩu không trùng khớp"
 				}
 			},
 			"UpdateUser": {
 				"firstname": {
-					"required_message": "Bạn cần nhập vào ô này"
+					"required_message": "Tên không được để trống",
+					"invalid_message": "Tên bao gồm chữ in hoa, chữ thường và không chứa ký tự đặc biệt"
 				},
 				"lastname": {
-					"required_message": "Bạn cần nhập vào ô này"
+					"required_message": "Họ không được để trống",
+					"invalid_message": "Họ bao gồm chữ in hoa, chữ thường và không chứa ký tự đặc biệt"
 				},
 				"isreverse": {
 					"required_message": "Bạn phải chọn kiểu hiện thị họ tên"
@@ -108,6 +112,9 @@
 					"require_message": "Tên quyền không được để trống",
 					"invalid_message": "Tên quyền chứa ít nhất 1 ký tự "
 				}
+			},
+			"APIResponse": {
+				"roleName_ERR_DUPLICATE": "Tên quyền đã tồn tại"
 			}
 		}
 	},
@@ -200,6 +207,9 @@
 			"UserDashboard": {
 				"meta_title": "Trang người dùng",
 				"meta_description": "Trang người dùng"
+			},
+			"AssignRole": {
+				"title": "Gán quyền cho người dùng"
 			}
 		},
 		"Role": {

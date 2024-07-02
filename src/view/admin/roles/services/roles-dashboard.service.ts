@@ -4,6 +4,7 @@ import type {
 	IAddRoleInforRequestDto,
 	IAddRoleInforResponseDto,
 	IDeleteRoleByIdResponseDto,
+	IGetAllResponseDto,
 	IGetRolesDasboardRequestDto,
 	IGetRolesDasboardResponseDto,
 	IGettRoleByIdResponseDto,
@@ -22,11 +23,17 @@ export const RolesDashboardService = {
 
 		return response?.data
 	},
-	getAllRoles: async () => {
-		const response: IGetRolesDasboardResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getAllRoles)
 
-		return response?.data
+	getAllRoles: async () => {
+		const response: IGetAllResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getAllRoles)
+
+		return response
 	},
+	// getAllRoles: async () => {
+	// 	const response: IGetRolesDasboardResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getAllRoles)
+
+	// 	return response?.data
+	// },
 	getRoleById: async (_id: string) => {
 		const response: IGettRoleByIdResponseDto = await httpClient.get(API_ROUTES.rolesDashboard.getRoleById(_id))
 

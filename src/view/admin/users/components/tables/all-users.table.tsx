@@ -1,22 +1,26 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import type { PageSettingsModel } from '@syncfusion/ej2-react-grids'
 import { TextBoxComponent } from '@syncfusion/ej2-react-inputs'
+import { DropDownButtonComponent } from '@syncfusion/ej2-react-splitbuttons'
 import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
+import ModalUserAddRolesContent from '@/view/admin/users/components/modals/modal-user-add-roles'
 import ModalUserDetailContent from '@/view/admin/users/components/modals/modal-user-detail'
 import ModalUserUpdateContent from '@/view/admin/users/components/modals/modal-user-update'
 import { useGetAllUsersDashBoard } from '@/view/admin/users/hooks'
 import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
+import type { IUsers } from '@/view/admin/users/types'
 import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
 
-import type { IUsers } from '../../types'
 // import ModalUserDetailContent from '@/components/modals/modal-user-detail'
 
 export function AllUsersTable() {
 	const modalTranslate = useTranslations('Common.ModalConfirmDelete')
+	const translateButton = useTranslations('Common.Button')
 	const { open, close, setModalOptions } = useAppModal()
 	const [search, setSearch] = useState({
 		FullName: '',
@@ -91,6 +95,15 @@ export function AllUsersTable() {
 		})
 		open()
 	}
+
+	const handleOpenAddRoleUserModal = (_id: string) => {
+		const userDataDetail: IUsers | undefined = tableData?.items.find((item) => item.id === _id)
+		setModalOptions({
+			showCloseIcon: false,
+			content: <ModalUserAddRolesContent userData={userDataDetail} onClose={close} />,
+		})
+		open()
+	}
 	const handleChangeSearchingInputs = ({ type, value }: { type: string; value: string }) => {
 		switch (type) {
 			case 'fullName':
@@ -120,6 +133,20 @@ export function AllUsersTable() {
 		{ id: 6, field: 'createdDate', direction: 'Ascending', allowSearching: false },
 	]
 
+	const onSelect = (event: any, rowId: string) => {
+		if (event.item.text === translateButton('delete')) {
+			handleOpenModal(rowId)
+		}
+		if (event.item.text === translateButton('edit')) {
+			handleOpenEditModal(rowId)
+		}
+		if (event.item.text === translateButton('assign_role')) {
+			handleOpenAddRoleUserModal(rowId)
+		}
+		if (event.item.text === translateButton('detail')) {
+			handleOpenDetailModal(rowId)
+		}
+	}
 	// Assuming tableData.items is already fetched and available
 
 	const rowTemplate = (Rows: any) => {
@@ -127,7 +154,7 @@ export function AllUsersTable() {
 			<tr
 				className="e-rows cursor-pointer"
 				onClick={() => {
-					handleOpenDetailModal(Rows?.id)
+					// handleOpenDetailModal(Rows?.id)
 					// router.push(APP_ROUTER.paths.admin.users.children.view(Rows?.id))
 				}}
 			>
@@ -139,17 +166,17 @@ export function AllUsersTable() {
 						</td>
 					)
 				})}
-				<td className="e-rowcell !flex items-center justify-end gap-3">
+				{/* <td className="e-rowcell !flex items-center justify-end gap-3">
 					<button
 						onClick={(event) => {
 							event.stopPropagation()
-							handleOpenEditModal(Rows?.id)
+							handleOpenAddRoleUserModal(Rows?.id)
 							// router.push(APP_ROUTER.paths.admin.users.children.edit(Rows?.id))
 						}}
 						type="button"
-						className="material-symbols-outlined text-green-400"
+						className="material-symbols-outlined text-blue-400"
 					>
-						next_plan
+						supervisor_account
 					</button>
 					<button
 						onClick={(event) => {
@@ -172,6 +199,28 @@ export function AllUsersTable() {
 					>
 						delete
 					</button>
+				</td> */}
+				<td className="e-rowcell !flex items-center justify-end gap-3">
+					<DropDownButtonComponent
+						select={(event) => onSelect(event, Rows?.id)}
+						items={[
+							{
+								text: translateButton('detail'),
+							},
+							{
+								text: translateButton('edit'),
+							},
+							{
+								text: translateButton('delete'),
+							},
+							{
+								text: translateButton('assign_role'),
+							},
+						]}
+						iconCss="e-icons e-menu"
+						className="!border-none !shadow-none"
+						cssClass="e-caret-hide"
+					/>
 				</td>
 			</tr>
 		)

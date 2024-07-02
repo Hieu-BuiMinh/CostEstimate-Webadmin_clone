@@ -33,18 +33,18 @@ export interface IUsers {
 export interface IGettUserByIdResponseDto {
 	statusCode: number
 	message: string
-	data: User
+	data: IUsers
 }
-interface User {
-	id: string
-	firstName: string
-	lastName: string
-	fullName: string
-	phoneNumber: string
-	username: string
-	email: string
-	createdDate: string
-}
+// interface User {
+// 	id: string
+// 	firstName: string
+// 	lastName: string
+// 	fullName: string
+// 	phoneNumber: string
+// 	username: string
+// 	email: string
+// 	createdDate: string
+// }
 
 // UPDATE_USER_INFOR
 export interface IUpdateUserInforRequestDto {

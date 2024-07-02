@@ -24,7 +24,7 @@ function ModalUserUpdateContent({ onClose, userData }: IModalConfirmContent) {
 	// const translate = useTranslations('U')
 	const translate = useTranslations('Page.User.UpdateInsertUser')
 	const methods = useForm<UpdateFormFields>({ resolver: zodResolver(UpdateUserFormValidation) })
-	const { mutate: handleUpdate } = useUpdateUserInfor()
+	const { mutate: handleUpdate, isSuccess: isUpdateUserSuccess } = useUpdateUserInfor()
 	const { data: userDataDetail } = useGetUserById(userData?.id || '')
 
 	const formFields = [
@@ -44,22 +44,22 @@ function ModalUserUpdateContent({ onClose, userData }: IModalConfirmContent) {
 			placeholder: translate('placeholder_firstname'),
 			defaultValue: userData?.firstName || '',
 		},
-		{
-			type: 'text',
-			name: 'email',
-			label: translate('label_email'),
-			required: false,
-			placeholder: translate('placeholder_email'),
-			defaultValue: userData?.email || '',
-		},
-		{
-			type: 'text',
-			name: 'username',
-			label: translate('label_username'),
-			required: false,
-			placeholder: translate('placeholder_username'),
-			defaultValue: userData?.username || '',
-		},
+		// {
+		// 	type: 'text',
+		// 	name: 'email',
+		// 	label: translate('label_email'),
+		// 	required: false,
+		// 	placeholder: translate('placeholder_email'),
+		// 	defaultValue: userData?.email || '',
+		// },
+		// {
+		// 	type: 'text',
+		// 	name: 'username',
+		// 	label: translate('label_username'),
+		// 	required: false,
+		// 	placeholder: translate('placeholder_username'),
+		// 	defaultValue: userData?.username || '',
+		// },
 		{
 			type: 'radio',
 			name: 'isReverse',
@@ -82,10 +82,15 @@ function ModalUserUpdateContent({ onClose, userData }: IModalConfirmContent) {
 			id,
 		}
 		handleUpdate(data as IUpdateUserInforRequestDto)
+		// console.log(isSuccess)
+
 		// handleInsertUserRole({
 		// 	userId: id,
 		// 	roleIds: roleIdsRef.current,
 		// })
+	}
+	if (isUpdateUserSuccess) {
+		onClose()
 	}
 
 	return (
@@ -133,7 +138,10 @@ function ModalUserUpdateContent({ onClose, userData }: IModalConfirmContent) {
 											required={field?.required}
 											defaultValue={field?.defaultValue}
 											radioOptions={field?.radioOptions}
-											readonly={(field.name === 'email' || field.name === 'username') && true}
+											// readonly={(field.name === 'email' || field.name === 'username') && true}
+											// className={
+											// 	(field.name === 'email' || field.name === 'username') && '!bg-slate-600'
+											// }
 										/>
 									</div>
 								)
