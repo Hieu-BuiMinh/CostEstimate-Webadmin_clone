@@ -1,5 +1,5 @@
 // GET_ALL_MODEL_PARAMS
-export interface IGetAllModelParamResponseDto {
+export interface IGetAllModelParamSettingResponseDto {
 	statusCode: number
 	message: string
 	data: Param[]
@@ -28,4 +28,13 @@ interface ModelParams {
 	id: string
 	name: string
 	createdDate: string
+}
+// INSERT_MODEL_PARAM_SETTING
+export interface ICreateModelParamSettingResquestDto {
+	name: string
+}
+export interface ICreateModelParamSettingResponseDto {
+	statusCode: number
+	message: string
+	data: any
 }

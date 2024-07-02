@@ -14,6 +14,7 @@ interface IRHFDynamicInput {
 	required?: boolean
 	radioOptions?: { value: string | boolean; label: string; id: string }[]
 	readonly?: boolean
+	className?: string
 }
 
 export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
@@ -38,6 +39,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
 						readOnly={rest.readonly}
+						className={rest.className}
 					/>
 					{formState.errors[name] && (
 						<span className="text-xs text-red-400">

@@ -7,6 +7,8 @@ const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?[\d\s-]{7,15}$/
 // 123 456 7890
 // 1234567890
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
+const usernameRegex = /^[a-z][a-z0-9]*$/
+const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂÂÊÔêôưăâ ]+$/
 // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]).{8,}$/
 
 export const LoginFormValidation = z.object({
@@ -26,16 +28,25 @@ export const LoginFormValidation = z.object({
 export const SignUpFormValidation = z.object({
 	firstname: z
 		.string({ message: 'Validation.Auth.SignUp.firstname.required_message' })
-		.min(1, { message: 'Validation.Auth.SignUp.firstname.required_message' }),
+		.min(1, { message: 'Validation.Auth.SignUp.firstname.required_message' })
+		.refine((value) => nameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.firstname.invalid_message',
+		}),
 	lastname: z
 		.string({ message: 'Validation.Auth.SignUp.lastname.required_message' })
-		.min(1, { message: 'Validation.Auth.SignUp.lastname.required_message' }),
+		.min(1, { message: 'Validation.Auth.SignUp.lastname.required_message' })
+		.refine((value) => nameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.lastname.invalid_message',
+		}),
 	email: z
 		.string({ message: 'Validation.Auth.SignUp.email.required_message' })
 		.email('Validation.Auth.SignUp.email.invalid_message'),
 	username: z
 		.string({ message: 'Validation.Auth.SignUp.username.required_message' })
-		.min(5, { message: 'Validation.Auth.SignUp.username.invalid_message' }),
+		.min(5, { message: 'Validation.Auth.SignUp.username.invalid_message' })
+		.refine((value) => usernameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.username.invalid_message',
+		}),
 	password: z
 		.string({ message: 'Validation.Auth.SignUp.password.required_message' })
 		.refine((value) => passwordRegex.test(value), {

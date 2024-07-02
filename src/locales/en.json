@@ -12,7 +12,9 @@
 			"create": "Create",
 			"edit": "Edit",
 			"cancel": "Cancel",
-			"ok": "Ok"
+			"ok": "Ok",
+			"assign_role": "Assign Role",
+			"detail": "Detail"
 		},
 		"ModalConfirmDelete": {
 			"title": "Are you sure to delete ",
@@ -27,38 +29,39 @@
 		"Auth": {
 			"SignIn": {
 				"username_or_email": {
-					"required_message": "This field is require",
-					"invalid_message": "This field is require email format"
+					"required_message": "Username is require",
+					"invalid_message": "Username is require email format"
 				},
 				"password": {
-					"required_message": "This field is require",
+					"required_message": "Username is require",
 					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
 				},
 				"APIResponse": {
 					"password_ERR_INVALID": "Password invalid",
 					"username_ERR_NOT_FOUND": "Username not found",
-					"SYS_ERR": "system error"
+					"SYS_ERR": "System error",
+					"Network Error": "System error"
 				}
 			},
 			"SignUp": {
 				"email": {
-					"required_message": "This field is require",
-					"invalid_message": "This field is require email format"
+					"required_message": "Email is required",
+					"invalid_message": "Invalid email format"
 				},
 				"username": {
-					"required_message": "This field is require",
-					"invalid_message": "Username must be at least 5 characters long"
+					"required_message": "Username is required",
+					"invalid_message": "Username must be at least 5 characters long, not contains uppercase letter,the first character is required to be a letter"
 				},
 				"firstname": {
-					"required_message": "This field is require",
-					"invalid_message": "This field is require"
+					"required_message": "Firstname is required",
+					"invalid_message": "Firstname must be letter only"
 				},
 				"lastname": {
-					"required_message": "This field is require",
-					"invalid_message": "This field is require"
+					"required_message": "Lastname is required",
+					"invalid_message": "Lastname must be letter only"
 				},
 				"password": {
-					"required_message": "This field is require",
+					"required_message": "Password is required",
 					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
 				},
 				"phonenumber": {
@@ -74,17 +77,19 @@
 		"User": {
 			"ChangePassword": {
 				"password": {
-					"required_message": "This field is require",
+					"required_message": "Password is required",
 					"invalid_message": "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
 					"match_message": "Password is not match"
 				}
 			},
 			"UpdateUser": {
 				"firstname": {
-					"required_message": "This field is require"
+					"required_message": "Firstname is required",
+					"invalid_message": "Firstname must be letter only"
 				},
 				"lastname": {
-					"required_message": "This field is require"
+					"required_message": "Lastname is required",
+					"invalid_message":"Lastname must be letter only"
 				},
 				"isreverse": {
 					"required_message": "You have to choose fullname display style"
@@ -195,6 +200,9 @@
 			},
 			"UserProfile": {
 				"meta_title": "User Profile"
+			},
+			"AssignRole":{
+				"title": "Assign roles for user"
 			}
 		},
 		"Role": {

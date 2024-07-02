@@ -28,7 +28,7 @@ function ModalChangePasswordContent({ onClose }: IModalConfirmContent) {
 	const button = useTranslations('Common.Button')
 	// const router = useRouter()
 	const device = useResponsiveDevice()
-	const { mutate: handleChangePassword, isPending } = useUserChangePassword()
+	const { mutate: handleChangePassword, isPending, isSuccess: isChangePasswordSuccess } = useUserChangePassword()
 
 	const methods = useForm<ResetPasswordFormFields>({ resolver: zodResolver(ChangePasswordFormValidation) })
 
@@ -42,11 +42,9 @@ function ModalChangePasswordContent({ onClose }: IModalConfirmContent) {
 		const decoded: { [key: string]: any } = jwtDecode(accessToken)
 		userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
 	}
-	// console.log(userId)
-	// const { data: userData, isLoading: userDataIsLoading } = useGetUserById(userId)
-
-	// console.log(userId, userData)
-	// const { data: userData, isLoading: userDataIsLoading } = useGetUserById(params.get('id') || '')
+	if (isChangePasswordSuccess) {
+		onClose()
+	}
 
 	const formFields = [
 		{

@@ -166,10 +166,10 @@ function GridView({
 							allowSorting={column.allowSorting}
 							key={column.id}
 							headerText={column.field || ''}
-							width="200"
+							maxWidth="200"
 						/>
 					))}
-					{allowActionColumn && <ColumnDirective headerText="Actions" width="100" />}
+					{allowActionColumn && <ColumnDirective headerText="Actions" maxWidth="100" />}
 				</ColumnsDirective>
 				<Inject services={[Sort, Filter, Group, Edit, CommandColumn, Resize]} />
 			</GridComponent>

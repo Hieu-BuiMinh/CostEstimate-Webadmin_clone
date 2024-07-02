@@ -47,7 +47,7 @@ const axiosBuilder = new AxiosBuilder()
 	})
 	.setErrorInterceptor(async (error: AxiosError<any, any>) => {
 		// eslint-disable-next-line no-console
-		console.log(error)
+		console.log(error.response?.data.message)
 		const toast = useToast()
 		if (error.response?.data.message) {
 			toast.errorToast(error.response?.data.message)

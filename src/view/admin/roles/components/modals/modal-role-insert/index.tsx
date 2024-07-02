@@ -28,7 +28,7 @@ function ModalRoleInsertContent({ onClose }: IModalConfirmContent) {
 	const translateButton = useTranslations('Common.Button')
 	const methods = useForm<InsertFormFields>({ resolver: zodResolver(InsertRoleFormValidation) })
 	const device = useResponsiveDevice()
-	const { mutate: handleAdd } = useAddRole()
+	const { mutate: handleAdd, isSuccess: isAddRoleSuccess } = useAddRole()
 
 	const formFields = [
 		{
@@ -45,6 +45,9 @@ function ModalRoleInsertContent({ onClose }: IModalConfirmContent) {
 			roleName: _formData.roleName,
 		}
 		handleAdd(data as IAddRoleInforRequestDto)
+	}
+	if (isAddRoleSuccess) {
+		onClose()
 	}
 
 	return (

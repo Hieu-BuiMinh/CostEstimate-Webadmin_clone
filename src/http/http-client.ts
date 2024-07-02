@@ -47,14 +47,19 @@ const axiosBuilder = new AxiosBuilder()
 	})
 	.setErrorInterceptor(async (error: AxiosError<any, any>) => {
 		// eslint-disable-next-line no-console
-		console.log(error)
+		// console.log(error)
+		// console.log(error?.code)
+		// const translate = useTranslations()
+
 		const toast = useToast()
 		if (error.response?.data.message) {
+			// console.log(translate(error?.code as any))
 			toast.errorToast(error.response?.data.message)
 		}
 
 		if (!error.response?.data.message) {
-			toast.errorToast(error.message)
+			// console.log(translate(error?.code as any))
+			toast.errorToast(error?.message)
 		}
 		return error
 	})

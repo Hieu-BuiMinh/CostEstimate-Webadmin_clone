@@ -14,6 +14,22 @@ export interface IGetRolesDasboardResponseDto {
 	statusCode: number
 }
 
+export interface IGetAllResponseDto {
+	data: IParamRole[]
+	message: string
+	statusCode: number
+}
+
+interface IParamRole {
+	id: string
+	name: string
+	modifiedDate: string
+}
+
+export interface IGetRolesResponseDto {
+	data: string[]
+}
+
 // ADD_ROLE_INFOR
 export interface IAddRoleInforRequestDto {
 	roleName: string

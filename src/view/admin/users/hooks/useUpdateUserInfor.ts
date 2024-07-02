@@ -14,8 +14,8 @@ export function useUpdateUserInfor() {
 		},
 		onSuccess: (res: IUpdateUserInforResponseDto) => {
 			if (res?.statusCode === 200) {
-				queryClient.invalidateQueries({ queryKey: ['useGetUserById'] })
-				queryClient.invalidateQueries({ queryKey: ['useGetAllUsersDashBoard'] })
+				queryClient.refetchQueries({ queryKey: ['useGetUserById'] })
+				queryClient.refetchQueries({ queryKey: ['useGetAllUsersDashBoard'] })
 				toast.success('Update successfull')
 			}
 			if (res?.statusCode !== 200) {
