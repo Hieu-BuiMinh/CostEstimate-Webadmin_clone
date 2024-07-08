@@ -37,6 +37,7 @@ const FallbackImage: React.FC<Props> = ({ src = '/', alt = '', aspectRatio = '1/
 					setImgSrc('/assets/images/empty/fallback.webp')
 				}
 			}}
+			unoptimized
 		/>
 	)
 }
