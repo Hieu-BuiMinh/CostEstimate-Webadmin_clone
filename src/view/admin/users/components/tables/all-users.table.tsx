@@ -8,14 +8,14 @@ import { useCallback, useState } from 'react'
 import useAppModal from '@/components/modals/app-modal/store'
 import ModalConfirmContent from '@/components/modals/modal-confirm-content'
 import { GridView } from '@/components/table'
-import ModalUserAddRolesContent from '@/view/admin/users/components/modals/modal-user-add-roles'
 import ModalUserDetailContent from '@/view/admin/users/components/modals/modal-user-detail'
 import ModalUserUpdateContent from '@/view/admin/users/components/modals/modal-user-update'
 import { useGetAllUsersDashBoard } from '@/view/admin/users/hooks'
 import { useDeleteUserById } from '@/view/admin/users/hooks/useDeleteUserById'
-import type { IUsers } from '@/view/admin/users/types'
 import type { UsersColumn } from '@/view/admin/users/types/user-column.type'
 
+import type { IUsers } from '../../types'
+import ModalUserAddRolesContent from '../modals/modal-user-add-roles'
 // import ModalUserDetailContent from '@/components/modals/modal-user-detail'
 
 export function AllUsersTable() {

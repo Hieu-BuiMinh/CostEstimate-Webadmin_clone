@@ -66,13 +66,13 @@ function ParamsSettingModalSection({
 				<span className="truncate">{title}</span>
 				<div className="flex gap-1">
 					<button
-						// disabled={!currentId && !originDataSource}
+						disabled={!currentId && !originDataSource}
 						onClick={() => handleOpenInnerModal({ type: 'ADD' })}
 						type="button"
 						className={clsx({
 							'material-symbols-outlined size-6 rounded border !text-sm': true,
-							// 'cursor-pointer': currentId && originDataSource,
-							// 'cursor-not-allowed': !currentId && !originDataSource,
+							'cursor-pointer': currentId && originDataSource,
+							'cursor-not-allowed': !currentId && !originDataSource,
 						})}
 					>
 						add

@@ -158,6 +158,15 @@
 				"place_holder_cur_pass": "Mật khẩu hiện tại",
 				"place_holder_new_pass": "Mật khẩu mới",
 				"place_holder_confirm_pass": "Xác nhận mật khẩu mới"
+			},
+			"SigninWithGG": {
+				"meta_title": "Tạo mật khẩu",
+				"firstname_label": "Họ",
+				"firstname_placeholder": "Nhập họ",
+				"lastname_label": "Tên",
+				"lastname_placeholder": "Nhập tên",
+				"username_label": "Tên người dùng",
+				"username_placeholder": "Nhập tên người dùng"
 			}
 		},
 		"User": {

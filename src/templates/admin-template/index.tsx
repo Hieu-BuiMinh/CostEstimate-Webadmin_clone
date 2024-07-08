@@ -5,6 +5,7 @@
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 import { useRouter } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react'
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
@@ -115,6 +116,7 @@ const useAdminTemplateContext = () => {
 }
 
 function AdminTemplate({ children }: IAdminTemplate) {
+	const { data: session } = useSession()
 	const accessToken = Cookies.get('accessToken')
 	const router = useRouter()
 	const device = useResponsiveDevice()
@@ -129,12 +131,14 @@ function AdminTemplate({ children }: IAdminTemplate) {
 	}
 
 	const handleLogout = () => {
-		if (accessToken) {
-			Cookies.remove('accessToken')
-			Cookies.remove('refreshToken')
+		Cookies.remove('accessToken')
+		Cookies.remove('refreshToken')
+		if (session?.user?.email) {
+			signOut()
 		}
-		router.push(APP_ROUTER.paths.center.signIn.path)
-
+		setTimeout(() => {
+			router.push(APP_ROUTER.paths.center.signIn.path)
+		}, 500)
 		return null
 	}
 
@@ -145,7 +149,6 @@ function AdminTemplate({ children }: IAdminTemplate) {
 
 	if (accessToken) {
 		const decoded = jwtDecode(accessToken)
-		// console.log(decoded);
 		const currentTime = Date.now() / 1000
 		const expire = decoded?.exp as number
 		if (expire < currentTime) {

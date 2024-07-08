@@ -13,7 +13,6 @@ interface IRHFDynamicInput {
 	defaultValue?: string | boolean
 	required?: boolean
 	radioOptions?: { value: string | boolean; label: string; id: string }[]
-	readonly?: boolean
 	className?: string
 }
 
@@ -34,11 +33,11 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						{rest?.label} {rest?.required && <span className="text-base font-bold text-red-400">*</span>}
 					</div>
 					<TextBoxComponent
+						{...register(name)}
 						placeholder={rest?.placeholder}
 						type={name === 'email' ? 'email' : type}
 						value={(rest?.defaultValue as string) || ''}
-						{...register(name)}
-						readOnly={rest.readonly}
+						// disabled={rest.readonly}
 						className={rest.className}
 					/>
 					{formState.errors[name] && (
@@ -59,6 +58,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 							type={showPassword}
 							value={(rest?.defaultValue as string) || ''}
 							{...register(name)}
+							// disabled={rest?.readonly}
 						/>
 						<button
 							className="material-symbols-outlined text-[var(--color-surface-999)]"
@@ -86,6 +86,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						placeholder={rest?.placeholder}
 						value={(rest?.defaultValue as string) || ''}
 						{...register(name)}
+						// disabled={rest?.readonly}
 					/>
 					{formState.errors[name] && (
 						<span className="text-xs text-red-400">
@@ -178,6 +179,7 @@ export function RHFDynamicInput({ type, name, ...rest }: IRHFDynamicInput) {
 						placeholder={rest?.placeholder}
 						multiline
 						{...register(name)}
+						// disabled={rest?.readonly}
 					/>
 					{formState.errors[name] && (
 						<span className="text-xs text-red-400">{formState?.errors[name]?.message as string}</span>

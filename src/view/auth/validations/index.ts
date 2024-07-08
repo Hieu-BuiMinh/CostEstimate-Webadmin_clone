@@ -8,7 +8,7 @@ const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?[\d\s-]{7,15}$/
 // 1234567890
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,}$/
 const usernameRegex = /^[a-z][a-z0-9]*$/
-const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂÂÊÔêôưăâ ]+$/
+const nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊẾỀÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếềểễìíòóôõùúăđĩũơƯĂÂÊÔêôưăâ ]+$/
 // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?`~\-]).{8,}$/
 
 export const LoginFormValidation = z.object({
@@ -125,3 +125,43 @@ export const ChangePasswordFormValidation = z
 		message: 'Validation.User.ChangePassword.password.match_message',
 		path: ['RepeatPassword'],
 	})
+
+// export const SetGooglePasswordFormValidation = z
+// 	.object({
+// 		NewPassword: z
+// 			.string()
+// 			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+// 			.refine((value) => passwordRegex.test(value), {
+// 				message: 'Validation.User.ChangePassword.password.invalid_message',
+// 			}),
+// 		RepeatPassword: z
+// 			.string()
+// 			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+// 			.refine((value) => passwordRegex.test(value), {
+// 				message: 'Validation.User.ChangePassword.password.invalid_message',
+// 			}),
+// 	})
+// 	.refine((data) => data.NewPassword === data.RepeatPassword, {
+// 		message: 'Validation.User.ChangePassword.password.match_message',
+// 		path: ['RepeatPassword'],
+// 	})
+export const SetGooglePasswordFormValidation = z.object({
+	firstName: z
+		.string({ message: 'Validation.Auth.SignUp.firstname.required_message' })
+		.min(1, { message: 'Validation.Auth.SignUp.firstname.required_message' })
+		.refine((value) => nameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.firstname.invalid_message',
+		}),
+	lastName: z
+		.string({ message: 'Validation.Auth.SignUp.lastname.required_message' })
+		.min(1, { message: 'Validation.Auth.SignUp.lastname.required_message' })
+		.refine((value) => nameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.lastname.invalid_message',
+		}),
+	username: z
+		.string({ message: 'Validation.Auth.SignUp.username.required_message' })
+		.min(5, { message: 'Validation.Auth.SignUp.username.invalid_message' })
+		.refine((value) => usernameRegex.test(value), {
+			message: 'Validation.Auth.SignUp.username.invalid_message',
+		}),
+})
