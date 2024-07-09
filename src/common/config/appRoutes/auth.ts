@@ -2,6 +2,7 @@ export const authApiRoute = {
 	login: '/auth/v1/UserLogin',
 	register: '/auth/v1/UserRegister',
 	resetPassword: 'auth/v1/UserChangePassword',
-	signinWithGG: 'auth/v1/UserSigninWithGoogle',
+	signinWithGG: 'auth/v1/UsersigninWithGoogle',
 	signupWithGG: 'auth/v1/UserSignUpWithGoogle',
+	signinWithAutodesk: 'auth/v1/UserSigninWithAutoDesk',
 }

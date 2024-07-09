@@ -7,7 +7,7 @@ import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -18,20 +18,18 @@ import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAuthLogin } from '@/view/auth/hooks'
-import { useLoginWithGoogle } from '@/view/auth/hooks/useLoginWithGoogle'
 import { type ILoginRequestDto } from '@/view/auth/types'
 import { LoginFormValidation } from '@/view/auth/validations'
 
 type LoginFormFields = z.infer<typeof LoginFormValidation>
 
 function AuthLoginForm() {
-	const { data: session } = useSession()
 	const router = useRouter()
 	const translate = useTranslations('Page.Auth.SignIn')
 	const translateValidation = useTranslations()
 
 	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
-	const { mutate: handleLoginWithGG, isPending: loginWithGGIsPending } = useLoginWithGoogle()
+
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(LoginFormValidation) })
 
 	const device = useResponsiveDevice()
@@ -58,19 +56,12 @@ function AuthLoginForm() {
 		{ type: 'checkbox', name: 'remember', label: translate('remember_password') },
 	]
 
-	const handleGGLoginBtnClick = (event: any) => {
-		event.preventDefault()
-		signIn('google')
+	const handleGGLoginBtnClick = () => {
+		signIn('google', { callbackUrl: APP_ROUTER.paths.center.signinWithGoogle.path })
 	}
-
-	useEffect(() => {
-		setTimeout(() => {
-			if (session?.user?.email && !loginWithGGIsPending) {
-				handleLoginWithGG(session?.user?.email)
-			}
-		}, 500)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [session])
+	const handleAutoDeskLoginBtnClick = () => {
+		router.push(APP_ROUTER.paths.center.signinWithAutodesk.path)
+	}
 
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
@@ -170,19 +161,19 @@ function AuthLoginForm() {
 							</div>
 						</ButtonComponent>
 						<ButtonComponent
-							onClick={() => signOut()}
+							onClick={handleAutoDeskLoginBtnClick}
 							type="button"
 							className="e-normal h-[33px] w-[145px]"
 						>
 							<div className="flex items-center gap-3">
 								<Image
-									src="/assets/auth/imgs/git_icon.svg"
+									src="/assets/auth/imgs/autodesk_icon.svg"
 									alt="auth_form_header_img"
 									width={20}
 									height={20}
 									className="h-auto"
 								/>
-								<span>Github</span>
+								<span>Autodesk</span>
 							</div>
 						</ButtonComponent>
 					</div>

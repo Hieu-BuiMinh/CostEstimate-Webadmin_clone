@@ -133,12 +133,13 @@ function AdminTemplate({ children }: IAdminTemplate) {
 	const handleLogout = () => {
 		Cookies.remove('accessToken')
 		Cookies.remove('refreshToken')
+		Cookies.remove('autodeskAccessToken')
+		Cookies.remove('autodeskRefreshToken')
 		if (session?.user?.email) {
-			signOut()
+			signOut({ callbackUrl: APP_ROUTER.paths.center.signIn.path })
+			return null
 		}
-		setTimeout(() => {
-			router.push(APP_ROUTER.paths.center.signIn.path)
-		}, 500)
+		router.push(APP_ROUTER.paths.center.signIn.path)
 		return null
 	}
 

@@ -3,14 +3,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import clsx from 'clsx'
-import { redirect } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
 
-import { APP_ROUTER } from '@/common/config'
 import FallbackImage from '@/components/fallback-image'
 import { RHFDynamicInput } from '@/components/inputs'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
@@ -31,7 +29,8 @@ function AuthSignupWithGoogleForm() {
 
 	const onSubmit: SubmitHandler<SetGooglePasswordFormFields> = (formData: SetGooglePasswordFormFields) => {
 		const data = {
-			email: session?.user?.email || '1cet22909@tccho.com',
+			email: session?.user?.email || '',
+			// email: 'noc44369@ilebi12345.com',
 			...formData,
 		}
 		handleSignup(data)
@@ -66,10 +65,6 @@ function AuthSignupWithGoogleForm() {
 			required: true,
 		},
 	]
-
-	if (!session?.user?.email) {
-		redirect(APP_ROUTER.paths.center.signIn.path)
-	}
 
 	return (
 		<FormProvider {...methods}>

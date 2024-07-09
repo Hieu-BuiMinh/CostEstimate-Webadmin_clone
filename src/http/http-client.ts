@@ -9,16 +9,20 @@ const axiosBuilder = new AxiosBuilder()
 	.setBaseUrl(process.env.NEXT_PUBLIC_BASE_API_URL)
 	.addInterceptor(async (config: any) => {
 		const accessToken = Cookies.get('accessToken') || ''
+		const autodeskAccessToken = Cookies.get('autodeskAccessToken') || ''
+		const autodeskRefreshToken = Cookies.get('autodeskRefreshToken') || ''
 
 		// eslint-disable-next-line no-param-reassign
 		config.params = {
 			...config.params,
 		}
 
-		if (accessToken) {
-			// eslint-disable-next-line no-param-reassign
-			config.headers.Authorization = `Bearer ${accessToken}`
-		}
+		// eslint-disable-next-line no-param-reassign
+		if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`
+		// eslint-disable-next-line no-param-reassign
+		if (autodeskAccessToken) config.headers.autodeskAccessToken = `Bearer ${autodeskAccessToken}`
+		// eslint-disable-next-line no-param-reassign
+		if (autodeskRefreshToken) config.headers.autodeskRefreshToken = `${autodeskRefreshToken}`
 
 		return config
 	})

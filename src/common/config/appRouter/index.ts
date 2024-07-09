@@ -31,8 +31,11 @@ const DEFAULT_PATHS = {
 		signIn: {
 			path: '/sign-in',
 		},
-		signInWithGoogle: {
-			path: '/sign-up-with-google',
+		signinWithGoogle: {
+			path: '/google-authentication',
+		},
+		signinWithAutodesk: {
+			path: '/autodesk-authentication',
 		},
 		signUp: {
 			path: '/sign-up',

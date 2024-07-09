@@ -110,14 +110,7 @@ export function AllFilesTable() {
 						return (
 							// eslint-disable-next-line jsx-a11y/control-has-associated-label
 							<td className="e-rowcell" key={Math.random().toString()}>
-								<CheckBoxComponent
-									type="checkbox"
-									cssClass="!text-white"
-									change={(e: any) => {
-										// eslint-disable-next-line no-console
-										console.log(e.checked, Row)
-									}}
-								/>
+								<CheckBoxComponent type="checkbox" cssClass="!text-white" />
 							</td>
 						)
 					}

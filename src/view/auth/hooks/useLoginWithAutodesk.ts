@@ -5,22 +5,22 @@ import toast from 'react-hot-toast'
 
 import { APP_ROUTER } from '@/common/config'
 import { AuthService } from '@/view/auth/services/auth.service'
-import type { ISigninWithGGResponseDto } from '@/view/auth/types'
+import type { ISigninWithAutodeskResponseDto } from '@/view/auth/types'
 
-export function useLoginWithGoogle() {
+export function useLoginWithAutodesk() {
 	const router = useRouter()
 	return useMutation({
-		mutationKey: ['useLoginWithGoogle'],
-		mutationFn: (_email: string) => {
-			return AuthService.signinWithGG(_email)
+		mutationKey: ['useLoginWithAutodesk'],
+		mutationFn: (_code: string) => {
+			return AuthService.signinWithAutodesk(_code)
 		},
-		onSuccess: (res: ISigninWithGGResponseDto) => {
+		onSuccess: (res: ISigninWithAutodeskResponseDto) => {
 			if (res.statusCode === 200) {
-				if (res?.data === null) {
-					toast.success('Login Google successful!')
-				} else if (res?.data?.accessToken && res.data.refreshToken) {
-					Cookies.set('accessToken', res?.data?.accessToken)
-					Cookies.set('refreshToken', res.data.refreshToken)
+				if (res?.data.length > 0) {
+					Cookies.set('accessToken', res?.data[0]?.accessToken || '')
+					Cookies.set('refreshToken', res?.data[0]?.refreshToken || '')
+					Cookies.set('autodeskAccessToken', res?.data[1]?.accessToken || '')
+					Cookies.set('autodeskRefreshToken', res?.data[1]?.refreshToken || '')
 					router.push(APP_ROUTER.paths.admin.dashboard.path)
 					toast.success('Login Google successful!')
 				}

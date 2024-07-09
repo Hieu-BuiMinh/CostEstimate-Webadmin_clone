@@ -10,10 +10,10 @@ interface IModalConfirmContent {
 	dataRole?: IRole
 }
 
-function ModalRoleDetailContent({ onClose, dataRole }: IModalConfirmContent) {
+function ModalRoleDetailContent({ onClose }: IModalConfirmContent) {
 	// const translate = useTranslations('U')
 	const translate = useTranslations('Page.Role.Detail')
-	console.log(dataRole?.name)
+	// console.log(dataRole?.name)
 	return (
 		<div className="flex flex-col text-[var(--color-surface-999)]">
 			<div className="flex items-center justify-between gap-5">
