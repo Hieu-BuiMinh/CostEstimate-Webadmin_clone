@@ -81,3 +81,15 @@ export interface ISignupWithGGResponseDto {
 		refreshToken?: string
 	}
 }
+
+// SIGN_IN_WITH_AUTODESK
+export interface ISigninWithAutodeskResponseDto {
+	statusCode: number
+	message: string
+	data: {
+		accessToken: string
+		tokenType?: string
+		refreshToken: string
+		expiresIn?: string
+	}[]
+}

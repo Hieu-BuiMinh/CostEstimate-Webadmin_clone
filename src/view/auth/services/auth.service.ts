@@ -61,4 +61,10 @@ export const AuthService: any = {
 		})
 		return response
 	},
+	signinWithAutodesk: async (_code: string) => {
+		const response: ISignupWithGGResponseDto = await httpClient.post(API_ROUTES.auth.signinWithAutodesk, {
+			code: _code,
+		})
+		return response
+	},
 }

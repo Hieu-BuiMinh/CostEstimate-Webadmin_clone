@@ -19,9 +19,9 @@ enableRipple(true)
 function AuthLoginForm() {
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(TestLoginFormValidation) })
 
-	const onSubmit: SubmitHandler<LoginFormFields> = (formData) => {
+	const onSubmit: SubmitHandler<LoginFormFields> = () => {
 		// eslint-disable-next-line no-console
-		console.log(formData)
+		// console.log(formData)
 	}
 
 	const formFields = [
