@@ -57,7 +57,7 @@ function AuthLoginForm() {
 	]
 
 	const handleGGLoginBtnClick = () => {
-		signIn('google', { callbackUrl: APP_ROUTER.paths.center.signinWithGoogle.path })
+		signIn('google', { callbackUrl: APP_ROUTER.paths.center.signinWithGoogle.path, redirect: false })
 	}
 	const handleAutoDeskLoginBtnClick = () => {
 		router.push(APP_ROUTER.paths.center.signinWithAutodesk.path)
