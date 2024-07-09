@@ -9,11 +9,11 @@ import { useLoginWithGoogle } from '@/view/auth/hooks/useLoginWithGoogle'
 function Page() {
 	const { data: session } = useSession()
 	console.log('session')
-	console.log(session)
 	const { mutate: handleLoginWithGG, data: loginWithGGData } = useLoginWithGoogle()
 
 	useEffect(() => {
 		if (session?.user?.email) {
+			console.log(session)
 			handleLoginWithGG(session?.user?.email)
 			// handleLoginWithGG('noc44369@ilebi12345.com')
 		}
