@@ -65,7 +65,7 @@ function ResetPasswordForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
 						{translate('meta_title')}
 					</p>
 				</section>

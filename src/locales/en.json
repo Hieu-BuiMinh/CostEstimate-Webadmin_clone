@@ -151,6 +151,15 @@
 				"place_holder_cur_pass": "Current password",
 				"place_holder_new_pass": "New password",
 				"place_holder_confirm_pass": "Confirm password"
+			},
+			"SigninWithGG": {
+				"meta_title": "Fill in information",
+				"firstname_label": "Your firstname",
+				"firstname_placeholder": "Your firstname",
+				"lastname_label": "Your lastname",
+				"lastname_placeholder": "Your lastname",
+				"username_label": "Your username",
+				"username_placeholder": "Enter your username"
 			}
 		},
 		"User": {

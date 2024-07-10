@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -28,6 +29,7 @@ function AuthLoginForm() {
 	const translateValidation = useTranslations()
 
 	const { mutate: handleLogin, isSuccess, isPending, data: loginData } = useAuthLogin()
+
 	const methods = useForm<LoginFormFields>({ resolver: zodResolver(LoginFormValidation) })
 
 	const device = useResponsiveDevice()
@@ -53,6 +55,13 @@ function AuthLoginForm() {
 		},
 		{ type: 'checkbox', name: 'remember', label: translate('remember_password') },
 	]
+
+	const handleGGLoginBtnClick = () => {
+		signIn('google', { callbackUrl: APP_ROUTER.paths.center.signinWithGoogle.path, redirect: false })
+	}
+	const handleAutoDeskLoginBtnClick = () => {
+		router.push(APP_ROUTER.paths.center.signinWithAutodesk.path)
+	}
 
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
@@ -82,7 +91,7 @@ function AuthLoginForm() {
 						height={10}
 						className="h-auto"
 					/>
-					<p className="text-2xl font-medium uppercase text-[var(--color-surface-999)]">
+					<p className="text-center text-2xl font-medium uppercase text-[var(--color-surface-999)]">
 						{/* Sign in to your account */}
 						{translate('meta_description')}
 					</p>
@@ -132,35 +141,43 @@ function AuthLoginForm() {
 					</Link>
 				</section>
 
-				{/* <section className="login-section gap-2 border-t">
-				<span className="text-center">Or continue with</span>
-				<div className="flex w-full items-center justify-center gap-3">
-					<ButtonComponent className="e-normal h-[33px] w-[145px]">
-						<div className="flex items-center gap-3">
-							<Image
-								src="/assets/auth/imgs/gg_icon.svg"
-								alt="auth_form_header_img"
-								width={20}
-								height={20}
-								className="h-auto"
-							/>
-							<span>Google</span>
-						</div>
-					</ButtonComponent>
-					<ButtonComponent className="e-normal h-[33px] w-[145px]">
-						<div className="flex items-center gap-3">
-							<Image
-								src="/assets/auth/imgs/git_icon.svg"
-								alt="auth_form_header_img"
-								width={20}
-								height={20}
-								className="h-auto"
-							/>
-							<span>Github</span>
-						</div>
-					</ButtonComponent>
-				</div>
-			</section> */}
+				<section className="login-section gap-2 border-t">
+					<span className="text-center">Or continue with</span>
+					<div className="flex w-full items-center justify-center gap-3">
+						<ButtonComponent
+							onClick={handleGGLoginBtnClick}
+							type="button"
+							className="e-normal h-[33px] w-[145px]"
+						>
+							<div className="flex items-center gap-3">
+								<Image
+									src="/assets/auth/imgs/gg_icon.svg"
+									alt="auth_form_header_img"
+									width={20}
+									height={20}
+									className="h-auto"
+								/>
+								<span>Google</span>
+							</div>
+						</ButtonComponent>
+						<ButtonComponent
+							onClick={handleAutoDeskLoginBtnClick}
+							type="button"
+							className="e-normal h-[33px] w-[145px]"
+						>
+							<div className="flex items-center gap-3">
+								<Image
+									src="/assets/auth/imgs/autodesk_icon.svg"
+									alt="auth_form_header_img"
+									width={20}
+									height={20}
+									className="h-auto"
+								/>
+								<span>Autodesk</span>
+							</div>
+						</ButtonComponent>
+					</div>
+				</section>
 			</form>
 		</FormProvider>
 	)

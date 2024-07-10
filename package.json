@@ -52,8 +52,10 @@
 		"drizzle-orm": "^0.31.0",
 		"js-cookie": "^3.0.5",
 		"json-server": "^1.0.0-beta.1",
+		"jsonwebtoken": "^9.0.2",
 		"jwt-decode": "^4.0.0",
 		"next": "^14.2.3",
+		"next-auth": "^4.24.7",
 		"next-intl": "^3.14.1",
 		"pino": "^8.21.0",
 		"pino-pretty": "^10.3.1",
@@ -63,6 +65,7 @@
 		"react-hot-toast": "^2.4.1",
 		"react-responsive-modal": "^6.4.2",
 		"sharp": "^0.33.4",
+		"urlencode": "^2.0.0",
 		"usehooks-ts": "^3.1.0",
 		"zod": "^3.23.8",
 		"zustand": "^4.5.2"

@@ -53,3 +53,43 @@ export interface IResetPasswordResponseDto {
 export enum AuthEnum {
 	authType = 1,
 }
+
+// SIGN_IN_WITH_GG
+export interface ISigninWithGGResponseDto {
+	statusCode: number
+	message: string
+	data: null | {
+		accessToken?: string
+		tokenType?: string
+		refreshToken?: string
+	}
+}
+
+// SIGN_UP_WITH_GG
+export interface ISignupWithGGRequestDto {
+	firstName: string
+	lastName: string
+	username: string
+	email: string
+}
+export interface ISignupWithGGResponseDto {
+	statusCode: number
+	message: string
+	data: null | {
+		accessToken?: string
+		tokenType?: string
+		refreshToken?: string
+	}
+}
+
+// SIGN_IN_WITH_AUTODESK
+export interface ISigninWithAutodeskResponseDto {
+	statusCode: number
+	message: string
+	data: {
+		accessToken: string
+		tokenType?: string
+		refreshToken: string
+		expiresIn?: string
+	}[]
+}
