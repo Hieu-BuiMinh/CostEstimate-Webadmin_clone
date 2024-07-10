@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { encode } from 'urlencode'
@@ -45,8 +46,21 @@ function Page() {
 
 	return (
 		<div className="flex flex-col items-center justify-center gap-5">
-			<span>Authenticating...</span>
-			<p>{params.get('code')}</p>
+			<div className="flex flex-col items-center gap-4">
+				<Image
+					width={10}
+					height={10}
+					alt="gg_logo"
+					src="/assets/images/logo/autodesk_full_logo.svg"
+					style={{ width: 100 }}
+					className="shrink-0"
+				/>
+
+				<div className="flex items-center justify-between gap-2">
+					<span>Authenticating user, please wait a moment</span>
+					<span className="size-5 shrink-0 animate-spin rounded-full border-4 border-r-green-300" />
+				</div>
+			</div>
 		</div>
 	)
 }

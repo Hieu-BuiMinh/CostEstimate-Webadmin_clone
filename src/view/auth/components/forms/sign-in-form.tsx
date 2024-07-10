@@ -157,7 +157,7 @@ function AuthLoginForm() {
 									height={20}
 									className="h-auto"
 								/>
-								<span>Google</span>
+								<span className="truncate">Google</span>
 							</div>
 						</ButtonComponent>
 						<ButtonComponent
@@ -173,7 +173,7 @@ function AuthLoginForm() {
 									height={20}
 									className="h-auto"
 								/>
-								<span>Autodesk</span>
+								<span className="truncate">Autodesk</span>
 							</div>
 						</ButtonComponent>
 					</div>
