@@ -7,10 +7,10 @@ import { APP_ROUTER } from '@/common/config'
 import { AuthService } from '@/view/auth/services/auth.service'
 import type { ISigninWithAutodeskResponseDto } from '@/view/auth/types'
 
-export function useLoginWithAutodesk() {
+export function useLoginWithAutodeskLocalApp() {
 	const router = useRouter()
 	return useMutation({
-		mutationKey: ['useLoginWithAutodesk'],
+		mutationKey: ['useLoginWithAutodeskLocalApp'],
 		mutationFn: (_code: string) => {
 			return AuthService.signinWithAutodesk(_code)
 		},
@@ -23,13 +23,11 @@ export function useLoginWithAutodesk() {
 					Cookies.set('autodeskRefreshToken', res?.data[1]?.refreshToken || '')
 
 					toast.success('Login Google successful!')
-
-					router.push(APP_ROUTER.paths.admin.dashboard.path)
 				}
 			}
 			if (res.statusCode !== 200) {
 				toast.error('Authenticating failed')
-				router.push(APP_ROUTER.paths.center.signIn.path)
+				router.push(`${APP_ROUTER.paths.center.localApp.children.signinWithAutodesk.path}/?error=system_error`)
 			}
 		},
 	})

@@ -43,6 +43,17 @@ const DEFAULT_PATHS = {
 		forgotPassword: {
 			path: '/forgot-password',
 		},
+		localApp: {
+			path: '/local-app',
+			children: {
+				signinWithGoogle: {
+					path: '/local-app/google-authentication',
+				},
+				signinWithAutodesk: {
+					path: '/local-app/autodesk-authentication',
+				},
+			},
+		},
 	},
 	unAuth: {
 		root: '/',
