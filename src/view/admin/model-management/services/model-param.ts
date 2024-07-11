@@ -1,5 +1,5 @@
 import { API_ROUTES } from '@/common/config'
-import { httpClientModel } from '@/http'
+import { httpClient } from '@/http'
 import type {
 	IInsertParamWithSettingIdRequestDto,
 	IInsertParamWithSettingIdResponseDto,
@@ -7,7 +7,7 @@ import type {
 
 export const ModelParamsServices = {
 	insertParamWithSettingId: async (_params: IInsertParamWithSettingIdRequestDto) => {
-		const response: IInsertParamWithSettingIdResponseDto = await httpClientModel.post(
+		const response: IInsertParamWithSettingIdResponseDto = await httpClient.post(
 			API_ROUTES.modelManagement.modelParam.insertModelParamWithSettingId,
 			_params
 		)

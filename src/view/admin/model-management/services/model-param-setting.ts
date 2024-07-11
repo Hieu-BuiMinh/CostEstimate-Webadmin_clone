@@ -1,5 +1,5 @@
 import { API_ROUTES } from '@/common/config'
-import { httpClientModel } from '@/http'
+import { httpClient } from '@/http'
 import type {
 	ICreateModelParamSettingResponseDto,
 	ICreateModelParamSettingResquestDto,
@@ -9,21 +9,21 @@ import type {
 
 export const ModelParamsSettingServices = {
 	getAllModelParam: async () => {
-		const response: IGetAllModelParamSettingResponseDto = await httpClientModel.get(
+		const response: IGetAllModelParamSettingResponseDto = await httpClient.get(
 			API_ROUTES.modelManagement.modelParamSetting.getAllModelParam
 		)
 
 		return response?.data
 	},
 	getModelParamSettingById: async (_id: string) => {
-		const response: IGetModelParamSettingResponseDto = await httpClientModel.get(
+		const response: IGetModelParamSettingResponseDto = await httpClient.get(
 			API_ROUTES.modelManagement.modelParamSetting.getModelParamSettingById(_id)
 		)
 
 		return response?.data
 	},
 	insertModelParamSetting: async (_modelParamSetting: ICreateModelParamSettingResquestDto) => {
-		const response: ICreateModelParamSettingResponseDto = await httpClientModel.post(
+		const response: ICreateModelParamSettingResponseDto = await httpClient.post(
 			API_ROUTES.modelManagement.modelParamSetting.insertModelParamSetting,
 
 			_modelParamSetting
