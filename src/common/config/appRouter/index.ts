@@ -51,6 +51,9 @@ const DEFAULT_PATHS = {
 				},
 				signinWithAutodesk: {
 					path: '/local-app/autodesk-authentication',
+					children: {
+						success_path: '/local-app/autodesk-authentication/success',
+					},
 				},
 			},
 		},

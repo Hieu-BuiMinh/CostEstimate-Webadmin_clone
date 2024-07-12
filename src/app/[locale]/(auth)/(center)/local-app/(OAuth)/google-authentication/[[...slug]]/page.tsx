@@ -18,7 +18,6 @@ function Page() {
 	useEffect(() => {
 		if (session?.user?.email) {
 			handleLoginWithGG(session?.user?.email)
-			// handleLoginWithGG('noc44369@ilebi12345.com')
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session?.user?.email])
