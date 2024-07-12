@@ -19,7 +19,6 @@ function Page() {
 		router.push(
 			`${APP_ROUTER.paths.center.localApp.children.signinWithGoogle.path}/user?email=${session?.user?.email}`
 		)
-		router.refresh()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session?.user?.email])
 

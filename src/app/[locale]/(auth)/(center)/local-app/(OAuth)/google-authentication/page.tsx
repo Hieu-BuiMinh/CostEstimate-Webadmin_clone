@@ -2,7 +2,6 @@
 
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { signIn, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 
@@ -13,13 +12,8 @@ import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 function Page() {
 	const { data: session } = useSession()
 	const device = useResponsiveDevice()
-	const router = useRouter()
 
 	const handleSignInGG = () => {
-		if (session?.user) {
-			router.push(`${APP_ROUTER.paths.center.localApp.children.signinWithGoogle.path}/user`)
-			return
-		}
 		signIn('google', {
 			callbackUrl: `${APP_ROUTER.paths.center.localApp.children.signinWithGoogle.path}/user`,
 			redirect: false,
