@@ -2,12 +2,10 @@
 
 import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
-import { useEffect, useRef } from 'react'
 import { encode } from 'urlencode'
 
 function Page() {
 	const params = useSearchParams()
-	const hasRunRef = useRef(false)
 
 	const autodeskUrlConfig = {
 		baseUrl: process.env.NEXT_PUBLIC_AUTODESK_CLIENT_BASE_API || '',
@@ -17,15 +15,7 @@ function Page() {
 		scope: 'data:read%20account:read%20account:write%20viewables:read',
 	}
 
-	// const { mutate: handleLoginWithAutodesk } = useLoginWithAutodeskLocalApp()
-
 	const href = `${autodeskUrlConfig.baseUrl}?response_type=${autodeskUrlConfig.responseType}&client_id=${autodeskUrlConfig.clientId}&redirect_uri=${encode(autodeskUrlConfig.redirectUri)}&scope=${autodeskUrlConfig.scope}`
-
-	useEffect(() => {
-		if (hasRunRef.current) return
-		hasRunRef.current = true
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
 
 	if (params.get('error')) {
 		// access_denied
@@ -48,9 +38,11 @@ function Page() {
 			</div>
 		)
 	}
+
 	if (!params.get('code')) {
 		redirect(href)
 	}
+
 	if (params.get('code')) {
 		return (
 			<div className="flex flex-col items-center justify-center gap-5">
@@ -65,7 +57,7 @@ function Page() {
 					/>
 
 					<div className="flex items-center justify-between gap-2">
-						<span>Authenticating successful</span>
+						<span>Authentication successful</span>
 					</div>
 				</div>
 			</div>
@@ -85,7 +77,7 @@ function Page() {
 				/>
 
 				<div className="flex items-center justify-between gap-2">
-					<span>Authenticating user, please wait a moment</span>
+					<span>Authentication user, please wait a moment</span>
 					<span className="size-5 shrink-0 animate-spin rounded-full border-4 border-r-green-300" />
 				</div>
 			</div>
