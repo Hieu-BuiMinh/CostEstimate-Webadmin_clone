@@ -11,8 +11,8 @@ export function useLoginWithAutodesk() {
 	const router = useRouter()
 	return useMutation({
 		mutationKey: ['useLoginWithAutodesk'],
-		mutationFn: (_code: string) => {
-			return AuthService.signinWithAutodesk(_code)
+		mutationFn: (_params: { _code: string; _urlCallback: string }) => {
+			return AuthService.signinWithAutodesk(_params)
 		},
 		onSuccess: (res: ISigninWithAutodeskResponseDto) => {
 			if (res.statusCode === 200) {

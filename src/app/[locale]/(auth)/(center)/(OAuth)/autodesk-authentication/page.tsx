@@ -39,7 +39,7 @@ function Page() {
 		hasRunRef.current = true
 
 		if (params.get('code') !== '') {
-			handleLoginWithAutodesk(params.get('code') || '')
+			handleLoginWithAutodesk({ _code: params.get('code') || '', _urlCallback: autodeskUrlConfig.redirectUri })
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
