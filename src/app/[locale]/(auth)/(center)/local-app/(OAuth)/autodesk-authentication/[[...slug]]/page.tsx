@@ -40,7 +40,6 @@ function Page() {
 	}
 
 	if (!params.get('code')) {
-		console.log(href)
 		redirect(href)
 	}
 

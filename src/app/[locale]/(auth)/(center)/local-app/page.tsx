@@ -3,7 +3,6 @@
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 
 import { APP_ROUTER } from '@/common/config'
 
@@ -11,7 +10,7 @@ function LocalAppOAuth() {
 	const router = useRouter()
 
 	const handleGGLoginBtnClick = () => {
-		signIn('google', { callbackUrl: APP_ROUTER.paths.center.signinWithGoogle.path, redirect: false })
+		router.push(APP_ROUTER.paths.center.localApp.children.signinWithGoogle.path)
 	}
 	const handleAutoDeskLoginBtnClick = () => {
 		router.push(APP_ROUTER.paths.center.localApp.children.signinWithAutodesk.path)
