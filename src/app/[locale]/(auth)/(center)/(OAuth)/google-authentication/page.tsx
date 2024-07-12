@@ -29,7 +29,7 @@ function Page() {
 				{
 					'flex w-[385px] flex-col gap-6 rounded border-none bg-[var(--color-template-bg)] p-3': true,
 				},
-				{ 'w-screen h-screen max-w-none': device === 'mobile' }
+				{ 'w-screen h-screen max-w-none !p-0': device === 'mobile' }
 			)}
 		>
 			{loginWithGGData?.data !== null && (
