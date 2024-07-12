@@ -57,7 +57,8 @@ function Page() {
 					/>
 
 					<div className="flex items-center justify-between gap-2">
-						<span>Authentication successful</span>
+						<span>Authentication user, please wait a moment</span>
+						<span className="size-7 shrink-0 animate-spin rounded-full border-4 border-r-green-500" />
 					</div>
 				</div>
 			</div>
