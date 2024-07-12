@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 import { APP_ROUTER } from '@/common/config'
 import FallbackImage from '@/components/fallback-image'
@@ -19,6 +19,7 @@ function Page() {
 		router.push(
 			`${APP_ROUTER.paths.center.localApp.children.signinWithGoogle.path}/user?email=${session?.user?.email}`
 		)
+		router.refresh()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session?.user?.email])
 
