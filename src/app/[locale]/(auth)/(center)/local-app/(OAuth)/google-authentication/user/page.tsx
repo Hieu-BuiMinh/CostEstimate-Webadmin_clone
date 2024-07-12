@@ -53,11 +53,9 @@ function Page() {
 						defaultImageEmpty="/assets/auth/imgs/gg_icon.svg"
 					/>
 					<span className="truncate">{session?.user?.email}</span>
-					{!session && (
-						<span className="size-5 shrink-0 animate-spin rounded-full border-4 border-r-green-300" />
-					)}
+					<span className="size-5 shrink-0 animate-spin rounded-full border-4 border-r-green-300" />
 				</div>
-				{!session && <span className="truncate">Just a moment...</span>}
+				<span className="truncate">Just a moment...</span>
 			</div>
 		</div>
 	)
