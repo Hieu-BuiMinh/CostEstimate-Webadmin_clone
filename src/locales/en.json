@@ -89,7 +89,7 @@
 				},
 				"lastname": {
 					"required_message": "Lastname is required",
-					"invalid_message":"Lastname must be letter only"
+					"invalid_message": "Lastname must be letter only"
 				},
 				"isreverse": {
 					"required_message": "You have to choose fullname display style"
@@ -160,6 +160,17 @@
 				"lastname_placeholder": "Your lastname",
 				"username_label": "Your username",
 				"username_placeholder": "Enter your username"
+			},
+			"Forgotpassword": {
+				"meta_title": "Confirm your email",
+				"meta_reset_password_title": "New password",
+				"email_label": "Your email",
+				"email_placeholder": "Enter your email",
+				"button_submit": "Submit",
+				"new_password_label": "New password",
+				"new_password_placeholder": "Enter your new password",
+				"confirm_password_label": "Confirm password",
+				"confirm_password_placeholder": "Enter confirm password"
 			}
 		},
 		"User": {
@@ -210,7 +221,7 @@
 			"UserProfile": {
 				"meta_title": "User Profile"
 			},
-			"AssignRole":{
+			"AssignRole": {
 				"title": "Assign roles for user"
 			}
 		},

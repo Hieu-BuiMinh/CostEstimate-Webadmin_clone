@@ -34,7 +34,7 @@ export interface IRegisterRequestDto {
 }
 
 export interface IRegisterResponseDto {
-	data: any
+	data: { userId: string }
 	message: string
 	statusCode: number
 }
@@ -92,4 +92,12 @@ export interface ISigninWithAutodeskResponseDto {
 		refreshToken: string
 		expiresIn?: string
 	}[]
+}
+
+// USER_REGISTER_OTP_VALIDATION
+
+export interface IUserValidateOTPResponseDto {
+	statusCode: number
+	message: string
+	data: boolean
 }

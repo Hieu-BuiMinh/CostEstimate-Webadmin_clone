@@ -167,6 +167,17 @@
 				"lastname_placeholder": "Nhập tên",
 				"username_label": "Tên người dùng",
 				"username_placeholder": "Nhập tên người dùng"
+			},
+			"Forgotpassword": {
+				"meta_title": "Xác thực email",
+				"meta_reset_password_title": "Mật khẩu mới",
+				"email_label": "Email",
+				"email_placeholder": "Nhập email",
+				"button_submit": "Xác nhận",
+				"new_password_label": "Mập khẩu mới",
+				"new_password_placeholder": "Nhập mật khẩu mới",
+				"confirm_password_label": "Xác nhận mật khẩu",
+				"confirm_password_placeholder": "Nhập mật khẩu xác nhận"
 			}
 		},
 		"User": {

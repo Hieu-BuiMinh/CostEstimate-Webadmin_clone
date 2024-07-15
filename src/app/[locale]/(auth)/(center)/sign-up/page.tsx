@@ -1,4 +1,4 @@
-import SignupPageView from '@/view/auth/pages/signup.page'
+import SignupPageView from '@/view/auth/pages/sign-up'
 
 function SingUpPage() {
 	return <SignupPageView />

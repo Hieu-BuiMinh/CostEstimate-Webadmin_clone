@@ -11,6 +11,7 @@ import {
 	type ISigninWithGGResponseDto,
 	type ISignupWithGGRequestDto,
 	type ISignupWithGGResponseDto,
+	type IUserValidateOTPResponseDto,
 } from '@/view/auth/types'
 
 export const AuthService: any = {
@@ -65,6 +66,17 @@ export const AuthService: any = {
 		const response: ISignupWithGGResponseDto = await httpClient.post(API_ROUTES.auth.signinWithAutodesk, {
 			code: _code,
 			urlCallback: _urlCallback,
+		})
+		return response
+	},
+	UserResetOTP: async ({ _userId }: { _userId: string }) => {
+		const response: ISignupWithGGResponseDto = await httpClient.post(API_ROUTES.auth.userResetOTP(_userId))
+		return response
+	},
+	UserValidateOTP: async ({ _codeOTP, _userId }: { _codeOTP: string; _userId: string }) => {
+		const response: IUserValidateOTPResponseDto = await httpClient.post(API_ROUTES.auth.userValidateOTP, {
+			codeOTP: _codeOTP,
+			userId: _userId,
 		})
 		return response
 	},

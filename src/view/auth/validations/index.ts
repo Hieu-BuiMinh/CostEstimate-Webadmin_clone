@@ -165,3 +165,29 @@ export const SetGooglePasswordFormValidation = z.object({
 			message: 'Validation.Auth.SignUp.username.invalid_message',
 		}),
 })
+
+export const ForgotpasswordFormValidation = z.object({
+	email: z
+		.string({ message: 'Validation.Auth.SignUp.email.required_message' })
+		.email('Validation.Auth.SignUp.email.invalid_message'),
+})
+
+export const ForgotpasswordResetFormValidation = z
+	.object({
+		newPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+		repeatPassword: z
+			.string()
+			.min(8, 'Validation.User.ChangePassword.password.invalid_message')
+			.refine((value) => passwordRegex.test(value), {
+				message: 'Validation.User.ChangePassword.password.invalid_message',
+			}),
+	})
+	.refine((data) => data.newPassword === data.repeatPassword, {
+		message: 'Validation.User.ChangePassword.password.match_message',
+		path: ['repeatPassword'],
+	})
