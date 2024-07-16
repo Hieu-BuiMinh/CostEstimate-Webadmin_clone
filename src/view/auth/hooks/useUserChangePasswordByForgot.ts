@@ -17,7 +17,7 @@ export function useUserChangePasswordByForgot() {
 			if (res.statusCode === 200) {
 				if (res.data) {
 					toast.success('Update password successful')
-					router.push(APP_ROUTER.paths.center.signIn.path)
+					router.replace(APP_ROUTER.paths.center.signIn.path)
 				} else {
 					toast.error('Update password failed')
 				}
