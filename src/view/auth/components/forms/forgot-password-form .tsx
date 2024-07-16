@@ -45,8 +45,6 @@ function ForgotpasswordForm() {
 
 	useEffect(() => {
 		if (dataSendToUserEmail?.data) {
-			console.log(dataSendToUserEmail)
-
 			setModalOptions({
 				// eslint-disable-next-line @typescript-eslint/no-use-before-define
 				content: <VerifyAlertModal email={methods.getValues('email')} />,
@@ -55,6 +53,7 @@ function ForgotpasswordForm() {
 			})
 			open()
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dataSendToUserEmail])
 
 	return (
