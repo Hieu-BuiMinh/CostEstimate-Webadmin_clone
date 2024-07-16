@@ -5,7 +5,6 @@ import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -16,15 +15,21 @@ import { APP_ROUTER } from '@/common/config'
 import { RHFDynamicInput } from '@/components/inputs'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
 import { useAuthRegister } from '@/view/auth/hooks'
+import { useReristerFormStore } from '@/view/auth/stores'
 import type { IRegisterRequestDto } from '@/view/auth/types'
 import { SignUpFormValidation } from '@/view/auth/validations'
 
 type FormFields = z.infer<typeof SignUpFormValidation>
 
-function SignUpForm() {
+interface ISignUpForm {
+	handleUpdateRegisterState: (_state: 'LOGIN_FORM' | 'VERIFY_OTP') => void
+}
+
+function SignUpForm({ handleUpdateRegisterState }: ISignUpForm) {
+	const { setUser } = useReristerFormStore()
 	const translate = useTranslations('Page.Auth.SignUp')
 	const translateValidation = useTranslations()
-	const router = useRouter()
+
 	const { mutate: handleRegister, isSuccess, isPending, data: registerData } = useAuthRegister()
 
 	const methods = useForm<FormFields>({ resolver: zodResolver(SignUpFormValidation) })
@@ -93,8 +98,9 @@ function SignUpForm() {
 
 	useEffect(() => {
 		if (registerData?.statusCode === 200) {
+			setUser({ email: methods.getValues('email'), userId: registerData?.data?.userId })
+			handleUpdateRegisterState('VERIFY_OTP')
 			methods.reset()
-			router.push(APP_ROUTER.paths.center.signIn.path)
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isSuccess])

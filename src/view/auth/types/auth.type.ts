@@ -34,7 +34,7 @@ export interface IRegisterRequestDto {
 }
 
 export interface IRegisterResponseDto {
-	data: any
+	data: { userId: string }
 	message: string
 	statusCode: number
 }
@@ -92,4 +92,35 @@ export interface ISigninWithAutodeskResponseDto {
 		refreshToken: string
 		expiresIn?: string
 	}[]
+}
+
+// USER_REGISTER_OTP_VALIDATION
+export interface IUserValidateOTPResponseDto {
+	statusCode: number
+	message: string
+	data: boolean
+}
+
+// USER_FORGOT_PASSWORD
+export interface IUserForgotPasswordRequestDto {
+	callbackUrl: string
+	email: string
+}
+export interface IUserForgotPasswordResponseDto {
+	statusCode: number
+	message: string
+	data: boolean
+}
+
+// USER_CHANGE_FORGOT_PASSWORD
+export interface IUserChangePasswordByForgotRequestDto {
+	email: string
+	newPassword: string
+	repeatPassword: string
+	code: string
+}
+export interface IUserChangePasswordByForgotResponseDto {
+	statusCode: number
+	message: string
+	data: boolean
 }

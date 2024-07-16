@@ -11,6 +11,11 @@ import {
 	type ISigninWithGGResponseDto,
 	type ISignupWithGGRequestDto,
 	type ISignupWithGGResponseDto,
+	type IUserChangePasswordByForgotRequestDto,
+	type IUserChangePasswordByForgotResponseDto,
+	type IUserForgotPasswordRequestDto,
+	type IUserForgotPasswordResponseDto,
+	type IUserValidateOTPResponseDto,
 } from '@/view/auth/types'
 
 export const AuthService: any = {
@@ -66,6 +71,36 @@ export const AuthService: any = {
 			code: _code,
 			urlCallback: _urlCallback,
 		})
+		return response
+	},
+	UserResetOTP: async ({ _userId }: { _userId: string }) => {
+		const response: ISignupWithGGResponseDto = await httpClient.post(API_ROUTES.auth.userResetOTP(_userId))
+		return response
+	},
+	UserValidateOTP: async ({ _codeOTP, _userId }: { _codeOTP: string; _userId: string }) => {
+		const response: IUserValidateOTPResponseDto = await httpClient.post(API_ROUTES.auth.userValidateOTP, {
+			codeOTP: _codeOTP,
+			userId: _userId,
+		})
+		return response
+	},
+	UserForgotPassword: async (_data: IUserForgotPasswordRequestDto) => {
+		const response: IUserForgotPasswordResponseDto = await httpClient.post(API_ROUTES.auth.userForgotPassword, {
+			callbackUrl: _data.callbackUrl,
+			email: _data.email,
+		})
+		return response
+	},
+	UserChangePasswordByForgot: async (_data: IUserChangePasswordByForgotRequestDto) => {
+		const response: IUserChangePasswordByForgotResponseDto = await httpClient.post(
+			API_ROUTES.auth.userChangePasswordByForgot,
+			{
+				email: _data.email,
+				newPassword: _data.newPassword,
+				repeatPassword: _data.repeatPassword,
+				code: _data.code,
+			}
+		)
 		return response
 	},
 }
