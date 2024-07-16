@@ -25,9 +25,9 @@ export function AppModalProvider() {
 			classNames={{
 				modal:
 					getItem() === 'dark'
-						? `bg-[#232e3e] text-white ${classNames.modal}`
-						: `bg-white ${classNames.modal}`,
-				overlay: classNames.overlay,
+						? `bg-[#232e3e] text-white ${classNames?.modal}`
+						: `bg-white ${classNames?.modal}`,
+				overlay: classNames?.overlay,
 			}}
 			open={isOpen}
 			onClose={close}
