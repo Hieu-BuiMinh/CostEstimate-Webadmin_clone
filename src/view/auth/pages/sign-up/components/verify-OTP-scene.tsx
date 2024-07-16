@@ -20,7 +20,7 @@ function VerifyOTPScene() {
 	const [otp, setOtp] = useState<string>('')
 	const [count, { startCountdown, resetCountdown }] = useCountdown({
 		countStart: 60 * 3,
-		intervalMs: 10,
+		intervalMs: 1000,
 	})
 
 	const handleChangeOtpvalue = (value: string) => {
