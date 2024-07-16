@@ -5,12 +5,15 @@ import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider, useForm } from 'react-hook-form'
 import type { z } from 'zod'
 
 import { RHFDynamicInput } from '@/components/inputs'
+import useAppModal from '@/components/modals/app-modal/store'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
+import { useUserForgotPassword } from '@/view/auth/hooks/useUserForgotPassword'
 import { ForgotpasswordFormValidation } from '@/view/auth/validations'
 
 type LoginFormFields = z.infer<typeof ForgotpasswordFormValidation>
@@ -22,8 +25,12 @@ function ForgotpasswordForm() {
 
 	const device = useResponsiveDevice()
 
+	const { open, setModalOptions } = useAppModal()
+
+	const { mutate: handleSendToUserEmail, data: dataSendToUserEmail } = useUserForgotPassword()
+
 	const onSubmit: SubmitHandler<LoginFormFields> = (formData) => {
-		console.log({ ...formData, callbackUrl: `${window.location.href}/reset?email=${formData.email}` })
+		handleSendToUserEmail({ ...formData, callbackUrl: `${window.location.href}?email=${formData.email}` })
 	}
 
 	const formFields = [
@@ -36,13 +43,27 @@ function ForgotpasswordForm() {
 		},
 	]
 
+	useEffect(() => {
+		if (dataSendToUserEmail?.data) {
+			console.log(dataSendToUserEmail)
+
+			setModalOptions({
+				// eslint-disable-next-line @typescript-eslint/no-use-before-define
+				content: <VerifyAlertModal email={methods.getValues('email')} />,
+				showCloseIcon: false,
+				classNames: { modal: 'rounded' },
+			})
+			open()
+		}
+	}, [dataSendToUserEmail])
+
 	return (
 		<FormProvider {...methods}>
 			<form
 				onSubmit={methods.handleSubmit(onSubmit)}
 				className={clsx(
 					{
-						'flex w-[385px] flex-col gap-6 rounded border bg-[var(--color-template-bg)] p-3': true,
+						'flex w-[385px] flex-col gap-4 rounded border bg-[var(--color-template-bg)] p-3': true,
 					},
 					{ 'w-screen h-screen max-w-none': device === 'mobile' }
 				)}
@@ -97,3 +118,22 @@ function ForgotpasswordForm() {
 }
 
 export default ForgotpasswordForm
+
+const VerifyAlertModal = ({ email }: { email: string }) => {
+	const { close } = useAppModal()
+
+	const handleResendVerficationEmail = () => {
+		close()
+	}
+
+	return (
+		<div className="flex flex-col items-center gap-4 text-center">
+			<p className="text-3xl font-bold">Verify your email</p>
+			<span className="max-w-[350px]">
+				Hi there. Please verify your email address by clicking the link sent to
+			</span>
+			<span className="font-semibold text-blue-600">{email}</span>
+			<ButtonComponent onClick={handleResendVerficationEmail}>Resend Verifycation Email</ButtonComponent>
+		</div>
+	)
+}

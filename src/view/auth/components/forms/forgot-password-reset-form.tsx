@@ -12,6 +12,7 @@ import type { z } from 'zod'
 
 import { RHFDynamicInput } from '@/components/inputs'
 import { useResponsiveDevice } from '@/hooks/custom-hooks/useMediaquery'
+import { useUserChangePasswordByForgot } from '@/view/auth/hooks/useUserChangePasswordByForgot'
 import { ForgotpasswordResetFormValidation } from '@/view/auth/validations'
 
 type LoginFormFields = z.infer<typeof ForgotpasswordResetFormValidation>
@@ -25,8 +26,10 @@ function ForgotpasswordResetForm() {
 
 	const params = useSearchParams()
 
+	const { mutate: handleChangePassword } = useUserChangePasswordByForgot()
+
 	const onSubmit: SubmitHandler<LoginFormFields> = (formData) => {
-		console.log({ ...formData, email: params.get('email') || '', secretKey: params.get('key') || '' })
+		handleChangePassword({ ...formData, email: params.get('email') || '', code: params.get('code') || '' })
 	}
 
 	const formFields = [

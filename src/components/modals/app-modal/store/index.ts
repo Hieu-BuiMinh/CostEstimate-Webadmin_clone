@@ -17,8 +17,8 @@ type AppModal = {
 	content: string | React.ReactNode
 	title: string
 	classNames: {
-		overlay: string
-		modal: string
+		overlay?: string
+		modal?: string
 	}
 
 	open: () => void
@@ -40,8 +40,8 @@ type AppModal = {
 const useAppModal = create<AppModal>()((set) => ({
 	...initialModalState,
 
-	setModalOptions: ({ showCloseIcon, content, title }) =>
-		set((state) => ({ ...state, showCloseIcon, content, title })),
+	setModalOptions: ({ showCloseIcon, content, title, classNames }) =>
+		set((state) => ({ ...state, showCloseIcon, content, title, classNames })),
 	open: () => set(() => ({ isOpen: true })),
 	close: () => set(() => ({ isOpen: false })),
 	toggle: () => set((state) => ({ isOpen: !state.isOpen })),

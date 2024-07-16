@@ -8,11 +8,12 @@ import { useLocalStorage } from '@/hooks/custom-hooks'
 export function AppModalProvider() {
 	const { getItem } = useLocalStorage('mode')
 
-	const { isOpen, content, showCloseIcon, close } = useAppModal((state) => ({
+	const { isOpen, content, showCloseIcon, close, classNames } = useAppModal((state) => ({
 		isOpen: state.isOpen,
 		title: state.title,
 		content: state.content,
 		showCloseIcon: state.showCloseIcon,
+		classNames: state.classNames,
 
 		open: state.open,
 		close: state.close,
@@ -22,7 +23,11 @@ export function AppModalProvider() {
 	return (
 		<Modal
 			classNames={{
-				modal: getItem() === 'dark' ? 'bg-[#232e3e] text-white' : 'bg-white',
+				modal:
+					getItem() === 'dark'
+						? `bg-[#232e3e] text-white ${classNames.modal}`
+						: `bg-white ${classNames.modal}`,
+				overlay: classNames.overlay,
 			}}
 			open={isOpen}
 			onClose={close}
